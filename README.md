@@ -21,3 +21,7 @@ Progressive Web App for restaurant management
    6-i add login method in the singinCont component to mmanage firebase login method
    7-i add logout button and method for the Panel component for managing the firebase logout method
     conclusion => the fire auth developed succesfully you only need new email and password after we finish developing the admin side i used a test email and password 
+
+  #by ragheb the third commit 
+  1- i fix the text aling in the input fields and i increase the font size a little bit 
+  2- i add a ErrorSingin  component in siningEroor file for handling the sing in error 

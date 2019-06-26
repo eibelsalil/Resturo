@@ -5,7 +5,7 @@ const Input = ({ email, password, changeEmail, changePassword }) => {
   return (
     <div className="Input">
       <input
-        type="text"
+        type="email"
         name="usename"
         placeholder="username"
         onChange={changeEmail}

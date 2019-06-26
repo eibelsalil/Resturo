@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Input from "./input-form";
 import fire from "../../config/config";
+import ErrorSingin from "./singInError";
 
 const SinginCont = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [err,setErr] = useState(false)
+
 
   const login = (e) => {
     e.preventDefault();
@@ -13,7 +16,7 @@ const SinginCont = () => {
       .signInWithEmailAndPassword(email, password)
       .then((u) => {})
       .catch((err) => {
-        console.log(err);
+        setErr(true)
       });
   };
 
@@ -33,8 +36,9 @@ const SinginCont = () => {
           email={email}
           password={password}
         />
+      {err ? <ErrorSingin  /> : null} 
         <button
-          className="login-button"
+          className={err ? "login-button-err" :"login-button"}
           onClick={(e) => {
             login(e);
           }}
