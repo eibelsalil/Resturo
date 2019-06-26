@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "./input-form";
 import fire from "../../config/config";
 
-const SinginCont = () => {
+const SigninCont = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,7 @@ const SinginCont = () => {
 
   return (
     <div>
-      <h1 className="title">Sing in</h1>
+      <h1 className="title">Sign in</h1>
       <div className="bg" />
       <div className="cont" />
       <form>
@@ -46,4 +46,4 @@ const SinginCont = () => {
   );
 };
 
-export default SinginCont;
+export default SigninCont;
