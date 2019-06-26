@@ -1,11 +1,11 @@
 import React from "react";
-import SinginCont from "./Admin-side/sing-in/singinCont";
+import MainAdmin from "./Admin-side/mainAdmin";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SinginCont />
+      <MainAdmin />
     </div>
   );
 }
