@@ -42,7 +42,7 @@ const SigninCont = () => {
         ) : (
           <div className="remember">
             <p style={{ marginBottom: "0", marginTop: "0%" }}>Remember me</p>
-            <input type="checkbox" style={{ marginTop: "5px" }} />
+            <input type="checkbox" style={{ marginTop: "5px" , marginRight: "5px"}} />
           </div>
         )}
 
