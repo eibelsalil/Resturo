@@ -1,0 +1,101 @@
+.dishCont {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-top: 0px solid #dcdbdb;
+  border-right: 0px solid #2eb9ce;
+  border-bottom: 5px solid #dcdbdb;
+  border-left: 0px solid #2eb9ce;
+}
+.category {
+  font-family: "Tahoma";
+  font-size: 18px;
+  font-weight: bold;
+  color: #555252;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-bottom: 0%;
+  margin-left: 5px;
+  margin-top: 1%;
+}
+.dish {
+  width: 90%;
+  border-top: 1px solid #dcdbdb;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  margin-left: 2%;
+  
+}
+
+.dishName {
+  margin: 2%;
+  font-family: "Tahoma";
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
+
+.inrice {
+  margin: 2%;
+  font-family: "Tahoma";
+  font-size: 12px;
+  font-weight: bold;
+  color: #676565;
+}
+
+.price {
+  margin-top: 8%;
+  font-family: "Tahoma";
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.add {
+  height: 31px;
+  width: 68.2px;
+  background: none;
+  border: 4px solid #31d82b;
+  border-radius: 23px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-top: 3%;
+  margin-left: 15%;
+  color: #31d82b;
+  font-family: "Tahoma";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.addplus{
+
+  height: 31px;
+  width: 68.2px;
+  background: none;
+  border: 4px solid #31d82b;
+  border-radius: 23px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-top: 12%;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: #31d82b;
+  font-family: "Tahoma";
+  font-size: 16px;
+  font-weight: bold
+}
+
+.add:focus{
+    outline: none
+}
+
+.inc{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100px;
+  margin-left: 10%
+}
+.sing{
+  color: #31d82b;
+  font-weight: bold
+}

@@ -83,7 +83,6 @@ input[type^="password"] {
 }
 
 .login-button{
-    margin-top: 20px;
     border: none;
     background-color: #FF6F42;
     font-family: "Microsoft YaHei UI";
@@ -107,6 +106,14 @@ input[type^="password"] {
 
 .login-button-err:focus{
     outline: none
+}
+
+.remember{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    margin-right: 15%
 }
 
 .err{
