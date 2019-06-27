@@ -4,7 +4,7 @@ import fire from "../../config/config";
 import ErrorSingin from "./singInError";
 import { Link } from "react-router-dom";
 
-const SinginCont = () => {
+const SigninCont = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
@@ -23,7 +23,7 @@ const SinginCont = () => {
   return (
     <div>
       <Link to="/">back to menu</Link>
-      <h1 className="title">Sing in</h1>
+      <h1 className="title">Sign in</h1>
       <div className="bg" />
       <div className="cont" />
       <form>
@@ -41,8 +41,8 @@ const SinginCont = () => {
           <ErrorSingin />
         ) : (
           <div className="remember">
-            <p style={{ marginBottom: "0" ,marginTop:"0%"}}>Remember me</p>
-            <input type="checkbox" style={{marginTop:"5px"}} />
+            <p style={{ marginBottom: "0", marginTop: "0%" }}>Remember me</p>
+            <input type="checkbox" style={{ marginTop: "5px" }} />
           </div>
         )}
 
@@ -59,4 +59,4 @@ const SinginCont = () => {
   );
 };
 
-export default SinginCont;
+export default SigninCont;

@@ -8,7 +8,7 @@ const Panel = () => {
 
   return (
     <div>
-      <h1>you singed in</h1>
+      <h1>you signed in</h1>
       <button
         onClick={() => {
           logout();

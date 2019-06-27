@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fire from "../config/config";
 import Panel from "./adminpanel/panelTest";
-import SinginCont from "./sing-in/singinCont";
+import SigninCont from "./sign-in/signinCont";
 
 const MainAdmin = () => {
   const [user, Setuser] = useState(null);
@@ -20,7 +20,7 @@ const MainAdmin = () => {
     authLister();
   });
 
-  return <div>{user ? <Panel /> : <SinginCont />}</div>;
+  return <div>{user ? <Panel /> : <SigninCont />}</div>;
 };
 
 export default MainAdmin;
