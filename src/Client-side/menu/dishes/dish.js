@@ -30,6 +30,7 @@ const Dish = ({ img }) => {
               incCount(count - 1);
                deleteItem(-1)
             }}
+          style={{ fontSize: '30px', marginTop: '9px'}}
           >
             -
           </p>
@@ -45,6 +46,7 @@ const Dish = ({ img }) => {
               setTotal(dishes[0].price)
               
             }}
+            style={{ fontSize: '25px', marginTop: '14px'}}
           >
             +
           </p>
