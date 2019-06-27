@@ -17,7 +17,7 @@ const Dish = ({ img }) => {
   return (
     <div className="dish">
       <img src={img} alt="fried" width="109px" height="79px" />
-      <div style={{ width: "30%" }}>
+      <div style={{ width: "30%" , flexShrink:"0" }}>
         <p className="dishName">{dishes[0].name}</p>
         <p className="inrice">{dishes[0].rice}</p>
         <p className="price">${dishes[0].price}</p>
