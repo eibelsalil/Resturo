@@ -80,6 +80,7 @@ input[type^="password"] {
     margin-bottom: 10px;
     font-family: "Microsoft YaHei UI";
     font-weight: bold;
+    margin-top: 0px;
     font-size: 35px
 }
 
@@ -128,3 +129,9 @@ input[type^="password"] {
     font-family: 'PT Serif', serif;
     font-size: 13px
 }
+
+@media only screen and (min-width: 536px) {
+    .remember{
+        margin-right: 6%;
+    }
+  }
