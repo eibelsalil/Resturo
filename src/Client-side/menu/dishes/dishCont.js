@@ -4,10 +4,10 @@ import "./dishes.css"
 import fried from "../../../Asset/fried.png";
 import tomato from "../../../Asset/Tomato.png"
 
-const Dishcont = () => {
+const Dishcont = ({category,categoryId}) => {
   return (
-    <div className='dishCont'>
-      <p className="category">starter</p>
+    <div className='dishCont' id={categoryId}>
+      <p className="category">{category}</p>
       <Dish img={fried} />
       <Dish img={tomato}  />
     </div>

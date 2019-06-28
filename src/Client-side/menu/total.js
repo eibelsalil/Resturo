@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import darkArrow from "../../Asset/arrow-01.png";
+import darkArrow from "../../Asset/arrows-01.png";
 import AppContext from "../../context/AppContext";
+import {Link} from "react-router-dom"
 
 const Total = () => {
   const context = useContext(AppContext);
@@ -9,7 +10,6 @@ const Total = () => {
     return arr.reduce((a, b) => a + b, 0);
   };
 
-  console.log(context.total);
 
   return (
     <div className="total">
@@ -19,13 +19,15 @@ const Total = () => {
       </div>
       <div className="cart">
         <p className="cart-text">view cart</p>
+        <Link to="/order">
         <img
           src={darkArrow}
           alt="view cart"
           width="36.23px"
-          height="20.69px"
-          style={{ marginRight: "5px" }}
+          height="20px"
+          style={{ marginRight: "5px",marginTop: "4px" }}
         />
+        </Link>
       </div>
     </div>
   );

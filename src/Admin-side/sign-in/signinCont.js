@@ -17,6 +17,9 @@ const SigninCont = () => {
       .then((u) => {})
       .catch((err) => {
         setErr(true);
+        setTimeout(()=>{
+          setErr(false)
+        },4000)
       });
   };
 
@@ -27,6 +30,7 @@ const SigninCont = () => {
       <div className="bg" />
       <div className="cont" />
       <form>
+   {err ? <ErrorSingin /> : null}  
         <Input
           changeEmail={(e) => {
             setEmail(e.target.value);
@@ -37,14 +41,11 @@ const SigninCont = () => {
           email={email}
           password={password}
         />
-        {err ? (
-          <ErrorSingin />
-        ) : (
           <div className="remember">
             <p style={{ marginBottom: "0", marginTop: "0%" }}>Remember me</p>
             <input type="checkbox" style={{ marginTop: "5px" , marginRight: "5px"}} />
           </div>
-        )}
+       
 
         <button
           className={err ? "login-button-err" : "login-button"}
