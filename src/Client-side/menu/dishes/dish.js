@@ -26,11 +26,11 @@ const Dish = ({ img }) => {
         <div className="inc">
           <p
             className="sing"
+            id="minus"
             onClick={() => {
               incCount(count - 1);
                deleteItem(-1)
             }}
-          style={{ fontSize: '30px', marginTop: '9px'}}
           >
             -
           </p>
@@ -41,12 +41,12 @@ const Dish = ({ img }) => {
           </button>
           <p
             className="sing"
+            id="plus"
             onClick={() => {
               incCount(count + 1);
               setTotal(dishes[0].price)
               
             }}
-            style={{ fontSize: '25px', marginTop: '14px'}}
           >
             +
           </p>
