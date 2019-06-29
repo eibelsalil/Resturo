@@ -28,11 +28,13 @@ const Menu = () => {
   return (
     <div>
       <Header />
+      <div className="main-dishes">
       <Dishcont category={"Bestsellers"} categoryId={"Bestsellers"} />
       <Dishcont category={"Starter"} categoryId={"Starter"} />
       <Dishcont category={"Dessert"} categoryId={"Dessert"} />
       <Dishcont category={"Lunch"}   categoryId={"Lunch"}/>
       <Dishcont category={"Chicken"} categoryId={"Chicken"}   />
+      </div>
       <Model model={model} wraaperRef={wrapperRef} click={()=>{setModel(false)}} />
       <button
         className="menu-Button"

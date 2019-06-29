@@ -1,6 +1,16 @@
 .header{
     text-align: left;
-    margin: 0
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #FFCA42;
+    border-radius: 0px 0px 25px 25px;
+    z-index: 1;
+}
+
+.header-element{
+    display: grid;
+    grid-template-columns: 84% 20%
 }
 
 .head-bg{
@@ -8,7 +18,7 @@
     background-position: 100%;
     background-size: contain;
     width: 100%;
-    height: 150px;
+    height: 113px;
     position: absolute;
     z-index: -1;
     top:0;
@@ -21,16 +31,22 @@
     font-size: 23px;
     font-weight: bold;
     color: #555252;
+    margin-top: 0;
     margin-bottom: 0;
     margin-left: 5%;
     text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
 }
 
+.main-dishes{
+    padding-top: 150px;
+    padding-bottom: 50px
+}
 .plate{
     font-family: "Tahoma";
-    font-size: 45px;
+    font-size: 42px;
     font-weight: bold;
-    margin-top: 3px;
+    margin-top: 0;
+    
     margin-left: 5%;
     text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
 }
@@ -180,5 +196,30 @@
     }
     .price-item{
         margin-right: 6%;
+    }
+    .model{
+        padding-top: 700px
+    }
+  }
+
+  @media only screen and (max-width: 360px) {
+    .model{
+        padding-top: 300px
+    }
+    .main-dishes{
+        padding-top: 130px;
+        padding-bottom: 25px
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .menu-Button{
+        left: 36%
+    }
+    .model{
+        padding-top: 1000px;
+    }
+    .model-content{
+        margin-right: 430px
     }
   }

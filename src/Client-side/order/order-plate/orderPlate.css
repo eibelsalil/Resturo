@@ -1,0 +1,222 @@
+.OrderOne{
+    padding-top: 120px;
+    background-color: white;
+    
+}
+
+.title-order{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 20px;
+    color: #787977;
+    margin-right: 210px;
+}
+
+.Fried{
+    display: grid;
+    grid-template-columns: 30% 50% 20%
+}
+.current{
+    display: grid;
+    grid-template-columns: 30% 50% 20%
+}
+
+.plate-orderOne{
+    display: grid;
+    grid-template-rows: 20% 10%;
+    grid-row-gap: 5px;             
+    justify-content: center
+}
+
+.order-plate-dish{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 15px;
+    color: #787977;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
+
+.order-plate-dish-price{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 12px;
+    color: #787977;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+   margin-bottom: 0;
+   padding-right: 40px
+}
+
+.button-orderOne{
+    width: 68.2px;
+    height: 31px;
+    margin-top: 10px;
+    border: 3px solid #707070;
+    background: none;
+    border-radius: 22px;
+    color: #707070;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.button-col{
+    display: grid;
+    grid-template-columns: 9% 31% 25% ;
+    margin-top: 10px;
+    justify-content: center;
+    margin-left: 10px
+}
+
+
+.price-total-order{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 20px;
+    color: #787977;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+
+}
+
+.previous-orderBg{
+    position: absolute;
+    background-color: #DCDBDB;
+    height: 0.2%;
+    width: 90%;
+    z-index: 3;
+    background-size: contain;
+    top: 342px;
+    left: 25px;
+}
+
+.current-title{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 20px;
+    color: #555252;
+    margin-top: 0;
+    margin-bottom: 2%;
+    padding-top: 10px;
+    margin-right: 210px
+}
+.currentOrder{
+    background-color: white
+}
+
+.current-dish{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 15px;
+    color: #2C2B2B;
+}
+
+
+.current-dish-price{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 12px;
+    color: #2C2B2B;
+    margin-bottom: 0;
+    padding-right: 40px
+}
+
+.button-col-current{
+    display: grid;
+    grid-template-columns: 10% 32% 25% ;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.button-current{
+    width: 68.2px;
+    height: 31px;
+    border: 3px solid #2BC026;
+    background: none;
+    border-radius: 22px;
+    color: #2BC026;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 0%
+}
+
+.price-total-current{
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.current-orderBg{
+    position: absolute;
+    background-color: #DCDBDB;
+    height: 0.2%;
+    width: 90%;
+    z-index: 3;
+    background-size: contain;
+    top: 464px;
+    left: 25px;
+}
+
+#minus-current{
+    font-size: 30px;
+    margin-top: 40%; 
+}
+#plus-current{
+    font-size: 25px;
+    margin-top: 40%; 
+}
+
+@media only screen and (max-width: 360px){
+    .button-col{
+        
+        grid-template-columns: 20% 35% 45% ;
+        
+    }
+    .previous-orderBg{
+        top: 340px;
+        left: 20px
+    }
+    .button-col-current{
+        grid-template-columns: 20% 47% 18%
+    }
+    .current-orderBg{
+        top: 487px;
+        left: 15px
+    }
+  
+     .current-title{
+         width: 50%;
+     }
+     #plus-current{
+        margin-top: 60%
+    }
+
+    .title-order{
+        width: 55%
+    }
+}
+
+@media only screen and (height: 640px){
+    .previous-orderBg{
+        top: 53.5%;
+        left: 20px
+    }
+    .button-col-current{
+        grid-template-columns: 18% 42% 18%
+    }
+    .button-col{
+        grid-template-columns: 18% 42% 18%
+    }
+    .current-orderBg{
+        top: 462px;
+        left: 15px
+    }
+    #plus-current{
+        margin-top: 50%
+    }
+    #plus{
+        margin-top: 10%
+    }
+   
+}

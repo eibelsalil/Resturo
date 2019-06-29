@@ -8,6 +8,7 @@
   border-right: 0px solid #2eb9ce;
   border-bottom: 5px solid #dcdbdb;
   border-left: 0px solid #2eb9ce;
+  z-index: -1;
 }
 .category {
   font-family: "Tahoma";
@@ -114,6 +115,18 @@
   font-weight: bold
 }
 
+.veg-sym{
+  position: absolute;
+ left: 100px;
+  margin-top: 60px;
+  width:10px;
+   height:10px;
+  z-index: 0
+}
+
+.dish-img{
+  position: static;
+}
 @media only screen and (min-width: 458px) and (max-width: 963px) {
   .inc{
     margin-top: 0%;

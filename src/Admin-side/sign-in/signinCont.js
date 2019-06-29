@@ -9,6 +9,7 @@ const SigninCont = () => {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
 
+
   const login = (e) => {
     e.preventDefault();
     fire
@@ -30,7 +31,7 @@ const SigninCont = () => {
       <div className="bg" />
       <div className="cont" />
       <form>
-   {err ? <ErrorSingin /> : null}  
+   {err ? <ErrorSingin email={email} password={password} /> : null}  
         <Input
           changeEmail={(e) => {
             setEmail(e.target.value);

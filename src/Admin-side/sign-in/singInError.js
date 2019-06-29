@@ -1,10 +1,18 @@
 import React from 'react'
 
 
-const ErrorSingin = () => {
+const ErrorSingin = ({email,password}) => {
     return(
         <div className="err">
-         <p>password or email is wrong </p>
+        {
+            !email || !password ? 
+            <p>required fields are empty</p>
+            :
+            <p>email or password is wrong </p>
+
+        }
+        
+        
         </div>
     )
 }

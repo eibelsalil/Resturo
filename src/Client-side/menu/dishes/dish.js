@@ -2,7 +2,7 @@ import React, { useState,useContext } from "react";
 import { dishes } from "../disharraytest";
 import AppContext from "../../../context/AppContext"
 
-const Dish = ({ img }) => {
+const Dish = ({ img,veg }) => {
   const [count, incCount] = useState(0);
   const context = useContext(AppContext)
    
@@ -16,7 +16,8 @@ const Dish = ({ img }) => {
  
   return (
     <div className="dish">
-      <img src={img} alt="fried" width="109px" height="79px" />
+      <img src={img} alt="fried" width="109px" height="79px"  />
+      <img src={veg} alt="veg"  className="veg-sym" />
       <div style={{ width: "30%" , flexShrink:"0" }}>
         <p className="dishName">{dishes[0].name}</p>
         <p className="inrice">{dishes[0].rice}</p>
