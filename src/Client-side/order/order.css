@@ -38,6 +38,29 @@
     border-radius: 0px 0px 25px 25px;
 }
 
+.order-headContent{
+    display: grid;
+    grid-template-columns: 10% 70%;
+    justify-content: flex-start;
+    align-items: center;
+    height: 150px;
+}
+
+.head-order-text{
+    margin-left: 10%;
+    display: grid;
+    grid-template-rows: 50% 30%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.back-arrow{
+    width:50.84px;
+     height:50px;
+     margin-bottom: 70%;
+}
+
 .rest-order{
     font-family: "Tahoma";
     font-size: 23px;
@@ -54,6 +77,7 @@
     font-weight: bold;
     margin-top: 1px;
     text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+
 }
 
 @media only screen and (min-width: 1024px){

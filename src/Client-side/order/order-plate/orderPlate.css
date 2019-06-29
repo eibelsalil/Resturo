@@ -14,11 +14,11 @@
 
 .Fried{
     display: grid;
-    grid-template-columns: 30% 50% 20%
+    grid-template-columns: 30% 40% 30%
 }
 .current{
     display: grid;
-    grid-template-columns: 30% 50% 20%
+    grid-template-columns: 30% 40% 30%
 }
 
 .plate-orderOne{
@@ -60,8 +60,8 @@
 }
 
 .button-col{
-    display: grid;
-    grid-template-columns: 9% 31% 25% ;
+    display: flex;
+    justify-content: space-evenly;
     margin-top: 10px;
     justify-content: center;
     margin-left: 10px
@@ -120,11 +120,8 @@
 }
 
 .button-col-current{
-    display: grid;
-    grid-template-columns: 10% 32% 25% ;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .button-current{
@@ -137,14 +134,16 @@
     font-family: Tahoma;
     font-weight: bold;
     font-size: 16px;
-    margin-bottom: 10px;
-    margin-top: 0%
+    margin-top: 10%;
+    margin-left: 0%
 }
 
 .price-total-current{
     font-family: Tahoma;
     font-weight: bold;
     font-size: 20px;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    color: #555252
 }
 
 .current-orderBg{
@@ -160,26 +159,68 @@
 
 #minus-current{
     font-size: 30px;
-    margin-top: 40%; 
+    margin-top: 6%;
+    margin-left: 20%;
+
 }
 #plus-current{
     font-size: 25px;
-    margin-top: 40%; 
+    margin-top: 12%;
+    margin-right: 5%
+  
+}
+.instruction-cont{
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+  
+}
+.instruction-logo{
+    width: 25px;
+    height: 40px;
+    margin-left: 6%
+    
+}
+.instruction-input{
+    border: none;
+    height: 30%;
+    width: 80%;
+    margin-left: 1%
+}
+
+.instruction-input::placeholder{
+    font-family: "Tw Cen MT";
+    font-size: 16px;
+    color: #B1B1B1;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+
+}
+
+.instruction-input:focus{
+    outline: none;
+
+}
+
+.bg-cookingInstrution{
+    position: absolute;
+    background-color: #DCDBDB;
+    height: 0.2%;
+    width: 90%;
+    z-index: 3;
+    background-size: contain;
+    top: 512px;
+    left: 25px;
 }
 
 @media only screen and (max-width: 360px){
-    .button-col{
-        
-        grid-template-columns: 20% 35% 45% ;
-        
-    }
+ 
     .previous-orderBg{
         top: 340px;
         left: 20px
     }
-    .button-col-current{
-        grid-template-columns: 20% 47% 18%
-    }
+ 
     .current-orderBg{
         top: 487px;
         left: 15px
@@ -188,35 +229,43 @@
      .current-title{
          width: 50%;
      }
-     #plus-current{
-        margin-top: 60%
-    }
+  
 
     .title-order{
         width: 55%
     }
+    .instruction-cont{
+        height: 100px
+    }
+    .bg-cookingInstrution{
+        top: 540px;
+        left: 17px
+    }
 }
+
+
 
 @media only screen and (height: 640px){
     .previous-orderBg{
         top: 53.5%;
         left: 20px
     }
-    .button-col-current{
-        grid-template-columns: 18% 42% 18%
-    }
-    .button-col{
-        grid-template-columns: 18% 42% 18%
-    }
+
+    
     .current-orderBg{
         top: 462px;
         left: 15px
     }
-    #plus-current{
-        margin-top: 50%
-    }
+  
     #plus{
         margin-top: 10%
+    }
+     .instruction-cont{
+        height: 50px
+    }
+
+    .bg-cookingInstrution{
+        top: 510px
     }
    
 }

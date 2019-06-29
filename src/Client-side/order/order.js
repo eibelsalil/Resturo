@@ -4,6 +4,8 @@ import "./order.css";
 import AppContext from "../../context/AppContext";
 import OrderTwo from "./requestBill/orderTwo"
 import OrderOne from "./order-plate/orderPlate";
+import backArrow from "../../Asset/back-arrow.png"
+import instruction from "../../Asset/instruction.png"
 
 const Order = () => {
   const context = useContext(AppContext);
@@ -14,7 +16,6 @@ const Order = () => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         setModel(false);
-        console.log("clicked");
       }
     }
     useEffect(() => {
@@ -35,13 +36,14 @@ const Order = () => {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
+  console.log(model)
   return (
     <div className="order">
-      <OrderHead />
+      <OrderHead back={backArrow} order={order} click={()=>{setOrder(false)}}  />
       <div className="full-bg" />
       { !order ? 
       <OrderOne click={()=>{setOrder(true)}} order={order} total={add(context.total)}
-      amount={amount} />
+      amount={amount}  instruction={instruction}/>
       :
       <OrderTwo
         total={add(context.total)}

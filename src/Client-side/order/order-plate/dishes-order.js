@@ -24,7 +24,7 @@ const DishOrder = ({ name, price, itemN, total }) => {
           style={{
             color: "#787977",
             fontWeight: "bold",
-            paddingTop: "8px",
+           paddingTop: "3px"
           }}
         >
           +
