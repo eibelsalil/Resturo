@@ -9,7 +9,7 @@ const DishOrder = ({ name, price, itemN, total }) => {
       </div>
       <div className="button-col">
         <p
-          id="minus"
+          id="minus-previous"
           style={{
             color: "#787977",
             fontWeight: "bold",
@@ -20,7 +20,7 @@ const DishOrder = ({ name, price, itemN, total }) => {
         </p>
         <button className="button-orderOne">{itemN}</button>
         <p
-          id="plus"
+          id="plus-previous"
           style={{
             color: "#787977",
             fontWeight: "bold",

@@ -99,7 +99,7 @@
     margin-right: 210px
 }
 .currentOrder{
-    background-color: white
+    background-color: white;
 }
 
 .current-dish{
@@ -163,6 +163,18 @@
     margin-left: 20%;
 
 }
+#minus-previous{
+    font-size: 30px;
+    margin-top: 1%; 
+    margin-right: 6%;
+}
+
+#plus-previous{
+    font-size: 25px;
+  margin-top: 7.5%;
+  margin-left: 4%;
+}
+
 #plus-current{
     font-size: 25px;
     margin-top: 12%;
@@ -268,4 +280,196 @@
         top: 510px
     }
    
+}
+
+@media only screen and (min-width: 700px){
+
+    .previous-orderBg{
+        top: 42%
+    }
+    .current-orderBg{
+        top: 600px;
+        left: 25px
+    }
+    .bg-cookingInstrution{
+        
+       top: 67%
+    }
+      
+    .title-order{
+        margin-right: 70%;
+        font-size: 25px
+    }
+    .current-title{
+        margin-right: 70%;
+        font-size: 25px;
+        margin-bottom: 0
+    }
+    .order-plate-dish{
+        font-size: 22px
+    }
+    .order-plate-dish-price{
+        font-size: 20px
+    }
+    .button-orderOne{
+        margin-top: 10%;
+        width: 150px;
+        height: 40px;
+    }
+    .button-col{
+        display: grid;
+          grid-template-columns: 10% 50% 10%
+    }
+    #minus-previous{
+        font-size: 30px;
+       margin-right: 0%;
+       margin-top: 30%
+    }
+    #plus-previous{
+        font-size: 30px;
+       margin-left: 0%;
+       margin-top: 40%
+    }
+    .price-total-order{
+        font-size: 25px
+    }
+    
+   
+  .current-dish{
+      font-size: 22px
+  }
+  .current-dish-price{
+      font-size: 20px
+  }
+
+  .price-total-current{
+    font-size: 22px
+  }
+
+ .button-col-current{
+     margin-right: 10%
+ }
+  .button-current{
+    margin-top: 10%;
+    width: 150px;
+    height: 40px;
+  }
+
+
+    #minus-current{
+       margin-top: 10%
+    }
+
+    .instruction-cont{
+        height: 90px;
+        align-items: center;
+  
+    }
+
+    .instruction-input{
+        margin-top: 0%;
+        font-size: 25px
+    }
+    .instruction-input::placeholder{
+        font-size: 25px
+    }
+    .instruction-logo{
+        height: 80px;
+        width: 70px
+    }
+
+
+}
+@media only screen and (min-width: 1000px){
+
+    .previous-orderBg{
+        top: 30%
+    }
+    .current-orderBg{
+        top: 600px;
+        left: 25px
+    }
+  
+      
+    .title-order{
+        margin-right: 70%;
+        font-size: 25px
+    }
+    .current-title{
+        margin-right: 70%;
+        font-size: 25px;
+        margin-bottom: 0
+    }
+    .order-plate-dish{
+        font-size: 22px
+    }
+    .order-plate-dish-price{
+        font-size: 20px
+    }
+    .button-orderOne{
+        margin-top: 10%;
+        width: 150px;
+        height: 40px;
+    }
+    .button-col{
+        display: grid;
+          grid-template-columns: 10% 50% 10%
+    }
+    #minus-previous{
+        font-size: 30px;
+       margin-right: 0%;
+       margin-top: 30%
+    }
+    #plus-previous{
+        font-size: 30px;
+       margin-left: 0%;
+       margin-top: 40%
+    }
+    .price-total-order{
+        font-size: 25px
+    }
+  
+   
+  .current-dish{
+      font-size: 22px
+  }
+  .current-dish-price{
+      font-size: 20px
+  }
+
+ .button-col-current{
+     margin-right: 10%
+ }
+  .button-current{
+    margin-top: 10%;
+    width: 150px;
+    height: 40px;
+  }
+
+
+    #minus-current{
+       margin-top: 10%
+    }
+
+    .instruction-cont{
+        height: 90px;
+        align-items: center;
+   
+    }
+
+    .instruction-input{
+        margin-top: 0%;
+        font-size: 25px
+    }
+    .instruction-input::placeholder{
+        font-size: 25px
+    }
+    .instruction-logo{
+        height: 80px;
+        width: 70px
+    }
+
+    .bg-cookingInstrution{
+        top: 50.3%
+    }
 }

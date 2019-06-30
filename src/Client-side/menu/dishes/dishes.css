@@ -136,6 +136,9 @@
     margin-top: 6%;
     margin-left: 0%;
   }
+  .veg-sym{
+    left: 105px;
+  }
 }
 
 @media only screen and (min-width: 964px) {
@@ -146,5 +149,11 @@
   #minus{
     margin-top: 6%;
     margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width: 1000px){
+  .veg-sym{
+    left: 110px;
   }
 }

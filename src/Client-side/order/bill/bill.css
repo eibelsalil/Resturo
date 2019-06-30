@@ -188,3 +188,63 @@
         top: 512px
     }
 }
+
+@media only screen and (min-width: 700px) {
+    .bills-current{
+        top: 690px;
+        display: flex;
+        justify-content: space-around;
+        height: 300px
+    }
+    .item-total{
+        font-size: 30px
+    }
+    .tax{
+        font-size: 30px  
+    }
+    .grand{
+        font-size: 35px  
+    }
+    .total-price{
+        font-size: 30px
+    }
+    .tax-num{
+        font-size: 30px 
+    }
+    .result{
+        font-size: 35px 
+    }
+    .orderPlate{
+        height: 55px;
+        width: 170px;
+        font-size: 25px
+    }
+  
+}
+
+@media only screen and (min-width: 1000px){
+    .bills-current{
+        top: 690px;
+        display: flex;
+        justify-content: space-around;
+        
+    }
+    .item-total{
+        font-size: 30px
+    }
+    .tax{
+        font-size: 30px  
+    }
+    .grand{
+        font-size: 35px  
+    }
+    .total-price{
+        font-size: 30px
+    }
+    .tax-num{
+        font-size: 30px 
+    }
+    .result{
+        font-size: 35px 
+    }
+}
