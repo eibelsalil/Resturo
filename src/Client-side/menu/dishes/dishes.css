@@ -84,21 +84,8 @@
   font-size: 16px;
   font-weight: bold
 }
-
 .add:focus{
     outline: none
-}
-
-#minus{
-  font-size: 30px;
-  margin-top: 1%; 
-  margin-right: 6%;
-}
-
-#plus{
-  font-size: 25px;
-  margin-top: 7.5%;
-  margin-left: 4%;
 }
 
 .inc{
@@ -109,11 +96,24 @@
   margin-left: 15%;
   margin-top: 2%;
 }
-.sing{
+.sing-minus{
   color: #31d82b;
   font-style: oblique;
-  font-weight: bold
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 1%; 
+  margin-right: 6%;
 }
+.sing-plus{
+  color: #31d82b;
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 7.5%;
+  margin-left: 4%;
+}
+
+
 
 .veg-sym{
   position: absolute;

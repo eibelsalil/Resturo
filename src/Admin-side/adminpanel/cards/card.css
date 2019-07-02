@@ -1,0 +1,147 @@
+.live-cardsCont{
+    display: grid;
+     grid-template-rows: auto;
+     grid-row-gap: 10px;
+    height: fit-content;
+
+}
+
+.liveCard{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: white;
+    border: 10px solid #3CE082;
+    border-radius: 6px;
+    
+}
+
+.completedCard{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: white;
+    border: 10px solid #B04E3B;
+    border-radius: 6px;
+    overflow: scroll
+}
+
+
+.Table{
+    display: grid;
+    grid-template-rows: 45% 40%; 
+    background: white;
+     width: 110.36;
+     justify-content: center;
+     
+    
+}
+.table-text{
+    font-family:  "TimeBurner";
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-right: 35px
+    
+}
+
+.table-number{
+    font-family: "Segoe UI";
+    font-size: 69px;
+    font-weight: bold;
+    margin-top: 0;
+  
+ 
+}
+
+.table-cont{
+    display: grid;
+    grid-template-rows: 2% 30% 20%;
+    height: fit-content;
+    background: white;
+    justify-content: space-between;
+
+}
+
+.time-spend{
+    font-family: Tahoma;
+    font-size: 17px;
+    font-weight: bold;
+    color: #908E8E;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-bottom: 0;
+    
+}
+
+.table-paltes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    margin-top: 5%;
+    border-left: 5px solid #3CE082
+}
+
+.table-paltesCompleted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    margin-top: 5%;
+    border-left: 5px solid #B04E3B
+}
+
+.done-button{
+    width: 100px;
+     height: 30px;
+    border: 8px solid #3EC076;
+    border-radius: 24px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+     background: none;
+     font-family: Tahoma;
+    font-size: 17px;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.done-buttonHidden{
+    display: none
+}
+
+.Plate-Table{
+    display: flex;
+    justify-content: space-between;
+    height: 12%;
+    border-bottom: 1px solid rgba(122, 122, 122, 16%);
+    width: 80%
+}
+
+.plate-comments{
+    margin-top: 10px;
+    width: 80%;
+    min-height: 40%
+}
+
+.plateName{
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: bold; 
+}
+
+.palteNumber{
+    height: 19.74px;
+    width:  32.63px;
+    margin-top: 6%;
+    background: none;
+    border: 3px solid #5FD0E2;
+    border-radius: 2px;
+    font-family: "Microsoft YaHei UI";
+    font-size: 11px;
+    font-weight: bold; 
+    text-align: center
+}
+
+.palteNumber-para{
+    margin-top: 0;
+    padding-bottom: 20px
+}

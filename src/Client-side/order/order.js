@@ -40,6 +40,7 @@ const Order = () => {
   return (
     <div className="order">
       <OrderHead back={backArrow} order={order} click={()=>{setOrder(false)}}  />
+    
       <div className="full-bg" />
       { !order ? 
       <OrderOne click={()=>{setOrder(true)}} order={order} total={add(context.total)}

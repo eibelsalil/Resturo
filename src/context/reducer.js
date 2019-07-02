@@ -1,6 +1,7 @@
 export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
-
+export const ADD_DISH = "ADD_DISH";
+export const DELETE_DISH = "DELETE_DISH "
 
 
 export const priceReducer = (state, action) => {
@@ -19,3 +20,20 @@ export const priceReducer = (state, action) => {
       return state;
   }
 };
+
+export const dishReducer = (state,action) =>{
+  switch (action.type) {
+    case ADD_DISH:
+      return {
+        ...state,
+        orderDish: [...state.orderDish, action.dish]
+      };
+    case DELETE_DISH:
+      state.orderDish.splice(action.index,1);
+      return {
+        ...state
+      };
+    default:
+      return state;
+  }
+}

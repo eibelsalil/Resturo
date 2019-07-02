@@ -1,4 +1,8 @@
 .order{
+    height: fit-content;
+    align-items: center;
+    position: absolute;
+    width: 100%;
     height: 100%
 }
 
@@ -14,29 +18,33 @@
     left: 0; 
 }
 
+.full-bg-1{
+    background-color: white;
+    background-position: 100%;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -2;
+    top:0;
+    left: 0; 
+    border-radius: 22px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,16%);
+}
 
 
 
 .header-order{
     text-align: center;
-    position: fixed;
+    position: sticky;
     width: 100%;
-    top:0
-
-}
-
-.head-bg-order{
-    background-color: #FFCA42;
-    background-position: 100%;
-    background-size: contain;
-    width: 100%;
-    height: 130px;
-    position: absolute;
-    z-index: -1;
     top:0;
-    left: 0;
+    background-color: #FFCA42;
+    height: 130px;
     border-radius: 0px 0px 25px 25px;
 }
+
+
 
 .order-headContent{
     display: grid;
@@ -80,11 +88,26 @@
 
 }
 
+.order-Two{
+  width: 100%
+}
+
+
+@media only screen and (min-height: 800px){
+    .full-bg-1{
+        height: 85%
+    }
+}
 @media only screen and (min-width: 1024px){
     .rest-order{
         margin-top: 10px
     }
     .plate-order{
         margin-top: 0
+    }
+}
+@media only screen and (max-width: 360px){
+    .full-bg-1{
+        height: 122%;
     }
 }
