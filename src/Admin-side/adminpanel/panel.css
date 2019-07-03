@@ -1,80 +1,110 @@
-.Admin-panel{
- 
-    height: 100%;
-    
+.Admin-panel {
+  background-position: 100%;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll
 }
 
-.live{
-    color: #5ECFE1
+.live {
+  color: #5ecfe1;
 }
 
-.live-off{
-    color: #707070
+.live-off {
+  color: #707070;
 }
 
-.Completed{
-    color: #707070
+.Completed {
+  color: #707070;
 }
-.Completed-On{
-    color: #5ECFE1
+.Completed-On {
+  color: #5ecfe1;
 }
 
-.header-line{
-    background-color: #5ECFE1;
-    background-position: 100%;
-    background-size: contain;
-    width: 50%;
-    height: 0.3%;
-    position: absolute;
-    z-index: 1;
-    top:72px;
-    left: 0;
-    animation: slide-back 1s ease-in forwards;  
+.header-line {
+  background-color: #5ecfe1;
+  background-position: 100%;
+  background-size: contain;
+  width: 50%;
+  height: 0.3%;
+  position: fixed;
+  z-index: 2;
+  top: 72px;
+  left: 0;
+  animation: slide-back 1s ease-in forwards;
 }
 @keyframes slide-back {
-    0%{
-       left: 50%
-    }
-  
-    100%{
-       left: 0% 
-        
-    }
+  0% {
+    left: 50%;
+  }
+
+  100% {
+    left: 0%;
+  }
 }
 
-
-.header-line-COMPLETED{
-    background-color: #5ECFE1;
-    background-position: 100%;
-    background-size: contain;
-    width: 50%;
-    height: 0.3%;
-    position: absolute;
-    z-index: 1;
-    top:72px;
-    left: 0%; 
-    animation: slide 1s ease-in forwards;  
+.header-line-COMPLETED {
+  background-color: #5ecfe1;
+  background-position: 100%;
+  background-size: contain;
+  width: 50%;
+  height: 0.3%;
+  position: fixed;
+  z-index: 1;
+  top: 72px;
+  left: 0%;
+  animation: slide 1s ease-in forwards;
 }
 @keyframes slide {
-    0%{
-       left: 0
-    }
-  
-    100%{
-       left: 50% 
-        
-    }
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 50%;
+  }
+}
+
+.full-bgAdmin {
+  background-color: #eef2f6;
+  background-position: 100%;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -3;
+  top: 0;
+  left: 0;
+}
+
+.full-fotter {
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 5%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 
-.full-bgAdmin{
-    background-color: #EEF2F6;
-    background-position: 100%;
-    background-size: contain;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -3;
-    top:0;
-    left: 0; 
+.edit-menu{
+  position: fixed;
+  z-index: 2;
+  background-color: #5ECEE0;
+  border: none;
+  width: 113.32px;
+  height: 36.39px;
+  border-radius: 22px;
+  font-family: "Tahoma";
+  font-size: 23px;
+  font-weight: bold;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  bottom:9%;
+  left:35%;
+  
 }

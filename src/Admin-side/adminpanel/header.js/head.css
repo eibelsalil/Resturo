@@ -5,5 +5,9 @@
     font-size: 23px;
     font-weight: bold;
     background-color: white;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
