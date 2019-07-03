@@ -1,37 +1,21 @@
 import React from "react";
+import OrderContent from "./current-orderContent";
+import uuid from "uuid"
 
-const CurrentOrder = () => {
+
+const CurrentOrder = ({orderDish,total}) => {
+ 
+
+
+
   return (
     <div className="currentOrder">
       <p className="current-title">Current Order</p>
-      <div className="current">
-        <div className="plate-orderOne">
-          <p className="current-dish">Fried Rice</p>
-          <p className="current-dish-price">$60</p>
-        </div>
-        <div className="button-col-current">
-          <p
-           id="minus-current"
-          style={{
-               color: "#2BC026", 
-               fontWeight:"bold",
-            }}>
-            -
-            </p>
-          <button className="button-current">1</button>
-          <p
-          id="plus-current"
-            style={{
-              color: "#2BC026",
-              fontWeight:"bold"
-            }}
-          >
-            +
-          </p>
-        </div>
-        <p className="price-total-current">$120</p>
-      </div>
-      <div className="current-orderBg" />
+      <div className="currentOrders-cont" > 
+      {orderDish.map(({name,price})=>(
+        <OrderContent dishName={name} dishPrice={price} total={total} key={uuid()} ItemNumber={orderDish.length} />
+      ))}
+    </div>
     </div>
   );
 };

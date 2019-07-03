@@ -1,7 +1,7 @@
 .OrderOne{
-    padding-top: 120px;
     background-color: white;
-    
+    min-height: 170px
+
 }
 
 .title-order{
@@ -9,19 +9,51 @@
     font-weight: bold;
     font-size: 20px;
     color: #787977;
-    margin-right: 210px;
+    margin-right: 155px;
+    margin-bottom: 0
+}
+.previous-orderDishes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: fit-content;
+    
 }
 
 .Fried{
     display: grid;
-    grid-template-columns: 30% 40% 30%
+    grid-template-columns: 30% 40% 30%;
+    height: 50px
+}
+
+
+
+.orders-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    background-color: white;
+    border-radius: 22px;
+    margin-top: 0;
+    margin-left: 5%
+}
+
+.currentOrders-cont{
+    display: grid;
+ grid-gap: 0px;
+    overflow: scroll;
+   height: 100px
 }
 .current{
     display: grid;
-    grid-template-columns: 30% 40% 30%
+    grid-template-columns: 30% 40% 30%;
+    height: 60px
 }
 
 .plate-orderOne{
+    grid-column: 1;
+    grid-row: 1;
     display: grid;
     grid-template-rows: 20% 10%;
     grid-row-gap: 5px;             
@@ -84,7 +116,7 @@
     width: 90%;
     z-index: 3;
     background-size: contain;
-    top: 342px;
+    top: 275px;
     left: 25px;
 }
 
@@ -96,10 +128,16 @@
     margin-top: 0;
     margin-bottom: 2%;
     padding-top: 10px;
-    margin-right: 210px
+    margin-right: 150px
 }
 .currentOrder{
     background-color: white;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 3px solid #DCDBDB;
+    border-bottom: 3px solid #DCDBDB
 }
 
 .current-dish{
@@ -146,16 +184,7 @@
     color: #555252
 }
 
-.current-orderBg{
-    position: absolute;
-    background-color: #DCDBDB;
-    height: 0.2%;
-    width: 90%;
-    z-index: 3;
-    background-size: contain;
-    top: 464px;
-    left: 25px;
-}
+
 
 #minus-current{
     font-size: 30px;
@@ -187,6 +216,7 @@
     justify-content: flex-start;
     align-items: center;
     height: 50px;
+    border-bottom: 3px solid #DCDBDB
   
 }
 .instruction-logo{
@@ -222,35 +252,40 @@
     width: 90%;
     z-index: 3;
     background-size: contain;
-    top: 512px;
+    top: 450px;
     left: 25px;
 }
 
 @media only screen and (max-width: 360px){
+    .currentOrder{
+        height: 130px;
+        justify-content: flex-end;
+    
+    }
  
     .previous-orderBg{
-        top: 340px;
+        top: 275px;
         left: 20px
     }
  
     .current-orderBg{
-        top: 487px;
+        top: 400px;
         left: 15px
     }
   
      .current-title{
          width: 50%;
      }
-  
+ 
 
     .title-order{
         width: 55%
     }
     .instruction-cont{
-        height: 100px
+        height: 70px
     }
     .bg-cookingInstrution{
-        top: 540px;
+        top: 462px;
         left: 17px
     }
 }
@@ -258,17 +293,6 @@
 
 
 @media only screen and (height: 640px){
-    .previous-orderBg{
-        top: 53.5%;
-        left: 20px
-    }
-
-    
-    .current-orderBg{
-        top: 462px;
-        left: 15px
-    }
-  
     #plus{
         margin-top: 10%
     }
@@ -276,25 +300,15 @@
         height: 50px
     }
 
-    .bg-cookingInstrution{
-        top: 510px
-    }
+
    
 }
 
 @media only screen and (min-width: 700px){
-
-    .previous-orderBg{
-        top: 42%
+    .OrderOne{
+        min-height: 200px
     }
-    .current-orderBg{
-        top: 600px;
-        left: 25px
-    }
-    .bg-cookingInstrution{
-        
-       top: 67%
-    }
+    
       
     .title-order{
         margin-right: 70%;
@@ -327,7 +341,7 @@
     }
     #plus-previous{
         font-size: 30px;
-       margin-left: 0%;
+       margin-left: 80%;
        margin-top: 40%
     }
     .price-total-order{
@@ -382,14 +396,7 @@
 }
 @media only screen and (min-width: 1000px){
 
-    .previous-orderBg{
-        top: 30%
-    }
-    .current-orderBg{
-        top: 600px;
-        left: 25px
-    }
-  
+
       
     .title-order{
         margin-right: 70%;
@@ -469,7 +476,5 @@
         width: 70px
     }
 
-    .bg-cookingInstrution{
-        top: 50.3%
-    }
+ 
 }

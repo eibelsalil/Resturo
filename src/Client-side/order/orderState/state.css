@@ -1,8 +1,9 @@
 .order-state{
-    margin-top: 310px;
+    margin-top: 180px;
     background-color: #FFFFFF;
     height: 287px;
     border-radius: 22px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start

@@ -5,9 +5,13 @@ import Total from "./total";
 import Appcontext from "../../context/AppContext";
 import Model from "./model";
 
+
+
 const Menu = () => {
   const context = useContext(Appcontext);
+
   const [model, setModel] = useState(false);
+
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -22,9 +26,11 @@ const Menu = () => {
     });
   }
 
+
+
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
- 
+
   return (
     <div>
       <Header />
@@ -32,10 +38,16 @@ const Menu = () => {
       <Dishcont category={"Bestsellers"} categoryId={"Bestsellers"} />
       <Dishcont category={"Starter"} categoryId={"Starter"} />
       <Dishcont category={"Dessert"} categoryId={"Dessert"} />
-      <Dishcont category={"Lunch"}   categoryId={"Lunch"}/>
+      <Dishcont category={"Lunch"}   categoryId={"Lunch"} />
       <Dishcont category={"Chicken"} categoryId={"Chicken"}   />
       </div>
-      <Model model={model} wraaperRef={wrapperRef} click={()=>{setModel(false)}} />
+      <Model
+        model={model}
+        wraaperRef={wrapperRef}
+        click={() => {
+          setModel(false);
+        }}
+      />
       <button
         className="menu-Button"
         onClick={() => {

@@ -1,17 +1,20 @@
 import React from "react";
-import Dish from "./dish";
-import "./dishes.css"
+import "./dishes.css";
 import fried from "../../../Asset/fried.png";
-import tomato from "../../../Asset/Tomato.png";
-import Veg from "../../../Asset/veg.jpg";
-import Nonveg from "../../../Asset/non-veg.png"
+import Veg from "../../../Asset/fried.png";
+import Dish from "./dish";
 
-const Dishcont = ({category,categoryId}) => {
+const Dishcont = ({ category, categoryId, count, incCount, decCount }) => {
   return (
-    <div className='dishCont' id={categoryId}>
+    <div className="dishCont" id={categoryId}>
       <p className="category">{category}</p>
-      <Dish img={fried} veg={Veg} />
-      <Dish img={tomato} veg={Nonveg}  />
+      <Dish
+        veg={Veg}
+        img={fried}
+        count={count}
+        incCount={incCount}
+        decCount={decCount}
+      />
     </div>
   );
 };
