@@ -1,0 +1,338 @@
+.New-cont {
+  margin-top: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  overflow: scroll;
+  margin-bottom: 20%
+}
+
+.intemName-input {
+  width: 280px;
+  height: 31px;
+  border: 1px solid #e0dfdf;
+  border-radius: 5px;
+  background: white;
+  margin-top: 2%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-right: 12%;
+}
+
+.ItemName-title {
+  font-family: "Microsoft YaHei UI";
+  font-size: 17px;
+  font-weight: bold;
+  color: #5d5c5c;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-bottom: 0;
+  margin-right: 70%;
+}
+
+.imgUp-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 9%
+}
+
+.imgUp-title {
+  font-family: "Microsoft YaHei UI";
+  font-size: 17px;
+  font-weight: bold;
+  color: #5d5c5c;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-bottom: 0;
+  margin-right: 60%;
+}
+
+.upArea{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 2%
+}
+
+.imgUp-cont-input {
+  display: none;
+}
+
+label {
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  width: 147px;
+  height: 134px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #EBEBEB;
+  border: 1px solid #E0DFDF;
+  border-radius: 5px
+}
+
+.img-up-icon{
+    margin-left: 38%;
+    width: 34px;
+    height: 37.49px;
+}
+
+.uploadImg-text{
+    font-family: "Microsoft YaHei UI";
+    font-size: 20px;
+    font-weight: bold;
+    color: #BCBCBC;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-top: 0
+}
+
+
+
+
+.tipOne{
+  font-family: "Tahoma";
+  font-size: 9px;
+  color: #AEAEAE;
+  margin-bottom: 0
+}
+
+.tipTwo{
+    font-family: "Tahoma";
+  font-size: 9px;
+  color: #AEAEAE;
+  margin-top: 0
+}
+
+.upCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start
+}
+
+.confirmUplodButton{
+    height: 31.04px;
+    background-color: #5ECEE0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    font-family: "Tahoma";
+    font-size: 12px;
+    font-weight: bold
+}
+
+.veg-option{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  width: 90%;
+  margin-right: 5%
+}
+
+.vegOption-text{
+    font-family: "Microsoft YaHei UI";
+    font-size: 17px;
+    color: #5D5C5C;
+    font-weight: bold;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-bottom: 1%
+}
+
+.label-cont{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 5%
+}
+
+.labels-option{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-right: 5%
+}
+
+.input-checkbox{
+    margin: 0
+}
+
+.option-text{
+    font-family: "Microsoft YaHei UI";
+    font-size: 16px;
+    color: #AFAFAF;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-top: 25%;
+    margin-left: 5%
+}
+.option-text-nonveg{
+    font-family: "Microsoft YaHei UI";
+    font-size: 16px;
+    color: #AFAFAF;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-top: 13%;
+ 
+}
+
+.labels-option-nonveg{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start
+}
+.priceEdit-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+}
+.price-title-edit{
+  margin-bottom: 0%;
+  font-family: "Microsoft YaHei UI";
+  font-size: 17px;
+  font-weight: bold;
+  color: #5D5C5C;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
+
+.priceInput-cont{
+  display:flex;
+  justify-content: space-evenly;
+  margin-left: 17%;
+  
+}
+
+.priceInput{
+  width: 97px;
+  height: 27px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  background: white;
+  border: 1px solid #E0DFDF;
+  background: url("../../../../Asset/dollar.png") no-repeat scroll 0px 5px;
+ background-size: 20%;
+ margin-left: 17%;
+ text-indent: 17px
+}
+.taxInput{
+  width: 97px;
+  height: 27px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  background: white;
+  border: 1px solid #E0DFDF;
+  background: url("../../../../Asset/percentage.png") no-repeat scroll 70px 5px;
+ background-size: 20%;
+ margin-left: 17%;
+
+}
+.price-text-edit{
+  font-family: "Microsoft YaHei UI";
+  font-size: 16px;
+  font-weight: bold;
+  color: #898989;
+  margin-bottom: 0;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-top: 22%
+}
+
+.priceInput-Items{
+  display: flex;
+  justify-content: center;
+  margin-left: 40%;
+ 
+}
+
+.dollar{
+  background-color: #E0E0E0;
+  width: 25px;
+  height: 27px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  position: absolute;
+  top: 62%;
+  left:20%
+}
+
+.dollar-sign{
+  margin-top: 20%
+}
+
+.percentage{
+  background-color: #E0E0E0;
+  width: 25px;
+  height: 27px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  position: absolute;
+  top: 68.2%;
+  left: 43%
+}
+.priceAndtax{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.final-priceCont{
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin-left: 5%;
+  margin-top: 5%
+}
+
+.Final-priceText{
+  font-family: "Microsoft YaHei UI";
+  font-size: 16px;
+  font-weight: bold;
+  color: #898989;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-bottom: 0
+}
+.Final-priceSample{
+  font-family: "Microsoft YaHei UI";
+  font-size: 18px;
+  font-weight: bold;
+  color: #898989;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+  margin-bottom: 0
+}
+
+.GagtegorSel-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%
+}
+
+.GategorySel-title{
+  font-family: "Microsoft YaHei UI";
+  font-size: 17px;
+  font-weight: bold;
+  color: #5D5C5C;
+  text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+ margin-bottom: 2%;
+}
+
+.GategorySel-options{
+  width: 280px;
+  height: 31px;
+  border: 1px solid #E0DFDF;
+  border-radius: 5px;
+  font-family: "Microsoft YaHei UI";
+  font-size: 14px;
+  font-weight: bold;
+  color: #AFAFAF;
+  margin-bottom: 10%;
+  margin-left: 5%
+}
+
+.GategorySel-textarea{
+  width: 280px;
+  height: 142px;
+  border: 1px solid #E0DFDF;
+  border-radius: 5px;
+  margin-bottom: 10%;
+  margin-left: 5%
+}

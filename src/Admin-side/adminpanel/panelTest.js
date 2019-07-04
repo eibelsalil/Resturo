@@ -75,7 +75,9 @@ const Panel = () => {
                 <LiveCard tableNumber={7} timer={0.27} num={3} />
               </div>
             ) : (
+              <div className="live-cardsCont" > 
               <CompletedCard tableNumber={12} timer={0.11} num={3} />
+              </div>
             )}
           </div>
         );

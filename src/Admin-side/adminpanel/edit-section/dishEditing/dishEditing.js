@@ -1,6 +1,7 @@
 import React from "react";
 import "../edit.css"
 import DishItem from "./dishItem";
+import uuid from "uuid"
 
 const DishEditing = ({ gategory }) => {
 
@@ -12,7 +13,7 @@ const DishEditing = ({ gategory }) => {
         </div>
         {
           Array.from({length: 3}).map(()=>(
-            <DishItem />
+            <DishItem key={uuid()} />
           ))
         }
        

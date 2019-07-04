@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import "../header.js/head";
 
 
-const EditHeader = () => {
-  const [nav, navOn] = useState(false);
+const EditHeader = ({nav,navoff,NAVon}) => {
+
   return (
     <div>
       <div className="admin-header">
         <p
           className={nav ? "lave-off" : "live"}
-          onClick={() => {
-            navOn(false);
-          }}
+          onClick={navoff}
         >
           MENU
         </p>
         <p
           className={nav ? "Completed-On" : "Completed"}
-          onClick={() => {
-            navOn(true)
-          }}
+          onClick={NAVon}
         >
          Add NEW
         </p>
