@@ -10,6 +10,9 @@ const Dish = ({ img, veg }) => {
   const Inc =() =>{
     incCount(count => count + 1)
   }
+  const Dec =() =>{
+    incCount(count => count - 1)
+  }
   const context = useContext(Appcontext);
 
 
@@ -48,6 +51,7 @@ console.log(chosenDish)
           className="sing-minus"
           onClick={() => {
              deleteItem(-1)
+             Dec()
           }}
         >
           -
