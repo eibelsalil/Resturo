@@ -1,10 +1,24 @@
 import React, { useReducer } from "react";
 import AppContext from "./AppContext";
-import { ADD_PRICE, DELETE_PRICE,ADD_DISH,DELETE_DISH, priceReducer,dishReducer } from "./reducer";
+import {
+  ADD_PRICE,
+  DELETE_PRICE,
+  ADD_DISH,
+  DELETE_DISH,
+  priceReducer,
+  dishReducer,
+  ADMIN_PAGE,
+  AdminPageReducer
+} from "./reducer";
 
 const GlobalState = ({ children }) => {
   const [totalState, dispatch] = useReducer(priceReducer, { total: [] });
-  const [orderDishState,dishdispatch] = useReducer(dishReducer,{orderDish: []})
+  const [orderDishState, dishdispatch] = useReducer(dishReducer, {
+    orderDish: []
+  });
+  const [adminPageState, pagedishpatch] = useReducer(AdminPageReducer,{
+    AdminPage:"list"
+  });
 
   const addPrice = (price) => {
     dispatch({ type: ADD_PRICE, price: price });
@@ -13,13 +27,18 @@ const GlobalState = ({ children }) => {
     dispatch({ type: DELETE_PRICE, index: index });
   };
 
-  const addDish = (dish) =>{
+  const addDish = (dish) => {
     dishdispatch({ type: ADD_DISH, dish: dish });
-  }
+  };
 
-   const deleteDish = (index) =>{
+  const deleteDish = (index) => {
     dishdispatch({ type: DELETE_DISH, index: index });
-   }
+  };
+  
+ const setAdminPage = (data) =>{
+    pagedishpatch({type: ADMIN_PAGE, data:data})
+ }
+
   return (
     <AppContext.Provider
       value={{
@@ -28,7 +47,9 @@ const GlobalState = ({ children }) => {
         deletPrice: deletPrice,
         orderDish: orderDishState.orderDish,
         addDish: addDish,
-        deleteDish: deleteDish
+        deleteDish: deleteDish,
+        AdminPage: adminPageState.AdminPage,
+        setAdminPage: setAdminPage
       }}
     >
       {children}

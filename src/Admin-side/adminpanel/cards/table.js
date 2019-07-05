@@ -1,15 +1,15 @@
 import React from "react";
 
-const Table = ({tableNumber,timer,click,pageDepend}) => {
+const Table = ({tableNumber,timer,click,pageDepend,buttonText,Statedpend}) => {
   return (
     <div className="Table">
-      <div className="table-cont">
+      <div className={Statedpend}>
         <p className="table-text">table</p>
         <p className="table-number">{tableNumber}</p>
-        <p className="time-spend">{timer}</p>
+        {timer}
       </div>
       <div className={pageDepend} onClick={click}>
-        <p>DONE</p>
+        <p>{buttonText}</p>
       </div>
     </div>
   );

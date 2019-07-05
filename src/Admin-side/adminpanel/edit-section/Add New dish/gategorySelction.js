@@ -8,6 +8,7 @@ const GategorySelection = () => {
         <option>Main course</option>
         <option>add more +</option>
       </select>
+      <p className="itemDesciption">Item description</p>
       <textarea className="GategorySel-textarea" />
     </div>
   );

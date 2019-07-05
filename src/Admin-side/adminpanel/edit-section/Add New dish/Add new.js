@@ -6,12 +6,12 @@ import VegOption from "./vegOption";
 import PriceEdit from "./piceEdit";
 import GategorySelection from "./gategorySelction";
 
-const Addnew = () => {
+const Addnew = ({name}) => {
   return (
     <div className="New-cont">
       <p className="ItemName-title">Item name</p>
       <input type="text" className="intemName-input" />
-      <UploadImg upload={UploadIcon} />
+      <UploadImg upload={UploadIcon} buttonname={"UPLOAD"} />
       <VegOption />
       <PriceEdit />
       <GategorySelection />

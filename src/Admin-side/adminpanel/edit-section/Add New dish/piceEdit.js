@@ -1,19 +1,17 @@
 import React from "react";
 
-const PriceEdit = () => {
+const PriceEdit = ({itemPrice,itemTax}) => {
   return (
     <div className="priceEdit-container">
       <p className="price-title-edit">Item Price</p>
       <div className="priceAndtax">
         <div className="priceInput-cont">
           <p className="price-text-edit">Price</p>
-    
-            <input type="text" className="priceInput" />
-    
+          <input type="text" className="priceInput" value={itemPrice}/>
         </div>
         <div className="priceInput-cont">
           <p className="price-text-edit">Tax</p>
-            <input type="text" className="taxInput" />
+          <input type="text" className="taxInput" value={itemTax} />
         </div>
       </div>
       <div className="final-priceCont">

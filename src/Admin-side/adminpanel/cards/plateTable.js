@@ -1,10 +1,10 @@
 import React from "react";
 
-const PlateTable = ({ plateName, palteNumber }) => {
+const PlateTable = ({ plateName, palteNumber,borderDepend }) => {
   return (
     <div className="Plate-Table">
       <p className="plateName">{plateName}</p>
-      <button className="palteNumber">
+      <button className={borderDepend}>
         <p className="palteNumber-para"> {palteNumber}</p>
       </button>
     </div>

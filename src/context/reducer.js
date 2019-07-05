@@ -2,6 +2,7 @@ export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
 export const ADD_DISH = "ADD_DISH";
 export const DELETE_DISH = "DELETE_DISH "
+export const ADMIN_PAGE = "ADMIN_PAGE"
 
 
 export const priceReducer = (state, action) => {
@@ -36,4 +37,19 @@ export const dishReducer = (state,action) =>{
     default:
       return state;
   }
+}
+
+export const AdminPageReducer = (state,action) =>{
+ switch(action.type){
+   case ADMIN_PAGE:
+     
+     return {
+       ...state,
+       AdminPage: action.data
+     }
+      
+      default:
+        return state
+ }
+ 
 }

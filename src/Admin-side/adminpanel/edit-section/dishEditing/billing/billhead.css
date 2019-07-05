@@ -1,0 +1,17 @@
+.bill-header{
+     text-align: center;
+    font-family: "Tahoma";
+    font-size: 23px;
+    font-weight: bold;
+    background-color: white;
+    margin-bottom: 5px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 3px solid #5ECEE0;
+    font-family: "Microsoft YaHei UI";
+    font-size: 23;
+    font-weight: bold;
+    color: #22BED8
+}
