@@ -1,31 +1,41 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import Input from "./input-form";
 import fire from "../../config/config";
 import ErrorSingin from "./singInError";
 import { Link } from "react-router-dom";
-
-
+import useForm  from "../adminpanel/edit-section/Add New dish/Form"
+import axios from "axios"
+import AppContext from "../../context/AppContext"
 
 const SigninCont = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, handelChange, handelSubmit, restvalue } = useForm(getValue);
+
   const [err, setErr] = useState(false);
- 
+  const [formValue, setValue] = useState(null);
+  const context = useContext(AppContext)
+  function getValue(){
+  setValue(values)
+  }
 
-
-  const login = (e) => {
-    e.preventDefault();
-    fire
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((u) => {})
-    .catch((err) => {
-      setErr(true);
-      setTimeout(()=>{
-        setErr(false)
-      },4000)
-    });
-  };
+  useEffect(() => {
+    if (formValue) {
+      axios
+        .post(
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/login`,
+          formValue
+        )
+        .then((doc) => {
+          context.LoginUser(doc.data)
+        })
+        .then(() => {
+          restvalue();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
+console.log(context.user)
 
   return (
     <div>
@@ -33,17 +43,11 @@ const SigninCont = () => {
       <h1 className="title">Sign in</h1>
       <div className="bg" />
       <div className="cont" />
-      <form>
-   {err ? <ErrorSingin email={email} password={password} /> : null}  
+      <form onSubmit={handelSubmit}>
+  
         <Input
-          changeEmail={(e) => {
-            setEmail(e.target.value);
-          }}
-          changePassword={(e) => {
-            setPassword(e.target.value);
-          }}
-          email={email}
-          password={password}
+          changeEmail={handelChange}
+          changePassword={handelChange}
         />
           <div className="remember">
             <p style={{ marginBottom: "0", marginTop: "0%" }}>Remember me</p>
@@ -53,9 +57,7 @@ const SigninCont = () => {
 
         <button
           className={err ? "login-button-err" : "login-button"}
-          onClick={(e) => {
-           login(e)
-          }}
+          type="submit"
         >
           Login
         </button>

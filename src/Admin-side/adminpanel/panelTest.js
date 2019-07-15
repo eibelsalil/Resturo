@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-//import fire from "../../config/config";
+import fire from "../../config/config";
 import AdminHeader from "./header.js/head";
 import "./panel.css";
 import "./cards/card.css";
@@ -16,14 +16,15 @@ import Edit from "./edit-section/edit";
 import Model from "../../Client-side/menu/model";
 import AppContext from "../../context/AppContext";
 import Billing from "./edit-section/dishEditing/billing/billing";
+import Settings from "./cards/adminsettings";
 
 
 const Panel = ({user}) => {
-  /*
+  
   const logout = () => {
     fire.auth().signOut();
   };
-  */
+  
   const [page, setPage] = useState(false);
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
@@ -63,7 +64,7 @@ const Panel = ({user}) => {
         return (
           <div>
             <Edit />
-            {context.AdminPage !== "edit" ? (
+            
               <button
                 className="edit-menu"
                 onClick={() => {
@@ -72,7 +73,7 @@ const Panel = ({user}) => {
               >
                 menu
               </button>
-            ) : null}
+      
             <Model
               model={model}
               wraaperRef={wrapperRef}
@@ -129,6 +130,24 @@ const Panel = ({user}) => {
                 />
               </div>
             )}
+            <button
+            className="edit-menu"
+            onClick={() => {
+              setModel(true);
+            }}
+          >
+            Admin
+          </button>
+          <Settings
+          model={model}
+          wraaperRef={wrapperRef}
+          click={() => {
+            setModel(false);
+          }}
+          logout={()=>{
+            logout()
+          }}
+          />
           </div>
         );
     }

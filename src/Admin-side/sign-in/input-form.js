@@ -1,22 +1,22 @@
 import React from "react";
 import "./input.css";
 
-const Input = ({ email, password, changeEmail, changePassword }) => {
+const Input = ({ changeEmail, changePassword }) => {
   return (
     <div className="Input">
       <input
         type="email"
-        name="usename"
+        name="email"
         placeholder="username"
         onChange={changeEmail}
-        value={email}
+        
       />
       <input
         type="password"
-        name="username"
+        name="password"
         placeholder="password"
         onChange={changePassword}
-        value={password}
+       
       />
     </div>
   );
