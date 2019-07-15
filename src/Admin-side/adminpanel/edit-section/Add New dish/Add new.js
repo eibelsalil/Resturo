@@ -22,7 +22,7 @@ const Addnew = ({ Nav }) => {
     if (formValue) {
       axios
         .post(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes`,
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes`,
           formValue
         )
         .then((doc) => {

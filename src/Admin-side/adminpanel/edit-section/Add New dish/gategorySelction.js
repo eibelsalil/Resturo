@@ -8,11 +8,11 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
   const [event, setEvent] = useState("");
   const [gate, Getgetfory] = useState(null);
   const [optionState, setOption] = useState("");
-  const [counter, setcounter] = useState(0);
+
 
   useEffect(() => {
     Axios.get(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`
     )
       .then((doc) => {
         Getgetfory(doc.data);
@@ -21,26 +21,20 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
         console.log(err);
       });
   }, []);
-  const pointer = () => {
-    for (let i = 0; i < 3; i++) {
-      setcounter(counter + 1);
-    }
-  };
+
 
   useEffect(() => {
     if (gate) {
       setOption(gate.gategory[0]);
-    } else {
-      pointer();
-    }
-  }, [gate, pointer]);
+    } 
+  }, [gate]);
 
   const setValues = (event) => {
     setOption(event.target.value);
   };
   const addGategorydb = () => {
     Axios.put(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`,
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`,
       event
     )
       .then(() => {
