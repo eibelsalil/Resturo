@@ -8,17 +8,28 @@ import {
   priceReducer,
   dishReducer,
   ADMIN_PAGE,
-  AdminPageReducer
+  AdminPageReducer,
+  LOGIN_USER,
+  LoginReducer,
+  GET_DISH,
+  getDishReducer
 } from "./reducer";
+
 
 const GlobalState = ({ children }) => {
   const [totalState, dispatch] = useReducer(priceReducer, { total: [] });
   const [orderDishState, dishdispatch] = useReducer(dishReducer, {
     orderDish: []
   });
+  const [userState,dispatchUser] = useReducer(LoginReducer,{
+    user: {}
+  })
   const [adminPageState, pagedishpatch] = useReducer(AdminPageReducer,{
     AdminPage:"list"
   });
+  const [dishState,getDishdishpatch] = useReducer(getDishReducer,{
+    dish: []
+  })
 
   const addPrice = (price) => {
     dispatch({ type: ADD_PRICE, price: price });
@@ -39,6 +50,14 @@ const GlobalState = ({ children }) => {
     pagedishpatch({type: ADMIN_PAGE, data:data})
  }
 
+
+ const LoginUser = (data) =>{
+  dispatchUser({type: LOGIN_USER , data:data })
+ }
+
+ const getDish = (data)=>{
+   getDishdishpatch({type: GET_DISH ,data: data})
+ }
   return (
     <AppContext.Provider
       value={{
@@ -49,7 +68,11 @@ const GlobalState = ({ children }) => {
         addDish: addDish,
         deleteDish: deleteDish,
         AdminPage: adminPageState.AdminPage,
-        setAdminPage: setAdminPage
+        setAdminPage: setAdminPage,
+        user: userState.user,
+        LoginUser: LoginUser,
+        dish: dishState.dish,
+        getDish: getDish,
       }}
     >
       {children}

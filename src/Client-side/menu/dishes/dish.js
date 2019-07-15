@@ -34,7 +34,7 @@ const Dish = ({ img, veg }) => {
   const deleteItem = (price) => {
     return context.deletPrice(price);
   };
-console.log(chosenDish)
+
 
   return (
     <div className="dish">

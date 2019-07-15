@@ -1,8 +1,13 @@
+
+
+
 export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
 export const ADD_DISH = "ADD_DISH";
 export const DELETE_DISH = "DELETE_DISH "
 export const ADMIN_PAGE = "ADMIN_PAGE"
+export const LOGIN_USER = "LOGIN_USER"
+export const GET_DISH = "GET_DISH"
 
 
 export const priceReducer = (state, action) => {
@@ -39,6 +44,8 @@ export const dishReducer = (state,action) =>{
   }
 }
 
+
+
 export const AdminPageReducer = (state,action) =>{
  switch(action.type){
    case ADMIN_PAGE:
@@ -52,4 +59,28 @@ export const AdminPageReducer = (state,action) =>{
         return state
  }
  
+}
+
+export const getDishReducer = (state,action) =>{
+  switch(action.type){
+    case GET_DISH:
+    return {
+      ...state,
+      dish: [...state.dish,action.data]
+    }
+    default:
+      return state
+  }
+}
+
+export const LoginReducer = (state,action)=>{
+  switch(action.type){
+    case LOGIN_USER:
+    return {
+      ...state,
+      user: {action: action.data}
+    }
+    default:
+      return state
+  }
 }

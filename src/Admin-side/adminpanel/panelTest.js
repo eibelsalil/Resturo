@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import fire from "../../config/config";
+//import fire from "../../config/config";
 import AdminHeader from "./header.js/head";
 import "./panel.css";
 import "./cards/card.css";
@@ -17,15 +17,19 @@ import Model from "../../Client-side/menu/model";
 import AppContext from "../../context/AppContext";
 import Billing from "./edit-section/dishEditing/billing/billing";
 
-const Panel = () => {
+
+const Panel = ({user}) => {
+  /*
   const logout = () => {
     fire.auth().signOut();
   };
+  */
   const [page, setPage] = useState(false);
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
 
   const context = useContext(AppContext);
+
 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
@@ -51,6 +55,8 @@ const Panel = () => {
    )
 
  }
+
+
 
     switch (section) {
       case "edit":
@@ -81,6 +87,7 @@ const Panel = () => {
         return <Billing />;
 
       default:
+
         return (
           <div>
             <AdminHeader

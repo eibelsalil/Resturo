@@ -2,7 +2,7 @@ import React,{useContext} from "react";
 import AppContext from "../../../../context/AppContext"
 
 
-const UploadImg = ({ upload,buttonname }) => {
+const UploadImg = ({ upload,buttonname,update }) => {
 
   const context = useContext(AppContext)
   return (
@@ -14,7 +14,7 @@ const UploadImg = ({ upload,buttonname }) => {
         ?
         <label className="label">
         <img src={upload} alt="upload" width="48px" className="img-up-icon" />
-        <input type="file" className="imgUp-cont-input" name="img" />
+        <input type="file" className="imgUp-cont-input" name="img" onChange={(e)=>update(e)} />
      <p className="uploadImg-text">UPLOAD IMAGE</p>   
       </label>
       :

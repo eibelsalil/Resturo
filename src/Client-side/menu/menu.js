@@ -4,13 +4,28 @@ import Dishcont from "./dishes/dishCont";
 import Total from "./total";
 import Appcontext from "../../context/AppContext";
 import Model from "./model";
+import Axios from "axios";
 
 
 
-const Menu = () => {
+const Menu = ({match}) => {
   const context = useContext(Appcontext);
 
   const [model, setModel] = useState(false);
+
+
+useEffect(()=>{
+  Axios.get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/dishes`)
+ .then((data)=>{
+  context.getDish(data.data)
+ 
+ })
+ .catch((err)=>{
+   console.log(err)
+ })
+})
+
+
 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
@@ -25,6 +40,8 @@ const Menu = () => {
       };
     });
   }
+
+  
 
 
 

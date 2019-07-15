@@ -34,7 +34,7 @@
   z-index: 2;
   top: 72px;
   left: 0;
-  animation: slide-back 0s ease-in 
+  animation: slide-back 1s ease-in 
 }
 @keyframes slide-back {
   0% {
@@ -56,7 +56,7 @@
   z-index: 1;
   top: 72px;
   left: 0%;
-  animation: slide 0s ease-in;
+  animation: slide 1s ease-in forwards;
 }
 @keyframes slide {
   0% {

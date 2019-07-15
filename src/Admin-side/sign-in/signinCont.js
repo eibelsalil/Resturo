@@ -4,24 +4,27 @@ import fire from "../../config/config";
 import ErrorSingin from "./singInError";
 import { Link } from "react-router-dom";
 
+
+
 const SigninCont = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
+ 
 
 
   const login = (e) => {
     e.preventDefault();
     fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((u) => {})
-      .catch((err) => {
-        setErr(true);
-        setTimeout(()=>{
-          setErr(false)
-        },4000)
-      });
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((u) => {})
+    .catch((err) => {
+      setErr(true);
+      setTimeout(()=>{
+        setErr(false)
+      },4000)
+    });
   };
 
   return (
@@ -51,7 +54,7 @@ const SigninCont = () => {
         <button
           className={err ? "login-button-err" : "login-button"}
           onClick={(e) => {
-            login(e);
+           login(e)
           }}
         >
           Login

@@ -365,6 +365,44 @@
   margin-bottom: 5%;
   margin-left: 5%
 }
+.gete{
+  display:  flex;
+  justify-content: center;
+  align-items: center
+}
+
+.gete button{
+  height: 31px;
+  margin-bottom: 11px;
+  background-color: #5ECEE0;
+  border: none;
+  font-family: "Tahoma";
+    font-size: 12px;
+    font-weight: bold;
+}
+.addgete{
+  display:  flex;
+  justify-content: center;
+  align-items: center
+}
+
+.addgete input{
+  height: 20px;
+  border-radius: 0px;
+  margin-bottom: 10px
+}
+.addgete button{
+  height: 20px;
+  background-color: #5ECEE0;
+  border: none;
+  font-family: "Tahoma";
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 5px;
+    border-radius: 7px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
 
 .GategorySel-textarea{
   width: 280px;
@@ -372,7 +410,8 @@
   border: 1px solid #E0DFDF;
   border-radius: 5px;
   margin-bottom: 10%;
-  margin-left: 5%
+  margin-left: 5%;
+  
 }
 
 .delete-btn{

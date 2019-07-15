@@ -34,14 +34,19 @@ const Edit = () => {
             )
             :
             (
-              <EditDish />
+              <EditDish  />
             )
         
         
         }
         </div>
       ) : (
-        <Addnew />
+        <Addnew  Nav={()=>{
+          setTimeout(()=>{
+            navOn(false)
+          },4000)
+          
+        }}/>
       )}
     </div>
   );
