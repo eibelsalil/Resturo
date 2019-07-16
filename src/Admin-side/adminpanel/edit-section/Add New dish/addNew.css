@@ -37,7 +37,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  margin-right: 9%
+  margin-right: 9%;
+ 
 }
 
 .imgUp-title {
@@ -464,3 +465,4 @@
   margin-bottom: 2%;
   margin-top: 0%
 }
+

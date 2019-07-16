@@ -22,11 +22,11 @@ const Addnew = ({ Nav }) => {
 
   function getValue() {
     setValue(values);
+    console.log(values)
   }
 
-  if (LastCreated) {
-    console.log(LastCreated[0].dishId);
-  }
+
+  
 
   useEffect(() => {
     if (formValue) {
@@ -94,11 +94,16 @@ const Addnew = ({ Nav }) => {
 
             <VegOption vegChange={handelChange} NonVegChange={handelChange} />
             <PriceEdit pricevalue={handelChange} taxvalue={handelChange} />
-            <button type="submit">submit</button>
             <GategorySelection
               setDiscription={handelChange}
               setGategory={handelChange}
             />
+            <div className="twoButtons">
+            <button className="delete-btn" onClick={()=>{
+              Nav()
+            }}>Cancel</button>
+            <button className="saveEdit-btn" type="submit" >Next</button>
+          </div>
           </LoadingOverlay>
         </form>
       ) : (

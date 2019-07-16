@@ -2,25 +2,29 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import uuid from "uuid";
 import LoadingOverlay from "react-loading-overlay";
+import firebase from "firebase"
 
 const GategorySelection = ({ setDiscription, setGategory }) => {
   const [gategory, addGategory] = useState(false);
   const [event, setEvent] = useState("");
   const [gate, Getgetfory] = useState(null);
   const [optionState, setOption] = useState("");
+  const [loading,setLoading] = useState(false)
 
-
+let user = firebase.auth().currentUser.uid
   useEffect(() => {
+    setLoading(true)
     Axios.get(
-      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/gategory`
     )
       .then((doc) => {
         Getgetfory(doc.data);
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
 
 
   useEffect(() => {
@@ -33,12 +37,19 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
     setOption(event.target.value);
   };
   const addGategorydb = () => {
+    setLoading(true)
     Axios.put(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`,
+      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/gategory`,
       event
     )
       .then(() => {
-        console.log("gategory add it succfully");
+        Axios.get(
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/gategory`
+        )
+          .then((doc) => {
+            Getgetfory(doc.data);
+            setLoading(false)
+          })
       })
       .catch((err) => {
         console.log(err + "err");
@@ -50,7 +61,7 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
       <p className="GategorySel-title">Item gategory</p>
       {!gategory ? (
         <LoadingOverlay
-          active={!gate ? true : false}
+          active={loading ? true : false}
           spinner
           text="Loading your content..."
         >

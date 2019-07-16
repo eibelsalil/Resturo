@@ -36,7 +36,7 @@ const SigninCont = () => {
           }, 4000);
         });
     }
-  });
+  },[formValue]);
 
   return (
     <div>
@@ -45,6 +45,7 @@ const SigninCont = () => {
       <div className="bg" />
       <div className="cont" />
       <form onSubmit={handelSubmit}>
+      {err ? <ErrorSingin email={values.email} password={values.password} /> : null}  
         <Input changeEmail={handelChange} changePassword={handelChange} />
         <div className="remember">
           <p style={{ marginBottom: "0", marginTop: "0%" }}>Remember me</p>
