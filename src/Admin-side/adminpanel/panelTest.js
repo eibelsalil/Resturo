@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect} from "react";
 import fire from "../../config/config";
 import AdminHeader from "./header.js/head";
 import "./panel.css";
@@ -14,23 +14,18 @@ import List from "../../Asset/footer/list.png";
 import listOff from "../../Asset/footer/listOff.png";
 import Edit from "./edit-section/edit";
 import Model from "../../Client-side/menu/model";
-import AppContext from "../../context/AppContext";
+
 import Billing from "./edit-section/dishEditing/billing/billing";
 import Settings from "./cards/adminsettings";
 
-
-const Panel = ({user}) => {
-  
+const Panel = ({ user }) => {
   const logout = () => {
     fire.auth().signOut();
   };
-  
+
   const [page, setPage] = useState(false);
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
-
-  const context = useContext(AppContext);
-
 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
@@ -49,31 +44,25 @@ const Panel = ({user}) => {
   useOutsideAlerter(wrapperRef);
 
   const RenderComonents = (section) => {
-
- const Timer = (timer) =>{
-   return(
-    <p className="time-spend">{timer}</p>
-   )
-
- }
-
-
+    const Timer = (timer) => {
+      return <p className="time-spend">{timer}</p>;
+    };
 
     switch (section) {
       case "edit":
         return (
           <div>
             <Edit />
-            
-              <button
-                className="edit-menu"
-                onClick={() => {
-                  setModel(true);
-                }}
-              >
-                menu
-              </button>
-      
+
+            <button
+              className="edit-menu"
+              onClick={() => {
+                setModel(true);
+              }}
+            >
+              menu
+            </button>
+
             <Model
               model={model}
               wraaperRef={wrapperRef}
@@ -88,7 +77,6 @@ const Panel = ({user}) => {
         return <Billing />;
 
       default:
-
         return (
           <div>
             <AdminHeader
@@ -131,23 +119,23 @@ const Panel = ({user}) => {
               </div>
             )}
             <button
-            className="edit-menu"
-            onClick={() => {
-              setModel(true);
-            }}
-          >
-            Admin
-          </button>
-          <Settings
-          model={model}
-          wraaperRef={wrapperRef}
-          click={() => {
-            setModel(false);
-          }}
-          logout={()=>{
-            logout()
-          }}
-          />
+              className="edit-menu"
+              onClick={() => {
+                setModel(true);
+              }}
+            >
+              Admin
+            </button>
+            <Settings
+              model={model}
+              wraaperRef={wrapperRef}
+              click={() => {
+                setModel(false);
+              }}
+              logout={() => {
+                logout();
+              }}
+            />
           </div>
         );
     }

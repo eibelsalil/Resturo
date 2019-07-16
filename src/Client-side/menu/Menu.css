@@ -170,6 +170,20 @@
     align-items: center;
     color: #444444
 }
+.model-content-admin{
+    background-color: #F5F5F5;
+    margin: auto;
+    width: 250px;
+    height: 245px;
+    font-family: "Tahoma";
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #444444
+}
 
 .content{
     margin-bottom: 4%;
@@ -189,7 +203,107 @@
     width: 80%;
     border-bottom: 1px solid #7070703d;
 }
+.hotelName{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    width: 100%
+}
+.hotelName p{
+    margin: 0
+}
+.hotelemail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    width: 100%
+} 
+.hotelemail p{
+    margin: 0
+}
 
+.Hotellocation{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    width: 100%
+}
+.Hotellocation p {
+    margin: 0
+}
+.Resturantname{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    width: 100%
+}
+
+.Resturantname p {
+    margin: 0
+}
+
+.Resturantnumber{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid grey;
+   
+}
+.Resturantnumber p{
+    margin: 0;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
+.model-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    width: 100%
+}
+.info-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.info-content img{
+    width: 15px;
+    height: 15px;
+}
+.info-content input{
+    height: 20px;
+    margin: 0;
+    border-radius: 0;
+}
+.info-content button{
+    background-color: #22BED8;
+    border: none
+}
+.info-content p{
+    color: #FF6F42
+}
+.logout{
+    border: none;
+    background: none;
+    font-family: "Microsoft YaHei UI";
+    border: 2px solid #FF6F42;
+    font-weight: bold;
+    font-size: 15px;
+    width: 119px;
+    color: #FF6F42;
+    height:32px ;
+    border-radius: 12px;
+    margin-top: 10px
+}
 @media only screen and (min-width: 750px) {
     .menu-Button{
       margin-left: 5%;

@@ -34,7 +34,7 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
   };
   const addGategorydb = () => {
     Axios.put(
-      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`,
+      `http://localhost:5000/resturo-07/europe-west1/api/hotel/W719nLXXgxSNptLZohmFHfZOGHt1/gategory`,
       event
     )
       .then(() => {
@@ -79,6 +79,7 @@ const GategorySelection = ({ setDiscription, setGategory }) => {
           </div>
         </LoadingOverlay>
       ) : (
+        
         <div className="addgete">
           <input
             placeholder="add more gategory"
