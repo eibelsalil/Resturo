@@ -18,7 +18,7 @@ let user = firebase.auth().currentUser.uid
       `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/gategory`
     )
       .then((doc) => {
-        Getgetfory(doc.data);
+        Getgetfory(doc.data.gategory);
         setLoading(false)
       })
       .catch((err) => {
@@ -28,9 +28,9 @@ let user = firebase.auth().currentUser.uid
 
 
   useEffect(() => {
-    if (gate) {
-      setOption(gate.gategory[0]);
-    } 
+   if(gate !== null){
+      setOption(gate[0]);
+   }
   }, [gate]);
 
   const setValues = (event) => {
@@ -44,10 +44,10 @@ let user = firebase.auth().currentUser.uid
     )
       .then(() => {
         Axios.get(
-          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/gategory`
+          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/gategory`
         )
           .then((doc) => {
-            Getgetfory(doc.data);
+            Getgetfory(doc.data.gategory);
             setLoading(false)
           })
       })
@@ -55,7 +55,7 @@ let user = firebase.auth().currentUser.uid
         console.log(err + "err");
       });
   };
-
+console.log(gate)
   return (
     <div className="GagtegorSel-cont">
       <p className="GategorySel-title">Item gategory</p>
@@ -75,15 +75,15 @@ let user = firebase.auth().currentUser.uid
               }}
               value={optionState}
             >
-              {gate ? (
-                gate.gategory.map((gategory) => (
-                  <option key={uuid()} value={gategory}>
-                    {gategory}
-                  </option>
-                ))
-              ) : (
-                <option>Loading gategory</option>
-              )}
+            { gate !== null ? (
+              gate.map((gategory) => (
+                <option key={uuid()} value={gategory}>
+                  {gategory}
+                </option>
+              ))
+            ) : (
+             <option>add gategory</option>
+            )}
             </select>
 
             <button onClick={() => addGategory(true)}>+</button>
