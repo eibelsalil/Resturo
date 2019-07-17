@@ -19,7 +19,7 @@ const Billing = () => {
   };
   return (
     <div className="Billing-full">
-      <BillingHeadr />
+      <BillingHeadr name={"billing"} />
       <div className="card-cont">
         <LiveCard
           tableNumber={12}

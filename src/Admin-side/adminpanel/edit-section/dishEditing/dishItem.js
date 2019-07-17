@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
 import ToggleButton from "react-toggle-button";
 import veg from "../../../../Asset/veg.jpg";
-import AppContext from "../../../../context/AppContext";
+import {Link} from "react-router-dom"
 
-const DishItem = ({ click }) => {
+const DishItem = ({ click,name }) => {
   const [toggle, setToggle] = useState(false);
-  const context = useContext(AppContext);
+
   return (
     <div className="editDishContent">
       <div className="dish-info">
         <img src={veg} alt="veg" className="veg-img" />
-        <p className="nameTitle">Fried Rice</p>
+        <p className="nameTitle">{name}</p>
       </div>
       <div className="toggleButton">
         <ToggleButton
@@ -37,9 +37,7 @@ const DishItem = ({ click }) => {
           }}
         />
       </div>
-      <p className="editLink" onClick={()=>{
-        context.setAdminPage("edit")
-      }}>Edit</p>
+  <Link to="/adminpanel/editDish"><p className="editLink" onClick={click}>Edit</p></Link>
     </div>
   );
 };

@@ -13,11 +13,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 250px;
+    height: fit-content;
     align-items: center;
    background-color: white;
    margin-top: 5%;
    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+   overflow: scroll
 }
 
 
@@ -26,7 +27,9 @@
     font-size: 20px;
     font-weight: bold;
     color: #727272;
-    margin-right: 70%
+    margin-bottom: 0;
+    width: 85%;
+    text-align: left
 }
 
 .Gatogery p{
@@ -37,13 +40,13 @@
     font-family: "Tahoma";
     font-size: 18px;
     font-weight: bold;
-    margin-left: 5%
+    margin-left: 2%
 }
 
 .editDishContent{
-    display: grid;
-    grid-template-columns: 40% 30% 30%;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: 50% 40% 10%;
+  align-items: center;
     border-bottom: 1px solid #707070;
     width: 90%;
  
@@ -59,16 +62,19 @@
 
 .dish-info{
     display: flex;
-    justify-content: center
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%
 }
 .veg-img{
     width: 20px;
     height: 20px;
-    margin-top: 13%;
+    margin-top: 5%;
+    margin-left: 0
 
 }
 
 .toggleButton{
-    margin-top: 25%;
-    margin-left: 20%
+    margin-top: 0%;
+    margin-left: 0%
 }

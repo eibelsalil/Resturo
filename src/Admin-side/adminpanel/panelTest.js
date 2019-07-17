@@ -1,10 +1,6 @@
 import React, { useState, useRef, useEffect} from "react";
-import fire from "../../config/config";
-import AdminHeader from "./header.js/head";
 import "./panel.css";
 import "./cards/card.css";
-import LiveCard from "./cards/liveCard";
-import CompletedCard from "./cards/completedCard";
 import Footer from "./fotter/footer";
 import Printer from "../../Asset/footer/printer.png";
 import PrinterOn from "../../Asset/footer/printer on.png";
@@ -14,16 +10,14 @@ import List from "../../Asset/footer/list.png";
 import listOff from "../../Asset/footer/listOff.png";
 import Edit from "./edit-section/edit";
 import Model from "../../Client-side/menu/model";
-
 import Billing from "./edit-section/dishEditing/billing/billing";
-import Settings from "./cards/adminsettings";
+import {Switch,Route} from "react-router-dom"
+import EditDish from "./edit-section/edit dish/editDish";
+import RenderMainAdmin from "../adminCC";
 
-const Panel = ({ user }) => {
-  const logout = () => {
-    fire.auth().signOut();
-  };
 
-  const [page, setPage] = useState(false);
+
+ const Panel = ({ user }) => {
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
 
@@ -43,174 +37,109 @@ const Panel = ({ user }) => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  const RenderComonents = (section) => {
-    const Timer = (timer) => {
-      return <p className="time-spend">{timer}</p>;
-    };
+ 
 
-    switch (section) {
-      case "edit":
-        return (
-          <div>
-            <Edit />
 
-            <button
-              className="edit-menu"
-              onClick={() => {
-                setModel(true);
-              }}
-            >
-              menu
-            </button>
+const renderEdit = () =>{
+  return (
+    <div>
+    <Edit />
+    <button
+      className="edit-menu"
+      onClick={() => {
+        setModel(true);
+      }}
+    >
+      menu
+    </button>
+    <Model
+      model={model}
+      wraaperRef={wrapperRef}
+      click={() => {
+        setModel(false);
+      }}
+    />
+    </div>
+  )
+}
 
-            <Model
-              model={model}
-              wraaperRef={wrapperRef}
-              click={() => {
-                setModel(false);
-              }}
-            />
-            {RenderFooter()}
-          </div>
-        );
-      case "print":
-        return <Billing />;
+const RenderFooter = (section) => {
+  switch (section) {
+    case "edit":
+      return (
+        <Footer
+          img={Printer}
+          alt={"print"}
+          edit={editOn}
+          editAlt="edit"
+          list={listOff}
+          listAlt="list"
+          listCkick={() => {
+            setSection("list");
+          }}
+          editClick={() => {
+            setSection("edit");
+          }}
+          printClick={() => {
+            setSection("print");
+          }}
+        />
+      );
+    case "print":
+      return (
+        <Footer
+          img={PrinterOn}
+          alt={"print"}
+          edit={edit}
+          editAlt="edit"
+          list={listOff}
+          listAlt="list"
+          listCkick={() => {
+            setSection("list");
+          }}
+          editClick={() => {
+            setSection("edit");
+          }}
+          printClick={() => {
+            setSection("print");
+          }}
+        />
+      );
+    default:
+      return (
+        <Footer
+          img={Printer}
+          alt={"print"}
+          edit={edit}
+          editAlt="edit"
+          list={List}
+          listAlt="list"
+          listCkick={() => {
+            setSection("list");
+          }}
+          editClick={() => {
+            setSection("edit");
+          }}
+          printClick={() => {
+            setSection("print");
+          }}
+        />
+      );
+  }
+};
 
-      default:
-        return (
-          <div>
-            <AdminHeader
-              click={() => setPage(true)}
-              clickBack={() => setPage(false)}
-            />
-            {!page ? (
-              <div className="live-cardsCont">
-                <LiveCard
-                  tableNumber={12}
-                  timer={Timer(0.11)}
-                  num={3}
-                  buttonText={"DONE"}
-                  classDpends={"liveCard"}
-                  borderDepend={"palteNumber"}
-                  Statedpend={"table-cont"}
-                />
-                <LiveCard
-                  tableNumber={7}
-                  timer={Timer(0.27)}
-                  num={3}
-                  buttonText={"DONE"}
-                  classDpends={"liveCard"}
-                  borderDepend={"palteNumber"}
-                  Statedpend={"table-cont"}
-                />
-              </div>
-            ) : (
-              <div className="live-cardsCont">
-                <CompletedCard
-                  tableNumber={12}
-                  timer={Timer(0.27)}
-                  num={3}
-                  borderDepend={"palteNumber"}
-                  classDpends={"completedCard"}
-                  pageDepend={"done-buttonHidden"}
-                  Statedpend={"table-cont"}
-                  borderTabledpend={"table-paltesCompleted"}
-                />
-              </div>
-            )}
-            <button
-              className="edit-menu"
-              onClick={() => {
-                setModel(true);
-              }}
-            >
-              Admin
-            </button>
-            <Settings
-              model={model}
-              wraaperRef={wrapperRef}
-              click={() => {
-                setModel(false);
-              }}
-              logout={() => {
-                logout();
-              }}
-            />
-          </div>
-        );
-    }
-  };
 
-  const RenderFooter = (section) => {
-    switch (section) {
-      case "edit":
-        return (
-          <Footer
-            img={Printer}
-            alt={"print"}
-            edit={editOn}
-            editAlt="edit"
-            list={listOff}
-            listAlt="list"
-            listCkick={() => {
-              setSection("list");
-            }}
-            editClick={() => {
-              setSection("edit");
-            }}
-            printClick={() => {
-              setSection("print");
-            }}
-          />
-        );
-      case "print":
-        return (
-          <Footer
-            img={PrinterOn}
-            alt={"print"}
-            edit={edit}
-            editAlt="edit"
-            list={listOff}
-            listAlt="list"
-            listCkick={() => {
-              setSection("list");
-            }}
-            editClick={() => {
-              setSection("edit");
-            }}
-            printClick={() => {
-              setSection("print");
-            }}
-          />
-        );
-      default:
-        return (
-          <Footer
-            img={Printer}
-            alt={"print"}
-            edit={edit}
-            editAlt="edit"
-            list={List}
-            listAlt="list"
-            listCkick={() => {
-              setSection("list");
-            }}
-            editClick={() => {
-              setSection("edit");
-            }}
-            printClick={() => {
-              setSection("print");
-            }}
-          />
-        );
-    }
-  };
 
   return (
     <div className="Admin-panel">
-      {RenderComonents(section)}
+      <Switch>
+      <Route exact path="/adminPanel" component={RenderMainAdmin}  />
+      <Route exact path="/adminPanel/edit" component={renderEdit} />
+      <Route exact path="/adminPanel/billing" component={Billing} />
+      <Route exact path="/adminPanel/editDish" component={EditDish} />
+      </Switch>
       <div className="full-bgAdmin" />
-      {RenderFooter(section)}
+   {RenderFooter(section)}
     </div>
   );
 };

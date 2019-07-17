@@ -1,10 +1,10 @@
 import React from 'react'
 import "./billhead.css"
 
-const BillingHeadr = () =>{
+const BillingHeadr = ({name}) =>{
     return(
         <div className="bill-header">
-        <p>Billing</p>
+        <p>{name}</p>
         </div>
     )
 }
