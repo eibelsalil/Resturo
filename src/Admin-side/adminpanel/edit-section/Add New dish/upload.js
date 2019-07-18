@@ -1,16 +1,10 @@
 import React, { useContext } from "react";
 import AppContext from "../../../../context/AppContext";
-import LoadingOverlay from "react-loading-overlay";
 
-const UploadImg = ({ upload, buttonname, update, click, img, spiner }) => {
+const UploadImg = ({ upload, update, img }) => {
   const context = useContext(AppContext);
   return (
     <div className="imgUp-cont">
-    <LoadingOverlay
-    active={spiner ? true : false}
-    spinner
-    text="update img..."
-    >
       <p className="imgUp-title">Item image</p>
       <div className="upArea">
         {context.AdminPage !== "edit" ? (
@@ -37,19 +31,8 @@ const UploadImg = ({ upload, buttonname, update, click, img, spiner }) => {
         <div className="upCont">
           <p className="tipOne">maximum size: 18MB</p>
           <p className="tipTwo">use file formats .png or .JPEG</p>
-          <button
-            className={
-              context.AdminPage !== "edit"
-                ? "confirmUplodButton"
-                : "confirmeditButton"
-            }
-            onClick={click}
-          >
-            {buttonname}
-          </button>
         </div>
       </div>
-      </LoadingOverlay>
     </div>
   );
 };

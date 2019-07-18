@@ -1,18 +1,18 @@
 import React from "react";
 import Table from "./table";
-import PlateTable from "./plateTable";
+
 
 const CompletedCard = ({
   tableNumber,
   timer,
-  num,
   click,
-  borderDepend,
   classDpends,
   buttonText,
   pageDepend,
   Statedpend,
-  borderTabledpend
+  borderTabledpend,
+  children,
+  instruction
 }) => {
   return (
     <div className={classDpends}>
@@ -25,27 +25,8 @@ const CompletedCard = ({
         Statedpend={Statedpend}
       />
       <div className={borderTabledpend}>
-        <PlateTable
-          plateName={"FRIED CHICKEN"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"FRIED RICE"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"COLD COFFEE"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"FRIED CHICKEN"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <textarea className="plate-comments" />
+        {children}
+        <textarea className="plate-comments"  disabled value={instruction}/>
       </div>
     </div>
   );

@@ -5,12 +5,17 @@ import AdminHeader from "./adminpanel/header.js/head";
 import Settings from "./adminpanel/cards/adminsettings";
 import fire from "../config/config";
 import "./adminpanel/panel.css";
-
+import Axios from 'axios';
+import PlateTable from './adminpanel/cards/plateTable';
+import LoadingOverlay from 'react-loading-overlay';
+import uuid from "uuid"
 
 const RenderMainAdmin = () =>{
-
+let user = fire.auth().currentUser.uid
     const [page, setPage] = useState(false);
     const [model, setModel] = useState(false);
+    const [Liveorders,setLive] = useState(null)
+    const [Loading,setLoad] = useState(false)
     const Timer = (timer) => {
         return <p className="time-spend">{timer}</p>;
       };
@@ -18,8 +23,26 @@ const RenderMainAdmin = () =>{
         fire.auth().signOut();
       };
     
+useEffect(()=>{
+  setLoad(true)
+ Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/order`)
+ .then((doc)=>{
+    setLive(doc.data)
+    setLoad(false)
+ })
+ .catch((err)=>{
+   console.error(err)
+ })
+},[user])
+if(Liveorders){
+ let arr= []
+   
+   Liveorders.map((order)=>{
+          arr.push(order)
 
-
+   })
+console.log(Liveorders[0].createdTime.toString())
+}
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -35,7 +58,41 @@ const RenderMainAdmin = () =>{
   }
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-      
+       
+ const renderLiveOrder = () =>{
+   if(Liveorders){
+    return Liveorders.map((order)=>(
+      <LiveCard
+      key={order.orderId}
+      tableNumber={order.table}
+      buttonText={"DONE"}
+      classDpends={"liveCard"}
+      Statedpend={"table-cont"}
+      instruction={order.instruction}
+    >
+  {  
+   Object.keys(order.dishes[0]).map((key)=>(
+    <PlateTable
+    key={uuid()}
+    plateName={key}
+    palteNumber={order.dishes[0][key]}
+    borderDepend={"palteNumber"}
+   />
+   ))
+
+  }
+ 
+    </LiveCard>
+    ) )
+   }
+   else{
+     return(
+       <h3>You still don't have any orders</h3>
+     )
+   }
+ 
+ }
+
     return (
       <div>
         <AdminHeader
@@ -44,24 +101,13 @@ const RenderMainAdmin = () =>{
         />
         {!page ? (
           <div className="live-cardsCont">
-            <LiveCard
-              tableNumber={12}
-              timer={Timer(0.11)}
-              num={3}
-              buttonText={"DONE"}
-              classDpends={"liveCard"}
-              borderDepend={"palteNumber"}
-              Statedpend={"table-cont"}
-            />
-            <LiveCard
-              tableNumber={7}
-              timer={Timer(0.27)}
-              num={3}
-              buttonText={"DONE"}
-              classDpends={"liveCard"}
-              borderDepend={"palteNumber"}
-              Statedpend={"table-cont"}
-            />
+          <LoadingOverlay 
+          active={Loading ? true : false}
+          spinner
+          text="Loading your orders..."
+          >
+           { renderLiveOrder()}
+           </LoadingOverlay>
           </div>
         ) : (
           <div className="live-cardsCont">

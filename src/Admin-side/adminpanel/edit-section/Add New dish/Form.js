@@ -13,7 +13,9 @@ const useForm = (callback) =>{
       setValues(values =>({...values,[event.target.name]: event.target.value}))
    }
   const restvalue = (event) =>{
-    setValues('')
+    for(let item in values){
+      setValues(delete values[item])
+    }
   }
 
    return{

@@ -12,9 +12,8 @@ import LoadingOverlay from "react-loading-overlay";
 
 const Addnew = ({ Nav }) => {
   let user = firebase.auth().currentUser.uid;
-  const { values, handelChange, handelSubmit } = useForm(getValue);
+  const { values, handelChange, handelSubmit, restvalue } = useForm(getValue);
   const [formValue, setValue] = useState(null);
-  const [creatState, setCreate] = useState(false);
   const [spiner, setSpinner] = useState(false);
   const [img, setimg] = useState(null);
   const [linker, setLinker] = useState(null);
@@ -22,11 +21,8 @@ const Addnew = ({ Nav }) => {
 
   function getValue() {
     setValue(values);
-    console.log(values)
+    console.log(values);
   }
-
-
-  
 
   useEffect(() => {
     if (formValue) {
@@ -45,10 +41,7 @@ const Addnew = ({ Nav }) => {
               setLast(doc.data);
             });
         })
-        .then((doc) => {
-          setSpinner(false);
-          setCreate(true);
-        })
+
         .catch((err) => {
           console.log(err);
           setSpinner(false);
@@ -56,74 +49,72 @@ const Addnew = ({ Nav }) => {
     }
   }, [formValue, user]);
 
-  const uploadImg = () => {
-    setSpinner(true);
-    axios
-      .put(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/${
-          LastCreated[0].dishId
-        }`,
-        linker
-      )
-      .then(() => {
-        setSpinner(false);
-        Nav();
-      })
-      .catch((err) => {
-        setSpinner(false);
-        console.log(err);
-      });
-  };
+  useEffect(() => {
+    if (LastCreated) {
+      axios
+        .put(
+          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/${
+            LastCreated[0].dishId
+          }`,
+          linker
+        )
+        .then((doc) => {
+          setSpinner(false);
+          Nav();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [LastCreated, Nav, linker, user]);
 
   return (
     <div className="New-cont">
-      {!creatState ? (
-        <form onSubmit={handelSubmit}>
-          <LoadingOverlay
-            active={spiner ? true : false}
-            spinner
-            text="Creating the dish..."
-          >
-            <p className="ItemName-title">Item name</p>
-            <input
-              type="text"
-              className="intemName-input"
-              name="dishName"
-              onChange={handelChange}
-            />
-
-            <VegOption vegChange={handelChange} NonVegChange={handelChange} />
-            <PriceEdit pricevalue={handelChange} taxvalue={handelChange} />
-            <GategorySelection
-              setDiscription={handelChange}
-              setGategory={handelChange}
-            />
-            <div className="twoButtons">
-            <button className="delete-btn" onClick={()=>{
-              Nav()
-            }}>Cancel</button>
-            <button className="saveEdit-btn" type="submit" >Next</button>
+      <form onSubmit={handelSubmit}>
+        <LoadingOverlay
+          active={spiner ? true : false}
+          spinner
+          text="Creating the dish..."
+        >
+          <p className="ItemName-title">Item name</p>
+          <input
+            type="text"
+            className="intemName-input"
+            name="dishName"
+            onChange={handelChange}
+          />
+          <UploadImg
+            upload={img ? img : UploadIcon}
+            update={(e) => {
+              setimg(URL.createObjectURL(e.target.files[0]));
+              let image = e.target.files[0];
+              const data = new FormData();
+              data.append("image", image, image.name);
+              setLinker(data);
+            }}
+            img={img}
+          />
+          <VegOption vegChange={handelChange} NonVegChange={handelChange} />
+          <PriceEdit pricevalue={handelChange} taxvalue={handelChange} />
+          <GategorySelection
+            setDiscription={handelChange}
+            setGategory={handelChange}
+          />
+          <div className="twoButtons">
+            <button
+              className="delete-btn"
+              onClick={() => {
+                Nav();
+              }}
+            >
+              Cancel
+            </button>
+            <button className="saveEdit-btn" type="submit">
+              Next
+            </button>
           </div>
-          </LoadingOverlay>
-        </form>
-      ) : (
-        <UploadImg
-          upload={img ? img : UploadIcon}
-          buttonname={"UPLOAD"}
-          update={(e) => {
-            setimg(URL.createObjectURL(e.target.files[0]));
-            let image = e.target.files[0];
-            const data = new FormData();
-            data.append("image", image, image.name);
-            setLinker(data);
-          }}
-          img={img}
-          click={() => {
-            uploadImg();
-          }}
-          spiner={spiner}
-        />
-      )}
+        </LoadingOverlay>
+      </form>
     </div>
   );
 };

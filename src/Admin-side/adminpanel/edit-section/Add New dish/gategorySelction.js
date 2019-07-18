@@ -75,6 +75,7 @@ console.log(gate)
               }}
               value={optionState}
             >
+            <option>Category</option>
             { gate !== null ? (
               gate.map((gategory) => (
                 <option key={uuid()} value={gategory}>

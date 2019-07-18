@@ -1,17 +1,17 @@
 import React from "react";
 import Table from "./table";
 import "./card.css";
-import PlateTable from "./plateTable";
+
 
 const LiveCard = ({
   tableNumber,
   timer,
-  num,
   click,
   buttonText,
   classDpends,
-  borderDepend,
-  Statedpend
+  Statedpend,
+  children,
+  instruction
 }) => {
   return (
     <div className={classDpends}>
@@ -24,27 +24,8 @@ const LiveCard = ({
         Statedpend={Statedpend}
       />
       <div className="table-paltes">
-        <PlateTable
-          plateName={"FRIED CHICKEN"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"FRIED RICE"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"COLD COFFEE"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <PlateTable
-          plateName={"FRIED CHICKEN"}
-          palteNumber={num}
-          borderDepend={borderDepend}
-        />
-        <textarea className="plate-comments" />
+      {children}
+        <textarea className="plate-comments" disabled value={instruction} />
       </div>
     </div>
   );
