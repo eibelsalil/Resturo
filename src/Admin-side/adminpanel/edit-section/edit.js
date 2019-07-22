@@ -1,14 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import DishEditing from "./dishEditing/dishEditing";
 import EditHeader from "./editHeader";
 import "./edit.css";
 import Addnew from "./Add New dish/Add new";
-import AppContext from "../../../context/AppContext";
+
 
 const Edit = () => {
   const [nav, navOn] = useState(false);
 
-  const context = useContext(AppContext);
+
 
   return (
     <div className="edit-full">
@@ -19,7 +19,6 @@ const Edit = () => {
         }}
         NAVon={() => {
           navOn(true);
-          context.setAdminPage("list");
         }}
       />
       {!nav ? (
@@ -28,11 +27,11 @@ const Edit = () => {
         </div>
       ) : (
         <Addnew
-          Nav={() => {
-            setTimeout(() => {
-              navOn(false);
-            }, 4000);
-          }}
+        Nav={() => {
+          setTimeout(() => {
+            navOn(false);
+          }, 4000);
+        }}
         />
       )}
     </div>

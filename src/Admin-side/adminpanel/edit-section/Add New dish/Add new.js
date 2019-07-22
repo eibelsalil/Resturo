@@ -12,7 +12,7 @@ import LoadingOverlay from "react-loading-overlay";
 
 const Addnew = ({ Nav }) => {
   let user = firebase.auth().currentUser.uid;
-  const { values, handelChange, handelSubmit, restvalue } = useForm(getValue);
+  const { values, handelChange, handelSubmit } = useForm(getValue);
   const [formValue, setValue] = useState(null);
   const [spiner, setSpinner] = useState(false);
   const [img, setimg] = useState(null);
@@ -21,7 +21,6 @@ const Addnew = ({ Nav }) => {
 
   function getValue() {
     setValue(values);
-    console.log(values);
   }
 
   useEffect(() => {
@@ -60,13 +59,13 @@ const Addnew = ({ Nav }) => {
         )
         .then((doc) => {
           setSpinner(false);
-          Nav();
+           Nav()
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [LastCreated, Nav, linker, user]);
+  }, [LastCreated, linker, user,Nav]);
 
   return (
     <div className="New-cont">
@@ -104,7 +103,7 @@ const Addnew = ({ Nav }) => {
             <button
               className="delete-btn"
               onClick={() => {
-                Nav();
+                Nav()
               }}
             >
               Cancel

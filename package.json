@@ -12,10 +12,12 @@
     "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-loader-spinner": "^2.3.0",
     "react-loading-overlay": "^1.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-scroll": "^1.7.12",
+    "react-to-print": "^2.2.0",
     "react-toggle-button": "^2.2.0",
     "uuid": "^3.3.2"
   },

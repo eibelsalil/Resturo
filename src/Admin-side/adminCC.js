@@ -1,48 +1,65 @@
-import React,{useState,useEffect,useRef} from 'react'
+import React, { useState, useEffect, useRef } from "react";
 import LiveCard from "./adminpanel/cards/liveCard";
 import CompletedCard from "./adminpanel/cards/liveCard";
 import AdminHeader from "./adminpanel/header.js/head";
 import Settings from "./adminpanel/cards/adminsettings";
 import fire from "../config/config";
 import "./adminpanel/panel.css";
-import Axios from 'axios';
-import PlateTable from './adminpanel/cards/plateTable';
-import LoadingOverlay from 'react-loading-overlay';
-import uuid from "uuid"
+import Axios from "axios";
+import PlateTable from "./adminpanel/cards/plateTable";
+import LoadingOverlay from "react-loading-overlay";
+import uuid from "uuid";
+import "./adminpanel/cards/card.css";
+import Confirm from "../Asset/confirmWhite.png";
+import Cancel from "../Asset/cancel.png";
+import PlateTableCC from "./adminpanel/cards/plateTableCompleted";
 
-const RenderMainAdmin = () =>{
-let user = fire.auth().currentUser.uid
-    const [page, setPage] = useState(false);
-    const [model, setModel] = useState(false);
-    const [Liveorders,setLive] = useState(null)
-    const [Loading,setLoad] = useState(false)
-    const Timer = (timer) => {
-        return <p className="time-spend">{timer}</p>;
-      };
-    const logout = () => {
-        fire.auth().signOut();
-      };
-    
-useEffect(()=>{
-  setLoad(true)
- Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/order`)
- .then((doc)=>{
-    setLive(doc.data)
-    setLoad(false)
- })
- .catch((err)=>{
-   console.error(err)
- })
-},[user])
-if(Liveorders){
- let arr= []
-   
-   Liveorders.map((order)=>{
-          arr.push(order)
+const RenderMainAdmin = () => {
+  let user = fire.auth().currentUser.uid;
+  const [page, setPage] = useState(false);
+  const [model, setModel] = useState(false);
+  const [Liveorders, setLive] = useState(null);
+  const [Completedorders, setComplete] = useState(null);
+  const [Loading, setLoad] = useState(false);
+  const [finish, setFinish] = useState(false);
+  const Timer = (timer) => {
+    return <p className="time-spend">{timer}</p>;
+  };
 
-   })
-console.log(Liveorders[0].createdTime.toString())
-}
+  const CompletedTimer = (timer) =>{
+    return(
+      <div className="CompletedTimer">
+      <p className="completedTitle">completed at</p>
+      <p className="time-spend-Completed">{timer}</p>
+      </div>
+    )
+  }
+
+  const logout = () => {
+    fire.auth().signOut();
+  };
+
+  useEffect(() => {
+    setLoad(true);
+    Axios.get(
+      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
+    )
+      .then((doc) => {
+        setLive(doc.data);
+      })
+      .then(() => {
+        Axios.get(
+          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+        ).then((doc) => {
+          setComplete(doc.data);
+          setLoad(false);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [user]);
+
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -58,70 +75,147 @@ console.log(Liveorders[0].createdTime.toString())
   }
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-       
- const renderLiveOrder = () =>{
-   if(Liveorders){
-    return Liveorders.map((order)=>(
-      <LiveCard
-      key={order.orderId}
-      tableNumber={order.table}
-      buttonText={"DONE"}
-      classDpends={"liveCard"}
-      Statedpend={"table-cont"}
-      instruction={order.instruction}
-    >
-  {  
-   Object.keys(order.dishes[0]).map((key)=>(
-    <PlateTable
-    key={uuid()}
-    plateName={key}
-    palteNumber={order.dishes[0][key]}
-    borderDepend={"palteNumber"}
-   />
-   ))
 
-  }
- 
-    </LiveCard>
-    ) )
-   }
-   else{
-     return(
-       <h3>You still don't have any orders</h3>
-     )
-   }
- 
- }
+  const setTofinish = (orderId) => {
+    let update = {
+      status: false,
+      finishAt: new Date()
+    };
+    setLoad(true);
+    Axios.put(
+      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/order/${orderId}`,
+      update
+    )
+      .then(() => {
+        Axios.get(
+          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
+        )
+          .then((doc) => {
+            setLive(doc.data);
+          })
+          .then(() => {
+            Axios.get(
+              `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+            ).then((doc) => {
+              setComplete(doc.data);
+              setLoad(false);
+            });
+          });
+      })
+      .then(() => {
+        setFinish(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    return (
-      <div>
-        <AdminHeader
-          click={() => setPage(true)}
-          clickBack={() => setPage(false)}
-        />
+  const renderLiveOrder = () => {
+    if (Liveorders !== null) {
+      return Liveorders.map((order) => (
+        <React.Fragment    key={order.orderId}>
+          <LiveCard
+            tableNumber={order.table}
+            buttonText={"DONE"}
+            classDpends={"liveCard"}
+            Statedpend={"table-cont"}
+            instruction={order.instruction}
+            timer={Timer(order.time)}
+            click={() => {
+              setFinish(true);
+            }}
+            Live={order.status}
+            borderTableDepend={"table-paltes"}
+            orderId={order.orderId}
+            tabletextDepend={"plate-comments"}
+            textOrderDepend={"text-order"}
+           pageDepend={"done-button"}
+          >
+            {finish ? (
+              <div className="contbtnbtn">
+                <div className="finishButton">
+                  <button
+                    className="cancel"
+                    onClick={() => {
+                      setFinish(false);
+                    }}
+                  >
+                    <img src={Cancel} alt="cancel" />
+                  </button>
+                  <button
+                    className="confirm"
+                    onClick={() => {
+                      setTofinish(order.orderId);
+                    }}
+                  >
+                    <img src={Confirm} alt="confirm" />
+                  </button>
+                </div>
+                <div className="finishConfirmation" />
+              </div>
+            ) : null}
+            {Object.keys(order.dishes[0]).map((key) => (
+              <PlateTable
+                key={uuid()}
+                plateName={key}
+                palteNumber={order.dishes[0][key]}
+                borderDepend={"palteNumber"}
+              />
+            ))}
+          </LiveCard>
+        </React.Fragment>
+      ));
+    } 
+  };
+  const renderCompletedorder = () => {
+    if (Completedorders) {
+      return Completedorders.map((order) => (
+        <CompletedCard
+          key={order.orderId}
+          tableNumber={order.table}
+          classDpends={"completedCard"}
+          Statedpend={"table-cont-completed"}
+          instruction={order.instruction}
+          borderTableDepend={"table-paltesCompleted"}
+          timer={CompletedTimer(order.time)}
+          orderId={order.orderId}
+          tabletextDepend={"plate-comments"}
+          textOrderDepend={"text-order"}
+          pageDepend={"completedCardbtn"}
+        >
+          {Object.keys(order.dishes[0]).map((key) => (
+            <PlateTableCC
+              key={uuid()}
+              plateName={key}
+              palteNumber={order.dishes[0][key]}
+              borderDepend={"palteNumber"}
+            />
+          ))}
+      
+        </CompletedCard>
+      ));
+    }
+  };
+
+  return (
+    <div>
+      <AdminHeader
+        click={() => setPage(true)}
+        clickBack={() => setPage(false)}
+      />
+      <LoadingOverlay
+        active={Loading ? true : false}
+        spinner
+        text="Loading your orders..."
+      >
         {!page ? (
           <div className="live-cardsCont">
-          <LoadingOverlay 
-          active={Loading ? true : false}
-          spinner
-          text="Loading your orders..."
-          >
-           { renderLiveOrder()}
-           </LoadingOverlay>
+            {!Loading
+              ? renderLiveOrder()
+              : Array.from({ length: 5 }).map(() => <LiveCard key={uuid()} />)}
           </div>
         ) : (
-          <div className="live-cardsCont">
-            <CompletedCard
-              tableNumber={12}
-              timer={Timer(0.27)}
-              num={3}
-              borderDepend={"palteNumber"}
-              classDpends={"completedCard"}
-              pageDepend={"done-buttonHidden"}
-              Statedpend={"table-cont"}
-              borderTabledpend={"table-paltesCompleted"}
-            />
-          </div>
+          <div className="live-cardsCont">{renderCompletedorder()}</div>
         )}
         <button
           className="edit-menu"
@@ -141,8 +235,9 @@ console.log(Liveorders[0].createdTime.toString())
             logout();
           }}
         />
-      </div>
-    );
-  }
+      </LoadingOverlay>
+    </div>
+  );
+};
 
-  export default RenderMainAdmin
+export default RenderMainAdmin;

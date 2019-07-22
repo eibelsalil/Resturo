@@ -12,7 +12,9 @@ import {
   LOGIN_USER,
   LoginReducer,
   GET_DISH,
-  getDishReducer
+  getDishReducer,
+  GET_DISHID,
+  DishIdReducer
 } from "./reducer";
 
 
@@ -29,6 +31,9 @@ const GlobalState = ({ children }) => {
   });
   const [dishState,getDishdishpatch] = useReducer(getDishReducer,{
     dish: []
+  })
+  const [dishIdState, getdishIdDihpatch] = useReducer(DishIdReducer,{
+    dishId: []
   })
 
   const addPrice = (price) => {
@@ -58,6 +63,10 @@ const GlobalState = ({ children }) => {
  const getDish = (data)=>{
    getDishdishpatch({type: GET_DISH ,data: data})
  }
+ const setDishId = (id) =>{
+   getdishIdDihpatch({type: GET_DISHID,id: id})
+ }
+
   return (
     <AppContext.Provider
       value={{
@@ -73,6 +82,8 @@ const GlobalState = ({ children }) => {
         LoginUser: LoginUser,
         dish: dishState.dish,
         getDish: getDish,
+        dishId: dishIdState.dishId,
+        setDishId: setDishId
       }}
     >
       {children}

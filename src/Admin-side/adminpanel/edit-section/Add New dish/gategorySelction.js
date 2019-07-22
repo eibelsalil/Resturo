@@ -4,7 +4,7 @@ import uuid from "uuid";
 import LoadingOverlay from "react-loading-overlay";
 import firebase from "firebase"
 
-const GategorySelection = ({ setDiscription, setGategory }) => {
+const GategorySelection = ({ setDiscription, setGategory,discrip }) => {
   const [gategory, addGategory] = useState(false);
   const [event, setEvent] = useState("");
   const [gate, Getgetfory] = useState(null);
@@ -27,11 +27,7 @@ let user = firebase.auth().currentUser.uid
   }, [user]);
 
 
-  useEffect(() => {
-   if(gate !== null){
-      setOption(gate[0]);
-   }
-  }, [gate]);
+
 
   const setValues = (event) => {
     setOption(event.target.value);
@@ -55,7 +51,7 @@ let user = firebase.auth().currentUser.uid
         console.log(err + "err");
       });
   };
-console.log(gate)
+
   return (
     <div className="GagtegorSel-cont">
       <p className="GategorySel-title">Item gategory</p>
@@ -119,6 +115,7 @@ console.log(gate)
       <textarea
         className="GategorySel-textarea"
         name="description"
+        value={discrip}
         onChange={(e) => {
           setDiscription(e);
         }}

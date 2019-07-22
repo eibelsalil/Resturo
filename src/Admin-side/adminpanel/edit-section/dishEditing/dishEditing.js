@@ -7,11 +7,12 @@ import LoadingOverlay from "react-loading-overlay";
 import uuid from "uuid";
 import AppContext from "../../../../context/AppContext";
 
-const DishEditing = ({ gategory }) => {
+const DishEditing = () => {
   let user = firebase.auth().currentUser.uid;
   const [dishes, setDishes] = useState([]);
   const [category, setGategory] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const context = useContext(AppContext);
   useEffect(() => {
     setLoading(true);
@@ -45,7 +46,7 @@ const DishEditing = ({ gategory }) => {
     }
   }, [user, category]);
 
-  console.log(dishes)
+
 
   const renderDishes = () => {
     return dishes.map((dish) => (
@@ -59,8 +60,11 @@ const DishEditing = ({ gategory }) => {
               name={d.dishName}
               key={d.dishId}
               click={() => {
-                context.setAdminPage("edit");
+                context.setDishId(d.dishId)
               }}
+              dishId={d.dishId}
+              user={user}
+              LiveDish={d.Live}
             />
           ))
         )}

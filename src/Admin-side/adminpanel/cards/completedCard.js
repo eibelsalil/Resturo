@@ -12,22 +12,34 @@ const CompletedCard = ({
   Statedpend,
   borderTabledpend,
   children,
-  instruction
+  instruction,
+  Live,
+  orderId,
+  tabletextDepend,
+  clickprint
 }) => {
   return (
     <div className={classDpends}>
+ 
       <Table
         tableNumber={tableNumber}
         timer={timer}
         click={click}
-        pageDepend={pageDepend}
         buttonText={buttonText}
         Statedpend={Statedpend}
+        pageDepend={pageDepend}
+        Live={Live}
+        clickprint={clickprint}
       />
+
       <div className={borderTabledpend}>
         {children}
-        <textarea className="plate-comments"  disabled value={instruction}/>
+        <div className="text-order">
+        <textarea className={tabletextDepend} disabled value={instruction}/>
+        <p className="orderNumber">Order No: {orderId}</p>
+        </div>
       </div>
+     
     </div>
   );
 };

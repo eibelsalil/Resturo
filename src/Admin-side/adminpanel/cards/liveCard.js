@@ -11,7 +11,13 @@ const LiveCard = ({
   classDpends,
   Statedpend,
   children,
-  instruction
+  instruction,
+  Live,
+  borderTableDepend,
+  orderId,
+  tabletextDepend,
+  textOrderDepend,
+  pageDepend
 }) => {
   return (
     <div className={classDpends}>
@@ -19,13 +25,17 @@ const LiveCard = ({
         tableNumber={tableNumber}
         timer={timer}
         click={click}
-        pageDepend={"done-button"}
+        pageDepend={pageDepend}
         buttonText={buttonText}
         Statedpend={Statedpend}
+        Live={Live}
       />
-      <div className="table-paltes">
+      <div className={borderTableDepend}>
       {children}
-        <textarea className="plate-comments" disabled value={instruction} />
+      <div className={textOrderDepend}>
+      <textarea className={tabletextDepend}  disabled value={instruction}/>
+      <p className="orderNumber">Order No: {orderId}</p>
+      </div>
       </div>
     </div>
   );

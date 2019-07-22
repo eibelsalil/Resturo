@@ -3,8 +3,9 @@
      grid-template-rows: auto;
      grid-row-gap: 10px;
     height: fit-content;
-    margin-top: 25%
-
+    margin-top: 25%;
+    margin-bottom: 20%;
+    overflow: scroll
 }
 
 .liveCard{
@@ -13,19 +14,93 @@
     background-color: white;
     border: 10px solid #3CE082;
     border-radius: 6px;
+    height: fit-content;
+
     
 }
+.dont-have{
+    color: #CF2D31;
+    position: absolute;
+     top: 50%
+}
 
+.finishConfirmation{
+    background-color: #302B2B;
+    position: absolute;
+    z-index: 2;
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 100%;
+    opacity: 0.2;
+}
+
+.finishButton{
+ position: absolute;
+ z-index:10;
+ left: 0%;
+ top: 0%;
+ height: 50%;
+ width: 100%;
+ display: flex;
+ justify-content: space-evenly;
+ align-items: center;
+ overflow: auto;
+}
+
+
+.cancel{
+    width: 75.94px;
+    height: 75.94px;
+    border-radius: 50%;
+    border: none;
+    background: #CF2D31;
+    cursor: pointer;
+}
+ 
+.cancel:focus{
+    outline: none
+}
+.confirm{
+    width: 75.94px;
+    height: 75.94px;
+    border-radius: 50%;
+    border: none;
+    background: #3EC076;
+    cursor: pointer;
+}
+
+.confirm:focus{
+    outline: none
+}
 .completedCard{
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 30% 70%;
     background-color: white;
     border: 10px solid #B04E3B;
     border-radius: 6px;
-    overflow: scroll
+    overflow: scroll;
+}
+ 
+.text-order{
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0%;
+  width: 100%;
+  
+  resize: both
 }
 
 
+
+.text-order p {
+    margin-bottom: 0;
+    margin-left: 2%
+}
 .Table{
     display: grid;
     grid-template-rows: 45% 40%; 
@@ -61,6 +136,13 @@
     justify-content: space-between;
 
 }
+.table-cont-completed{
+    display: grid;
+    grid-template-rows: 2% 60% 20%;
+    height: fit-content;
+    background: white;
+    justify-content: space-between;
+}
 
 .time-spend{
     font-family: Tahoma;
@@ -71,17 +153,24 @@
     margin-bottom: 0;
     
 }
-
-.table-paltes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 90%;
-    margin-top: 5%;
-    border-left: 5px solid #3CE082
+.time-spend-Completed{
+    font-family: Tahoma;
+    font-size: 16px;
+    font-weight: bold;
+    color: #908E8E;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin-bottom: 0;
+    margin-top: 0
 }
-
-.table-paltesCompleted{
+.completedTitle{
+    margin-bottom: 0;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    color: #2C2C2C;
+  
+}
+.table-paltes-compelted{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,6 +179,32 @@
     border-left: 5px solid #B04E3B
 }
 
+.table-paltes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    margin-top: 5%;
+    border-left: 5px solid #3EBF75 
+}
+.table-paltesCompleted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    margin-top: 5%;
+    border-left: 5px solid #B04E3B;
+    overflow: scroll
+}
+.completedCardbtn{
+    display: none
+}
+.orderNumber{
+    font-family: Tahoma;
+    font-size: 9px;
+    font-weight: bold;
+    color: #2C2C2C;
+}
 .done-button{
     width: 100px;
      height: 30px;
@@ -122,6 +237,9 @@
     width: 80%;
     min-height: 40%
 }
+.plate-commentsDis{
+    display: none
+}
 
 .plateName{
     font-family: Tahoma;
@@ -146,3 +264,4 @@
     margin-top: 0;
     padding-bottom: 20px
 }
+

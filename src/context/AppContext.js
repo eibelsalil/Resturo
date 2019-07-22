@@ -7,6 +7,8 @@ export default React.createContext({
     AdminPage:"list",
     user: {},
     dish: [],
+    dishId: [],
+    setDishId: id => {},
     addPrice: price =>{},
     deletPrice: index =>{},
     addDish: dish =>{},

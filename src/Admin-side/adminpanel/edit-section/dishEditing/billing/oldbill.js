@@ -8,7 +8,8 @@ const OldBills = ({
   num,
   borderDepend,
   classDpends,
-  pageDepend
+  pageDepend,
+  tabletextDepend
 }) => {
   return (
     <CompletedCard
@@ -19,6 +20,7 @@ const OldBills = ({
       classDpends={classDpends}
       borderDepend={borderDepend}
       Statedpend={Statedpend}
+      tabletextDepend={tabletextDepend}
       borderTabledpend={"table-paltesCompletedOld"}
     />
   );
