@@ -5,6 +5,7 @@ import axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 import Pen from "../../../Asset/edit-pen.png";
 import Confirm from "../../../Asset/confirm.png";
+import {Link} from "react-router-dom"
 const Settings = ({ wraaperRef, model, click, logout }) => {
   let user = firebase.auth().currentUser.uid;
   const [info, setInfo] = useState(null);
@@ -258,6 +259,7 @@ const Settings = ({ wraaperRef, model, click, logout }) => {
                 </div>
               </div>
             ) : null}
+            <Link to="/adminPanel/table">Add table Qrcode</Link>
           </LoadingOverlay>
           <button className="logout" onClick={logout}>logout</button>
         </div>

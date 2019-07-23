@@ -16,21 +16,23 @@ const CompletedCard = ({
   Live,
   orderId,
   tabletextDepend,
-  clickprint
+
+  clickRef
 }) => {
+
   return (
     <div className={classDpends}>
  
-      <Table
-        tableNumber={tableNumber}
-        timer={timer}
-        click={click}
-        buttonText={buttonText}
-        Statedpend={Statedpend}
-        pageDepend={pageDepend}
-        Live={Live}
-        clickprint={clickprint}
-      />
+    <Table
+    tableNumber={tableNumber}
+    timer={timer}
+    click={click}
+    buttonText={buttonText}
+    Statedpend={Statedpend}
+    pageDepend={pageDepend}
+    Live={Live}
+  clickRef={clickRef}
+  />
 
       <div className={borderTabledpend}>
         {children}

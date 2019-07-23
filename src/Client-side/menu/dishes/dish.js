@@ -1,12 +1,12 @@
-import React, { useContext, useState, useLayoutEffect } from "react";
+import React, { useContext, useState } from "react";
 import { dishes } from "../disharraytest";
-import { currentOrderConfirm, add } from "../../order/orderHelper";
+//import { currentOrderConfirm, add } from "../../order/orderHelper";
 import Appcontext from "../../../context/AppContext";
 
 const Dish = ({ img, veg }) => {
 
   const [count, incCount] = useState(0);
-  const [chosenDish, setChosen] = useState(null);
+  //const [chosenDish, setChosen] = useState(null);
   const Inc =() =>{
     incCount(count => count + 1)
   }
@@ -17,7 +17,7 @@ const Dish = ({ img, veg }) => {
 
 
 
-
+/*
   useLayoutEffect(()=>{
     setChosen(
       currentOrderConfirm(
@@ -28,9 +28,11 @@ const Dish = ({ img, veg }) => {
       )
     );
   },[context.total, count])
+  */
   const setTotal = (price) => {
     return context.addPrice(price);
   };
+  
   const deleteItem = (price) => {
     return context.deletPrice(price);
   };

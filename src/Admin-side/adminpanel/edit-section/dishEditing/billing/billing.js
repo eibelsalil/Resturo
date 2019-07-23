@@ -10,15 +10,19 @@ import PlateTable from "../../../cards/plateTable";
 import uuid from "uuid";
 import LoadingOverlay from "react-loading-overlay";
 
+import RenderSelectedBill from "./billTobePrint";
 
 const Billing = () => {
   let user = Firebase.auth().currentUser.uid;
   let Live = true;
+
   const [bill, setBill] = useState(null);
   const [billIt, setTobillit] = useState(null);
   const [billwait, setbillwait] = useState(null);
   const [Loading, setLoading] = useState(false);
-  const [todayBills, setTodayBills] = useState(null);
+  //const [todayBills, setTodayBills] = useState(null);
+  const [selecId,setSelectid] = useState(null)
+  const [selectedBill,setSelectedbill] = useState(null)
   const CompletedTimer = (timer) => {
     return (
       <div className="CompletedTimer">
@@ -27,6 +31,7 @@ const Billing = () => {
       </div>
     );
   };
+
   const getBills = useCallback(() => {
     setLoading(true);
     Axios.get(
@@ -74,15 +79,25 @@ const Billing = () => {
       });
       setbillwait(item2);
 
-      let today = new Date().getDate();
-      let yesterday = bill.filter(({ day }) => {
+      //let today = new Date().getDate();
+      /*let yesterday = bill.filter(({ day }) => {
         return day < today;
       });
-      setTodayBills(yesterday);
+      */
+      //setTodayBills(yesterday);
     }
-  }, [bill]);
-  console.log(todayBills);
-
+    
+  }, [bill])
+  /*
+     useEffect(()=>{
+       if(billIt){
+        billIt.map(()=>(
+          refel.current.push(React.createRef())
+        ))
+       }
+   
+     },[billIt])
+*/
   /*
     if(todayBills){
       let live = billwait
@@ -99,7 +114,7 @@ const Billing = () => {
   const renderLiveBill = () => {
     if (billwait) {
       return billwait.map((bill) => (
-        <LiveCard
+        <LiveCard  
           key={bill.orderId}
           tableNumber={bill.table}
           timer={CompletedTimer(bill.time)}
@@ -135,12 +150,24 @@ const Billing = () => {
     }
   };
 
+ useEffect(()=>{
+  if(billIt&& selecId){
+    let item = billIt.filter(({orderId})=>(
+         orderId === selecId
+    ))
+    setSelectedbill(item[0])
+ }
+ },[billIt,selecId])
 
+
+
+
+  
   const renderCompletedBil = () => {
     if (billIt) {
-      return billIt.map((bill) => (
+      return billIt.map((bill,i) => (
         <CompletedCard
-        id={bill.orderId}
+        id={i}
           key={bill.orderId}
           tableNumber={bill.table}
           timer={CompletedTimer(bill.time)}
@@ -152,8 +179,9 @@ const Billing = () => {
           borderTabledpend={"table-paltes-Billing2"}
           tabletextDepend={"plate-commentsDis"}
           orderId={bill.orderId}
-          click={()=>{
-            window.print()
+          orderidd={bill.orderId}
+          clickRef={()=>{
+            setSelectid(bill.orderId)
           }}
         >
           {Object.keys(bill.dishes[0]).map((key) => (
@@ -189,8 +217,12 @@ const Billing = () => {
         text="Loading your orders..."
       >
         <div className="card-cont">
-          {renderLiveBill()}
-          {renderCompletedBil()}
+          {  renderLiveBill()}
+          {!selectedBill ? renderCompletedBil() : <RenderSelectedBill selectedBill={selectedBill} CompletedTimer={CompletedTimer} Back={()=>{
+            setTimeout(()=>{
+              setSelectedbill(null)
+            },2500)
+          }} />}
           <div className="oldBills">
             <p className="date-deco">YESTERDAY</p>
             <OldBills
@@ -211,3 +243,5 @@ const Billing = () => {
 };
 
 export default Billing;
+
+

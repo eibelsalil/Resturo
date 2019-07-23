@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect ,useContext} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./panel.css";
 import "./cards/card.css";
 import Footer from "./fotter/footer";
@@ -14,13 +14,13 @@ import Billing from "./edit-section/dishEditing/billing/billing";
 import { Switch, Route } from "react-router-dom";
 import EditDish from "./edit-section/edit dish/editDish";
 import RenderMainAdmin from "../adminCC";
-import AppContext from "../../context/AppContext"
+import Table from "./tables/table";
 
 
 const Panel = ({ user }) => {
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
-const context = useContext(AppContext)
+//const context = useContext(AppContext)
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -129,9 +129,11 @@ const context = useContext(AppContext)
     <div className="Admin-panel">
       <Switch>
         <Route exact path="/adminPanel" component={RenderMainAdmin} />
+        <Route exact path="/adminPanel/table" component={Table} />
         <Route exact path="/adminPanel/edit" component={renderEdit} />
         <Route exact path="/adminPanel/billing" component={Billing} />
         <Route exact path="/adminPanel/editDish" component={EditDish} />
+
       </Switch>
       <div className="full-bgAdmin" />
       {RenderFooter(section)}

@@ -4,8 +4,8 @@ import Menu from "./Client-side/menu/menu";
 import { Switch, Route } from "react-router-dom";
 import GlobalState from "./context/GlobalState";
 import Order from "./Client-side/order/order"
-
 import "./App.css";
+import Home from "./Client-side/Home";
 
 
 
@@ -14,8 +14,10 @@ function App() {
     <GlobalState>
       <div className="App">
         <Switch>
+        <Route exact path="/" component={Home} />
           <Route exact path="/adminpanel" component={MainAdmin} />
           <Route exact path="/menu/:hotelid" component={Menu} />
+         
           <Route exact path="/order" component={Order} />
         </Switch>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "./input-form";
 import fire from "../../config/config";
 import ErrorSingin from "./singInError";
@@ -16,13 +16,10 @@ const SigninCont = () => {
   function getValue() {
     setValue(values);
     console.log(values.email);
-  }
-
-  useEffect(() => {
     if (formValue) {
       fire
         .auth()
-        .signInWithEmailAndPassword(values.email, values.password)
+        .signInWithEmailAndPassword(formValue.email, formValue.password)
         .then(
           axios.post(
             `http://localhost:5000/resturo-07/europe-west1/api/login`,
@@ -36,7 +33,9 @@ const SigninCont = () => {
           }, 4000);
         });
     }
-  },[formValue]);
+  }
+
+
 
   return (
     <div>
