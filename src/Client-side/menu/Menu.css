@@ -304,6 +304,29 @@
     border-radius: 12px;
     margin-top: 10px
 }
+
+.home{
+    width: 100%;
+    height: 100%;
+    margin-top: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.home button{
+    margin-bottom: 5%;
+    background-color: #FF6F42;
+    border: none;
+    width: 153.32px;
+    height: 36.39px;
+    border-radius: 22px;
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-weight: bold
+}
+
 @media only screen and (min-width: 750px) {
     .menu-Button{
       margin-left: 5%;

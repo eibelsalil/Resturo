@@ -34,7 +34,7 @@ const RenderMainAdmin = () => {
       </div>
     )
   }
-
+ console.log(Liveorders,Completedorders)
   const logout = () => {
     fire.auth().signOut();
   };
@@ -111,7 +111,7 @@ const RenderMainAdmin = () => {
   };
 
   const renderLiveOrder = () => {
-    if (Liveorders !== null) {
+    if (Liveorders && Liveorders !== "you don't have any live orders") {
       return Liveorders.map((order) => (
         <React.Fragment    key={order.orderId}>
           <LiveCard
@@ -166,9 +166,12 @@ const RenderMainAdmin = () => {
         </React.Fragment>
       ));
     } 
+    else{
+      return <h1>{Liveorders}</h1>
+    }
   };
   const renderCompletedorder = () => {
-    if (Completedorders) {
+    if (Completedorders && Completedorders !== "you don't have any completed orders") {
       return Completedorders.map((order) => (
         <CompletedCard
           key={order.orderId}
@@ -194,7 +197,7 @@ const RenderMainAdmin = () => {
       
         </CompletedCard>
       ));
-    }
+    }else return <h1>{Completedorders}</h1>
   };
 
   return (
@@ -211,11 +214,13 @@ const RenderMainAdmin = () => {
         {!page ? (
           <div className="live-cardsCont">
             {!Loading
-              ? renderLiveOrder()
+              ?  renderLiveOrder() 
               : Array.from({ length: 5 }).map(() => <LiveCard key={uuid()} />)}
           </div>
         ) : (
-          <div className="live-cardsCont">{renderCompletedorder()}</div>
+          <div className="live-cardsCont">
+          { renderCompletedorder()}
+          </div>
         )}
         <button
           className="edit-menu"

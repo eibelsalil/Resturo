@@ -8,6 +8,8 @@ export default React.createContext({
     user: {},
     dish: [],
     dishId: [],
+    table: null,
+    orderInfo: [],
     setDishId: id => {},
     addPrice: price =>{},
     deletPrice: index =>{},
@@ -15,5 +17,7 @@ export default React.createContext({
     deleteDish: index =>{},
     setAdminPage: data =>{},
     LoginUser: data =>{},
-    getDish: dish =>{}
+    getDish: dish =>{},
+    setTable: N =>{},
+    setOrderInfo: info =>{}
 })

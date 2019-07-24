@@ -69,7 +69,7 @@ const Billing = () => {
     getBills();
   }, [getBills]);
   useEffect(() => {
-    if (bill) {
+    if (bill && bill !== "you don't have any completed orders") {
       let item = bill.filter(({ billing }) => {
         return billing === true;
       });
@@ -112,7 +112,7 @@ const Billing = () => {
 */
 
   const renderLiveBill = () => {
-    if (billwait) {
+    if (billwait && bill !== "you don't have any completed orders") {
       return billwait.map((bill) => (
         <LiveCard  
           key={bill.orderId}
@@ -148,6 +148,7 @@ const Billing = () => {
         </LiveCard>
       ));
     }
+    else return <h1>You don't have any bills</h1>
   };
 
  useEffect(()=>{

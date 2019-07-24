@@ -5,6 +5,8 @@ import Total from "./total";
 import Appcontext from "../../context/AppContext";
 import Model from "./model";
 import Axios from "axios";
+import LoadingOverlay from "react-loading-overlay";
+
 
 
 
@@ -12,21 +14,46 @@ const Menu = ({match}) => {
   const context = useContext(Appcontext);
 
   const [model, setModel] = useState(false);
+  const [dishes,setDishs] = useState(null)
+  const [category,setCategory] = useState(null)
+  const [loading,setLoading] = useState(false)
+  
 
+   useEffect(()=>{
+     setLoading(true)
+    Axios.get( `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/gategory`)
+
+  .then((doc)=>{
+    setCategory(doc.data.gategory)
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+   },[match.params.hotelid])
 
 useEffect(()=>{
-  Axios.get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/dishes`)
+  Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/LiveDishes`)
  .then((data)=>{
-  context.getDish(data.data)
- 
+  setDishs(data.data)
  })
  .catch((err)=>{
    console.log(err)
  })
-})
+},[match.params.hotelid])
+ 
+useEffect(()=>{
+  if(dishes && category){
+   let filtered =  category.map((cat)=>{
+        let f = dishes.filter(({gategory}) => gategory === cat)
+        return {[cat]:f}
+    })
+   context.getDish(filtered)
+   setLoading(false)
+  }
+  
+},[category,dishes])
 
-
-
+ 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -41,8 +68,6 @@ useEffect(()=>{
     });
   }
 
-  
-
 
 
   const wrapperRef = useRef(null);
@@ -51,13 +76,15 @@ useEffect(()=>{
   return (
     <div>
       <Header />
+      <LoadingOverlay
+      active={loading ? true : false}
+      spinner
+      text="Loading your dishes..."
+      >
       <div className="main-dishes">
-      <Dishcont category={"Bestsellers"} categoryId={"Bestsellers"} />
-      <Dishcont category={"Starter"} categoryId={"Starter"} />
-      <Dishcont category={"Dessert"} categoryId={"Dessert"} />
-      <Dishcont category={"Lunch"}   categoryId={"Lunch"} />
-      <Dishcont category={"Chicken"} categoryId={"Chicken"}   />
+      {context.dish !== [] ? <Dishcont  categoryId={"Bestsellers"} /> : <h1>Don't have any dish</h1> }
       </div>
+      </LoadingOverlay>
       <Model
         model={model}
         wraaperRef={wrapperRef}

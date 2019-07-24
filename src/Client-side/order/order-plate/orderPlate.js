@@ -4,18 +4,19 @@ import PreviousOrder from "./prevouisOrder";
 import CurrentOrder from "./current-order";
 import Bill from "../bill/bill";
 import AppContext from "../../../context/AppContext";
-import _ from "lodash"
 
 
 
-const OrderOne = ({ click, order, amount, total,instruction}) => {
+
+const OrderOne = ({ click, order, amount, total,instruction,setEvent}) => {
   
   
   const context = useContext(AppContext)
   const [orderDish,setOrder] = useState(context.orderDish)
 
+
    useEffect(()=>{
-     setOrder(_.flatten(context.orderDish))
+     setOrder(context.orderDish)
    },[context.orderDish])
 
    const add = (arr) => {
@@ -29,7 +30,12 @@ const OrderOne = ({ click, order, amount, total,instruction}) => {
           <CurrentOrder  orderDish={orderDish} total={add(context.total) } />
       <div className="instruction-cont">
       <img src={instruction} alt="instruction" className="instruction-logo" />
-       <textarea className="instruction-input" placeholder="write cooking instruction" />
+       <textarea className="instruction-input" placeholder="write cooking instruction" 
+       
+        onChange={(e)=>{
+          setEvent(e)
+        }}
+       />
    
        </div>
       <Bill

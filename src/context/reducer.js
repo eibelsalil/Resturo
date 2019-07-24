@@ -10,6 +10,8 @@ export const ADMIN_PAGE = "ADMIN_PAGE"
 export const LOGIN_USER = "LOGIN_USER"
 export const GET_DISH = "GET_DISH"
 export const GET_DISHID = "GET_DISHID"
+export const GET_TABLES = "GET_TABLES"
+export const ADD_ORDERDISH = "ADD_ORDERDISH"
 
 
 export const priceReducer = (state, action) => {
@@ -96,5 +98,29 @@ export const LoginReducer = (state,action)=>{
     }
     default:
       return state
+  }
+}
+
+export const TablesReducer = (state,action) =>{
+  switch(action.type){
+    case GET_TABLES: 
+    return{
+      ...state,
+      table:action.data
+    }
+    default:
+      return state
+  }
+}
+
+export const OrderInfoReducer = (state,action) =>{
+  switch(action.type){
+    case ADD_ORDERDISH: 
+    return{
+      ...state,
+      orderInfo: [...state.orderInfo,action.data]
+    }
+    default: 
+    return state
   }
 }

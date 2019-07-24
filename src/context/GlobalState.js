@@ -14,7 +14,11 @@ import {
   GET_DISH,
   getDishReducer,
   GET_DISHID,
-  DishIdReducer
+  DishIdReducer,
+  GET_TABLES,
+  TablesReducer,
+  ADD_ORDERDISH,
+  OrderInfoReducer
 } from "./reducer";
 
 
@@ -34,6 +38,12 @@ const GlobalState = ({ children }) => {
   })
   const [dishIdState, getdishIdDihpatch] = useReducer(DishIdReducer,{
     dishId: []
+  })
+  const [tableState,getTableDishpacth] = useReducer(TablesReducer,{
+    table: null
+  })
+  const [orderInfoState,setOrderinfoDishpatch] = useReducer(OrderInfoReducer,{
+     orderInfo: []
   })
 
   const addPrice = (price) => {
@@ -67,6 +77,14 @@ const GlobalState = ({ children }) => {
    getdishIdDihpatch({type: GET_DISHID,id: id})
  }
 
+ const setTable = (data) =>{
+   getTableDishpacth({type: GET_TABLES,data})
+ }
+
+ const setOrderInfo = (data) =>{
+  setOrderinfoDishpatch({type: ADD_ORDERDISH,data:data})
+ }
+
   return (
     <AppContext.Provider
       value={{
@@ -83,7 +101,11 @@ const GlobalState = ({ children }) => {
         dish: dishState.dish,
         getDish: getDish,
         dishId: dishIdState.dishId,
-        setDishId: setDishId
+        setDishId: setDishId,
+        table: tableState.table,
+        setTable: setTable,
+        orderInfo: orderInfoState.orderInfo,
+        setOrderInfo: setOrderInfo
       }}
     >
       {children}
