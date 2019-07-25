@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect,useMemo } from "react";
 import Header from "./head";
 import Dishcont from "./dishes/dishCont";
 import Total from "./total";
@@ -17,10 +17,12 @@ const Menu = ({match}) => {
   const [dishes,setDishs] = useState(null)
   const [category,setCategory] = useState(null)
   const [loading,setLoading] = useState(false)
+
   
 
    useEffect(()=>{
-     setLoading(true)
+  if(!context.table){
+    setLoading(true)
     Axios.get( `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/gategory`)
 
   .then((doc)=>{
@@ -29,16 +31,19 @@ const Menu = ({match}) => {
   .catch((err)=>{
     console.log(err)
   })
+  }
    },[match.params.hotelid])
 
 useEffect(()=>{
-  Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/LiveDishes`)
- .then((data)=>{
-  setDishs(data.data)
- })
- .catch((err)=>{
-   console.log(err)
- })
+  if(!context.table){
+    Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/LiveDishes`)
+    .then((data)=>{
+     setDishs(data.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
 },[match.params.hotelid])
  
 useEffect(()=>{
@@ -47,13 +52,21 @@ useEffect(()=>{
         let f = dishes.filter(({gategory}) => gategory === cat)
         return {[cat]:f}
     })
-   context.getDish(filtered)
+
+      context.getDish(filtered) 
    setLoading(false)
-  }
-  
+}
 },[category,dishes])
 
- 
+
+useEffect(()=>{
+  return () => {
+    context.setTable(match.params.table)
+}
+},[match.params.table])
+
+console.log(category)
+
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -101,7 +114,7 @@ useEffect(()=>{
         menu
       </button>
 
-      {context.total.length === 0 ? null : <Total />}
+      {context.total.length === 0 ? null : <Total table={match.params.table} hotelid={match.params.hotelid} />}
     </div>
   );
 };

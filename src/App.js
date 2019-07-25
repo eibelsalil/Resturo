@@ -16,8 +16,8 @@ function App() {
         <Switch>
         <Route exact path="/" component={Home} />
           <Route exact path="/adminpanel" component={MainAdmin} />
-          <Route exact path="/menu/:hotelid" component={Menu} />
-          <Route exact path="/order" component={Order} />
+          <Route exact path="/menu/:hotelid/:table" component={Menu} />
+          <Route exact path="/menu/:hotelid/:table/order" component={Order} />
         </Switch>
       </div>
     </GlobalState>

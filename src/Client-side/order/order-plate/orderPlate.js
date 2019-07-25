@@ -14,7 +14,7 @@ const OrderOne = ({ click, order, amount, total,instruction,setEvent}) => {
   const context = useContext(AppContext)
   const [orderDish,setOrder] = useState(context.orderDish)
 
-
+ 
    useEffect(()=>{
      setOrder(context.orderDish)
    },[context.orderDish])

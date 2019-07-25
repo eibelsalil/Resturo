@@ -6,15 +6,17 @@ import OrderTwo from "./requestBill/orderTwo"
 import OrderOne from "./order-plate/orderPlate";
 import backArrow from "../../Asset/back-arrow.png"
 import instruction from "../../Asset/instruction.png"
-import _ from "lodash"
+import Axios from "axios";
 
-const Order = ({orderInfo}) => {
+
+const Order = ({match}) => {
   const context = useContext(AppContext);
   const [amount, setAmount] = useState(0);
   const [model, setModel] = useState(false);
   const [order,setOrder] = useState(false)
   const [event,setEvent] = useState(null)
-  const [finalOrder,setFinalOrder] = useState({})
+  const [bill,setBill] = useState({})
+
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -36,28 +38,40 @@ const Order = ({orderInfo}) => {
   useEffect(() => {
     setAmount(3.2 + add(context.total));
   }, [context.total]);
-  useEffect(()=>{
-    
-    let arr = context.orderDish
-  let arrTwo = arr[arr.length - 1]
-  let OBJ = {}
-  if(arrTwo){
-    arrTwo.map((o)=>(
-      OBJ = {...OBJ,[Object.key(o.name)]: o.count}
-     ))
-  }
- 
-  },[context.orderDish])
-  const addInstruction = () =>{
-    context.setOrderInfo({"instruction":event,"table":context.table})
- } 
 
+  const addInstruction = () =>{
+    context.setOrderInfo({"instruction":event,"table":match.params.table})
+    
+ } 
+  const addBill = () =>{
+
+    if(context.orderInfo[2]){
+       setBill(({...context.orderInfo[0],...{"dishes":context.orderInfo[2]}}))
+    }
+    
+  }
+  const addBillTwo = () =>{
+    if(context.orderInfo[2]){
+      Axios.post(`http://localhost:5000/resturo-07/europe-west1/api/hotel/ool8HutweMhIW0WYGE56tdvxJKh2/order`,
+      {...context.orderInfo[0],...{"dishes":context.orderInfo[2]}}
+      )
+      .then((doc)=>{
+        console.log(doc.data)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
+  }
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-  console.log(finalOrder)
+
   return (
     <div className="order">
-      <OrderHead back={backArrow} order={order} click={()=>{setOrder(false)}}  />
+      <OrderHead back={backArrow} order={order} click={()=>{setOrder(false)}} 
+       hotelid={match.params.hotelid}
+       table={match.params.table}
+      />
     
       <div className="full-bg" />
       { !order ? 
@@ -75,7 +89,12 @@ const Order = ({orderInfo}) => {
         total={add(context.total)}
         amount={amount}
         click={() => {
-          setModel(true);
+         setModel(true)
+          addBill()
+          setTimeout(()=>{
+            addBillTwo()
+          },1500)
+        
         }}
         wrapperRef={wrapperRef}
         model={model}

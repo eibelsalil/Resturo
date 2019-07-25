@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderHead = ({ back, order, click }) => {
+const OrderHead = ({ back, order, click,hotelid,table }) => {
   return (
     <div className="header-order">
       <div className="head-bg-order" />
       <div className="order-headContent">
         {!order ? (
-          <Link to="/">
+          <Link to={`/menu/${hotelid}/${table}`}>
             <img src={back} alt="back" className="back-arrow" />
           </Link>
         ) : (

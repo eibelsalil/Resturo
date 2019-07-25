@@ -4,7 +4,7 @@ import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 import { add } from "../order/orderHelper";
 
-const Total = ({pushing}) => {
+const Total = ({table,hotelid}) => {
   const context = useContext(AppContext);
 
   return (
@@ -15,7 +15,7 @@ const Total = ({pushing}) => {
       </div>
       <div className="cart">
         <p className="cart-text">view cart</p>
-        <Link to="/order">
+        <Link to={`/menu/${hotelid}/${table}/order`}>
           <img
             src={darkArrow}
             alt="view cart"

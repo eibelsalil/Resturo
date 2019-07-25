@@ -41,13 +41,13 @@ const Table = () => {
       pdf.save(`table${values}`);
     });
   };
-  console.log(values);
+
   return (
     <div>
       <BillingHeadr name={"Table"} />
       <div className="qrCode-Container">
         <div id="qrcode">
-          {values ? <Qrcode value={`${user}/${values}`} size={300} /> : null}
+          {values ? <Qrcode value={`http://localhost:3000/menu/${user}/${values}`} size={300} /> : null}
         </div>
         <input
           type="text"

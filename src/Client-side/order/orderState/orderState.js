@@ -1,9 +1,29 @@
-import React from "react";
+import React,{useState,useEffect,useContext} from "react";
 import "./state.css";
 import DishState from "./dishState";
 import { Link } from "react-router-dom";
+import AppContext from "../../../context/AppContext"
+;
 
-const OrderState = ({click}) => {
+
+const OrderState = ({click,Orders}) => {
+  const [requestBill,setRequestBill] = useState([])
+  const context = useContext(AppContext)
+    let finalsetpOrder = Orders[Orders.length - 1]
+   
+     useEffect(()=>{
+       if(finalsetpOrder){
+        finalsetpOrder.map((o)=>(
+          setRequestBill(requestBill =>({...requestBill,...{[o.name]: o.count}}))
+        ))
+       }
+     },[finalsetpOrder])
+
+     useEffect(()=>{
+       if(requestBill !== []){
+        context.setOrderInfo([requestBill])
+       }
+     },[requestBill])
   return (
     <div className="order-state">
       <div className="kitchen">
