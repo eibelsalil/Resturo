@@ -44,7 +44,7 @@ const Order = ({ match }) => {
   const addBillTwo = () => {
     if (context.orderInfo[2]) {
       Axios.post(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/ool8HutweMhIW0WYGE56tdvxJKh2/order`,
+        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/order`,
         { ...context.orderInfo[0], ...{ dishes: context.orderInfo[2] } }
       )
         .then((doc) => {
