@@ -4,7 +4,7 @@ import OrderState from "../orderState/orderState";
 import OrderModel from "../orderState/order_.model";
 import Appcontext from "../../../context/AppContext"
 
-const OrderTwo = ({ amount, click, total, wrapperRef, model,order }) => {
+const OrderTwo = ({ amount, click, total, wrapperRef, model,order,table,hotelid }) => {
   
   const context = useContext(Appcontext)
   const [orderDish,setOrder] = useState(context.orderDish)
@@ -16,7 +16,7 @@ const OrderTwo = ({ amount, click, total, wrapperRef, model,order }) => {
   return (
     <div className="order-Two">
       <Bill total={total} amount={amount} tax={3.2}  order={order} />
-      <OrderState click={click} Orders={orderDish} />
+      <OrderState click={click} Orders={orderDish} hotelid={hotelid} table={table} />
       <OrderModel refwrapper={wrapperRef} model={model} />
     </div>
   );

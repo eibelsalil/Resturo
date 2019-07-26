@@ -1,49 +1,40 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./Menu.css";
 import { Link } from "react-scroll";
 
-const Model = ({ wraaperRef, model, click }) => {
+
+
+const Model = ({ wraaperRef, model, click,cat,dishes }) => {
+  const [category,setCategory] = useState([])
+
+  useEffect(()=>{
+    if(dishes&&cat){
+      let filtered =  cat.map((cat)=>{
+        let f = dishes.filter(({gategory}) => gategory === cat)
+        return {[cat]:f.length}
+    })
+     setCategory([...filtered])
+    }
+  },[cat,dishes])
+
+    const renderCat = () =>{
+      if(category){
+        return category.map((item)=>(
+          <div className="coontent-line">
+          <p className="content">
+            <Link to="Bestsellers" onClick={click} smooth={true}>
+              {Object.keys(item)}
+            </Link>{" "}
+          </p>
+          <p className="content-N">{Object.values(item)}</p>
+        </div>
+        ))
+      }
+    }
   return (
     <div className={model ? "model" : "modelfalse"}>
       <div className="model-content" ref={wraaperRef}>
-        <div className="coontent-line">
-          <p className="content">
-            <Link to="Bestsellers" onClick={click} smooth={true}>
-              Bestsellers
-            </Link>{" "}
-          </p>
-          <p className="content-N">7</p>
-        </div>
-        <div className="coontent-line">
-          <p className="content">
-            <Link to="Starter" onClick={click} smooth={true}>
-              Starter
-            </Link>
-          </p>
-          <p className="content-N">3</p>
-        </div>
-        <div className="coontent-line">
-          <p className="content">
-            <Link to="Dessert" onClick={click} smooth={true}>
-              Dessert
-            </Link>
-          </p>
-          <p className="content-N">7</p>
-        </div>
-        <div className="coontent-line">
-          <p className="content">
-            <Link onClick={click} smooth={true} to="Lunch">
-              Lunch
-            </Link>
-          </p>
-          <p className="content-N">13</p>
-        </div>
-        <div className="coontent-line">
-          <p className="content">
-         <Link to="Chicken" onClick={click} smooth={true}>Chicken</Link>
-          </p>
-          <p className="content-N">13</p>
-        </div>
+         {renderCat()}
       </div>
     </div>
   );

@@ -18,33 +18,37 @@ import {
   GET_TABLES,
   TablesReducer,
   ADD_ORDERDISH,
-  OrderInfoReducer
+  OrderInfoReducer,
+  DEC_COUNT,
+  INC_COUNT,
+  INC_TOTAL,
+  DEC_TOTAL,
+  DELETE_TOTAL
 } from "./reducer";
-
 
 const GlobalState = ({ children }) => {
   const [totalState, dispatch] = useReducer(priceReducer, { total: [] });
   const [orderDishState, dishdispatch] = useReducer(dishReducer, {
     orderDish: []
   });
-  const [userState,dispatchUser] = useReducer(LoginReducer,{
+  const [userState, dispatchUser] = useReducer(LoginReducer, {
     user: {}
-  })
-  const [adminPageState, pagedishpatch] = useReducer(AdminPageReducer,{
-    AdminPage:"list"
   });
-  const [dishState,getDishdishpatch] = useReducer(getDishReducer,{
+  const [adminPageState, pagedishpatch] = useReducer(AdminPageReducer, {
+    AdminPage: "list"
+  });
+  const [dishState, getDishdishpatch] = useReducer(getDishReducer, {
     dish: []
-  })
-  const [dishIdState, getdishIdDihpatch] = useReducer(DishIdReducer,{
+  });
+  const [dishIdState, getdishIdDihpatch] = useReducer(DishIdReducer, {
     dishId: []
-  })
-  const [tableState,getTableDishpacth] = useReducer(TablesReducer,{
+  });
+  const [tableState, getTableDishpacth] = useReducer(TablesReducer, {
     table: null
-  })
-  const [orderInfoState,setOrderinfoDishpatch] = useReducer(OrderInfoReducer,{
-     orderInfo: []
-  })
+  });
+  const [orderInfoState, setOrderinfoDishpatch] = useReducer(OrderInfoReducer, {
+    orderInfo: []
+  });
 
   const addPrice = (price) => {
     dispatch({ type: ADD_PRICE, price: price });
@@ -52,7 +56,9 @@ const GlobalState = ({ children }) => {
   const deletPrice = (index) => {
     dispatch({ type: DELETE_PRICE, index: index });
   };
-
+  const DeletTotal = () => {
+    dispatch({type: DELETE_TOTAL})
+  }
   const addDish = (dish) => {
     dishdispatch({ type: ADD_DISH, dish: dish });
   };
@@ -60,30 +66,42 @@ const GlobalState = ({ children }) => {
   const deleteDish = (index) => {
     dishdispatch({ type: DELETE_DISH, index: index });
   };
-  
- const setAdminPage = (data) =>{
-    pagedishpatch({type: ADMIN_PAGE, data:data})
- }
 
+  const DecCount = (id, count) => {
+    dishdispatch({ type: DEC_COUNT, id: id, count: count });
+  };
 
- const LoginUser = (data) =>{
-  dispatchUser({type: LOGIN_USER , data:data })
- }
+  const IncCount = (id, count) => {
+    dishdispatch({ type: INC_COUNT, id: id, count: count });
+  };
+  const Inctotal = (id, count) => {
+    dishdispatch({ type: INC_TOTAL, id: id, count: count });
+  };
+  const Dectotal = (id, count) => {
+    dishdispatch({ type: DEC_TOTAL, id: id, count: count });
+  };
+  const setAdminPage = (data) => {
+    pagedishpatch({ type: ADMIN_PAGE, data: data });
+  };
 
- const getDish = (data)=>{
-   getDishdishpatch({type: GET_DISH ,data: data})
- }
- const setDishId = (id) =>{
-   getdishIdDihpatch({type: GET_DISHID,id: id})
- }
+  const LoginUser = (data) => {
+    dispatchUser({ type: LOGIN_USER, data: data });
+  };
 
- const setTable = (data) =>{
-   getTableDishpacth({type: GET_TABLES,data})
- }
+  const getDish = (data) => {
+    getDishdishpatch({ type: GET_DISH, data: data });
+  };
+  const setDishId = (id) => {
+    getdishIdDihpatch({ type: GET_DISHID, id: id });
+  };
 
- const setOrderInfo = (data) =>{
-  setOrderinfoDishpatch({type: ADD_ORDERDISH,data:data})
- }
+  const setTable = (data) => {
+    getTableDishpacth({ type: GET_TABLES, data });
+  };
+
+  const setOrderInfo = (data) => {
+    setOrderinfoDishpatch({ type: ADD_ORDERDISH, data: data });
+  };
 
   return (
     <AppContext.Provider
@@ -105,7 +123,12 @@ const GlobalState = ({ children }) => {
         table: tableState.table,
         setTable: setTable,
         orderInfo: orderInfoState.orderInfo,
-        setOrderInfo: setOrderInfo
+        setOrderInfo: setOrderInfo,
+        DecCount: DecCount,
+        IncCount: IncCount,
+        Inctotal: Inctotal,
+        Dectotal: Dectotal,
+        DeletTotal: DeletTotal,
       }}
     >
       {children}

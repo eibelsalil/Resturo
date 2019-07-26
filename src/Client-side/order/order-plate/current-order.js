@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import OrderContent from "./current-orderContent";
-import uuid from "uuid"
+import AppContext from "../../../context/AppContext";
 
-
-
-
-const CurrentOrder = ({orderDish}) => {
-
-  let Orders = orderDish[orderDish.length - 1]
-
-
-
-  console.log(Orders)
-
-
+const CurrentOrder = ({ orderDish }) => {
+ 
+  const context = useContext(AppContext)
   return (
     <div className="currentOrder">
       <p className="current-title">Current Order</p>
-      <div className="currentOrders-cont" > 
-      { Orders ? Orders.map(({name,price,count,total})=>(
-        <OrderContent dishName={name} dishPrice={price} total={total} key={uuid()} ItemNumber={count} />
-      )) :
-     null
-    }
-    </div>
+      <div className="currentOrders-cont">
+        {orderDish
+          ? orderDish.map(({ name, price, count, total, id }) => (
+              <OrderContent
+                dishName={name}
+                dishPrice={price}
+                total={total}
+                key={id}
+                ItemNumber={count}
+                id={id}
+                clickMinus={() => {
+                  context.DecCount(id, count);
+                  context.Dectotal(id, total);
+                  context.deleteDish();
+                }}
+                clickPlus={() => {
+                  context.IncCount(id, count);
+                  context.Inctotal(id, count);
+                }}
+              />
+            ))
+          : null}
+      </div>
     </div>
   );
 };

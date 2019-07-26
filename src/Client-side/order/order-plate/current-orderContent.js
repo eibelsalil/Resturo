@@ -1,6 +1,10 @@
 import React from 'react'
 
-const OrderContent = ({dishName,dishPrice,ItemNumber,total}) => {
+
+
+const OrderContent = ({dishName,dishPrice,ItemNumber,total,clickMinus,clickPlus}) => {
+
+
     return(
         <div className="current">
         <div className="plate-orderOne">
@@ -13,16 +17,21 @@ const OrderContent = ({dishName,dishPrice,ItemNumber,total}) => {
           style={{
                color: "#2BC026", 
                fontWeight:"bold",
-            }}>
+            }}
+            onClick={clickMinus}
+            >
             -
             </p>
-          <button className="button-current">{ItemNumber}</button>
+          <button className="button-current">
+          {ItemNumber}
+          </button>
           <p
           id="plus-current"
             style={{
               color: "#2BC026",
               fontWeight:"bold"
             }}
+            onClick={clickPlus}
           >
             +
           </p>

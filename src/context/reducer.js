@@ -1,18 +1,20 @@
-
-
-
+import _ from "lodash";
 
 export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
 export const ADD_DISH = "ADD_DISH";
-export const DELETE_DISH = "DELETE_DISH "
-export const ADMIN_PAGE = "ADMIN_PAGE"
-export const LOGIN_USER = "LOGIN_USER"
-export const GET_DISH = "GET_DISH"
-export const GET_DISHID = "GET_DISHID"
-export const GET_TABLES = "GET_TABLES"
-export const ADD_ORDERDISH = "ADD_ORDERDISH"
-
+export const DELETE_DISH = "DELETE_DISH ";
+export const ADMIN_PAGE = "ADMIN_PAGE";
+export const LOGIN_USER = "LOGIN_USER";
+export const GET_DISH = "GET_DISH";
+export const GET_DISHID = "GET_DISHID";
+export const GET_TABLES = "GET_TABLES";
+export const ADD_ORDERDISH = "ADD_ORDERDISH";
+export const DEC_COUNT = "DEC_COUNT";
+export const INC_COUNT = "INC_COUNT";
+export const INC_TOTAL = "INC_TOTAL";
+export const DEC_TOTAL = "DEC_TOTAL";
+export const DELETE_TOTAL = "DELETE_TOTAL";
 
 export const priceReducer = (state, action) => {
   switch (action.type) {
@@ -22,7 +24,59 @@ export const priceReducer = (state, action) => {
         total: [...state.total, action.price]
       };
     case DELETE_PRICE:
-      state.total.splice(action.index,1);
+      state.total.splice(action.index, 1);
+      return {
+        ...state
+      };
+     case DELETE_TOTAL:
+       state.total.length = 0
+       return {
+         ...state
+       }
+    default:
+      return state;
+  }
+};
+
+export const dishReducer = (state, action) => {
+  switch (action.type) {
+    case ADD_DISH:
+      return {
+        ...state,
+        orderDish: [...action.dish]
+      };
+    case DELETE_DISH:
+      _.remove(state.orderDish, function(el) {
+        return el.count === 0;
+      });
+      return {
+        ...state
+      };
+    case DEC_COUNT:
+      state.orderDish.map((o) =>
+        o.id === action.id ? (o.count = o.count - 1) : o
+      );
+      return {
+        ...state
+      };
+    case INC_COUNT:
+      state.orderDish.map((o) =>
+        o.id === action.id ? (o.count = o.count + 1) : o
+      );
+      return {
+        ...state
+      };
+    case INC_TOTAL:
+      state.orderDish.map((o) =>
+        o.id === action.id ? (o.total = o.total + parseInt(o.price)) : o
+      );
+      return {
+        ...state
+      };
+    case DEC_TOTAL:
+      state.orderDish.map((o) =>
+        o.id === action.id ? (o.total = o.total - parseInt(o.price)) : o
+      );
       return {
         ...state
       };
@@ -31,96 +85,75 @@ export const priceReducer = (state, action) => {
   }
 };
 
-export const dishReducer = (state,action) =>{
+export const AdminPageReducer = (state, action) => {
   switch (action.type) {
-    case ADD_DISH:
+    case ADMIN_PAGE:
       return {
         ...state,
-        orderDish: [...state.orderDish, action.dish]
+        AdminPage: action.data
       };
-    case DELETE_DISH:
-      state.orderDish.splice(action.index,1);
+
+    default:
+      return state;
+  }
+};
+
+export const DishIdReducer = (state, action) => {
+  switch (action.type) {
+    case GET_DISHID:
       return {
-        ...state
+        ...state,
+        dishId: [...state.dishId, action.id]
       };
     default:
       return state;
   }
-}
+};
 
-
-
-export const AdminPageReducer = (state,action) =>{
- switch(action.type){
-   case ADMIN_PAGE:
-     
-     return {
-       ...state,
-       AdminPage: action.data
-     }
-      
-      default:
-        return state
- }
- 
-}
-
-export const DishIdReducer = (state,action) =>{
-  switch(action.type){
-    case GET_DISHID:
-      return{
-        ...state,
-        dishId: [...state.dishId,action.id]
-      }
-      default:
-        return state
-  }
-}
-
-export const getDishReducer = (state,action) =>{
-  switch(action.type){
+export const getDishReducer = (state, action) => {
+  switch (action.type) {
     case GET_DISH:
-    return {
-      ...state,
-      dish: [...state.dish,action.data]
-    }
+      return {
+        ...state,
+        dish: [...state.dish, action.data]
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const LoginReducer = (state,action)=>{
-  switch(action.type){
+export const LoginReducer = (state, action) => {
+  switch (action.type) {
     case LOGIN_USER:
-    return {
-      ...state,
-      user: {action: action.data}
-    }
+      return {
+        ...state,
+        user: { action: action.data }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const TablesReducer = (state,action) =>{
-  switch(action.type){
-    case GET_TABLES: 
-    return{
-      ...state,
-      table:action.data
-    }
+export const TablesReducer = (state, action) => {
+  switch (action.type) {
+    case GET_TABLES:
+      return {
+        ...state,
+        table: action.data
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const OrderInfoReducer = (state,action) =>{
-  switch(action.type){
-    case ADD_ORDERDISH: 
-    return{
-      ...state,
-      orderInfo: [...state.orderInfo,action.data]
-    }
-    default: 
-    return state
+export const OrderInfoReducer = (state, action) => {
+  switch (action.type) {
+    case ADD_ORDERDISH:
+      return {
+        ...state,
+        orderInfo: [...state.orderInfo, action.data]
+      };
+    default:
+      return state;
   }
-}
+};

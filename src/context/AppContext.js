@@ -15,9 +15,14 @@ export default React.createContext({
     deletPrice: index =>{},
     addDish: dish =>{},
     deleteDish: index =>{},
+    IncCount: (id,count) =>{},
+    DecCount: (id,count) =>{},
+    Inctotal:(id,total) =>{},
+    Dectotal:(id,total) =>{},
     setAdminPage: data =>{},
     LoginUser: data =>{},
     getDish: dish =>{},
     setTable: N =>{},
-    setOrderInfo: info =>{}
+    setOrderInfo: info =>{},
+    DeletTotal: total =>{}
 })

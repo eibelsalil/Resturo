@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect,useMemo } from "react";
+import React, { useContext, useState, useRef, useEffect} from "react";
 import Header from "./head";
 import Dishcont from "./dishes/dishCont";
 import Total from "./total";
@@ -30,6 +30,7 @@ const Menu = ({match}) => {
   })
   .catch((err)=>{
     console.log(err)
+    setLoading(false)
   })
   }
    },[match.params.hotelid])
@@ -42,6 +43,7 @@ useEffect(()=>{
     })
     .catch((err)=>{
       console.log(err)
+      setLoading(false)
     })
   }
 },[match.params.hotelid])
@@ -95,7 +97,7 @@ console.log(category)
       text="Loading your dishes..."
       >
       <div className="main-dishes">
-      {context.dish !== [] ? <Dishcont  categoryId={"Bestsellers"} /> : <h1>Don't have any dish</h1> }
+      {context.dish !== [] ? <Dishcont   /> : <h1>Don't have any dish</h1> }
       </div>
       </LoadingOverlay>
       <Model
@@ -104,6 +106,8 @@ console.log(category)
         click={() => {
           setModel(false);
         }}
+        cat={category}
+        dishes={dishes}
       />
       <button
         className="menu-Button"
