@@ -10,6 +10,10 @@ export default React.createContext({
     dishId: [],
     table: null,
     orderInfo: [],
+    RatingCount: 0,
+    RatingId:"",
+    changeId: "",
+    RatingDish: null,
     setDishId: id => {},
     addPrice: price =>{},
     deletPrice: index =>{},
@@ -19,10 +23,16 @@ export default React.createContext({
     DecCount: (id,count) =>{},
     Inctotal:(id,total) =>{},
     Dectotal:(id,total) =>{},
+    DeleteFirstDish: () =>{},
     setAdminPage: data =>{},
     LoginUser: data =>{},
     getDish: dish =>{},
     setTable: N =>{},
     setOrderInfo: info =>{},
-    DeletTotal: total =>{}
-})
+    DeletTotal: total =>{},
+    IncRating: count =>{},
+    DecRating: count =>{},
+    changeTheId: id =>{},
+    setRatingDish: RatingObj =>{},
+    setRatingId: id =>{}
+ })

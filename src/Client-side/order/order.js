@@ -6,6 +6,7 @@ import OrderTwo from "./requestBill/orderTwo";
 import OrderOne from "./order-plate/orderPlate";
 import backArrow from "../../Asset/back-arrow.png";
 import instruction from "../../Asset/instruction.png";
+import uuid from "uuid"
 import Axios from "axios";
 
 const Order = ({ match }) => {
@@ -14,15 +15,19 @@ const Order = ({ match }) => {
   const [model, setModel] = useState(false);
   const [order, setOrder] = useState(false);
   const [event, setEvent] = useState(null);
+  const [counter,setCounter] = useState(0)
+  const [Rating,setRating] = useState(null)
 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         setModel(false);
+        setCounter(counter + 1)
       }
     }
     useEffect(() => {
       document.addEventListener("mousedown", handleClickOutside);
+  
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
@@ -41,6 +46,50 @@ const Order = ({ match }) => {
     context.setOrderInfo({ instruction: event, table: match.params.table });
   };
 
+  console.log(Rating,context.RatingId)
+
+  useEffect(()=>{
+    if(context.RatingDish){
+      let filter = context.RatingDish.filter(({count})=>{
+        return count > 0
+      })
+      setRating(filter)
+    }
+  },[context.RatingDish])
+/*
+ useEffect(()=>{
+   if(context.changeId === "12"){
+     console.log("start")
+     setTimeout(()=>{
+      Rating.map((rat)=>(
+        Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishesRating/${rat.id}`, {"rating": rat.count})
+        .then((doc)=>{
+          console.log(doc.data)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+       ))
+     },1000)
+   }
+ },[context.changeId])
+*/
+
+/*
+   useEffect(()=>{
+     if(model){
+       context.orderDish.map((dish)=>(
+        Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishes/dishTime/${dish.id}`)
+        .then((doc)=>{
+          console.log(doc.data)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+       ))
+     }
+   },[model])
+
   const addBillTwo = () => {
     if (context.orderInfo[2]) {
       Axios.post(
@@ -55,6 +104,7 @@ const Order = ({ match }) => {
         });
     }
   };
+  */
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
@@ -91,9 +141,11 @@ const Order = ({ match }) => {
           amount={amount}
           click={() => {
             setModel(true);
+            /*
             setTimeout(() => {
               addBillTwo();
             }, 1500);
+            */
             context.DeletTotal();
           }}
           wrapperRef={wrapperRef}
@@ -101,6 +153,11 @@ const Order = ({ match }) => {
           order={order}
           hotelid={match.params.hotelid}
           table={match.params.table}
+          counter={counter}
+          orderdishes={context.orderDish}
+          ClickRating={()=>{
+            setCounter(0)
+          }}
         />
       )}
     </div>

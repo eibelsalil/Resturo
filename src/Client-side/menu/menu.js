@@ -10,7 +10,7 @@ import LoadingOverlay from "react-loading-overlay";
 
 
 
-const Menu = ({match}) => {
+const Menu = ({match,history}) => {
   const context = useContext(Appcontext);
 
   const [model, setModel] = useState(false);
@@ -63,11 +63,11 @@ useEffect(()=>{
 
 useEffect(()=>{
   return () => {
-    context.setTable(match.params.table)
+    context.setTable(match.params.table)  
 }
 },[match.params.table])
 
-console.log(category)
+
 
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
@@ -118,7 +118,7 @@ console.log(category)
         menu
       </button>
 
-      {context.total.length === 0 ? null : <Total table={match.params.table} hotelid={match.params.hotelid} />}
+      {context.total.length === 0 ? null : <Total table={match.params.table} hotelid={match.params.hotelid} history={history} />}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import AppContext from "../../../context/AppContext";
 const CurrentOrder = ({ orderDish }) => {
  
   const context = useContext(AppContext)
+  
   return (
     <div className="currentOrder">
       <p className="current-title">Current Order</p>

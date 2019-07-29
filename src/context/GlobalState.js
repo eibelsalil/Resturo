@@ -23,7 +23,16 @@ import {
   INC_COUNT,
   INC_TOTAL,
   DEC_TOTAL,
-  DELETE_TOTAL
+  DELETE_TOTAL,
+  DELETE_SHIFT,
+  INC_RATING,
+  RatingReducer,
+  CHANGE_ID,
+  chageIdReducer,
+  RatingArrayReducer,
+  ADD_RATING,
+  CHRATING_ID,
+  RatingIdReducer
 } from "./reducer";
 
 const GlobalState = ({ children }) => {
@@ -49,6 +58,22 @@ const GlobalState = ({ children }) => {
   const [orderInfoState, setOrderinfoDishpatch] = useReducer(OrderInfoReducer, {
     orderInfo: []
   });
+  const [ratingState,setRatingSDishpatch] = useReducer(RatingReducer,{
+    RatingCount: 0
+  })
+
+  const [changeidState,setChangeIdDishpatch] = useReducer(chageIdReducer,{
+    changeId: ""
+  })
+  const [RatingDishState,setRatingDishDishpatch] = useReducer(RatingArrayReducer,{
+    RatingDish: null
+  })
+ const [RatingIdState,setRatingIdDishpatch] = useReducer(RatingIdReducer,{
+  RatingId: ''
+ })
+
+ 
+
 
   const addPrice = (price) => {
     dispatch({ type: ADD_PRICE, price: price });
@@ -80,6 +105,10 @@ const GlobalState = ({ children }) => {
   const Dectotal = (id, count) => {
     dishdispatch({ type: DEC_TOTAL, id: id, count: count });
   };
+const DeleteFirstDish = () =>{
+  dishdispatch({type: DELETE_SHIFT})
+}
+
   const setAdminPage = (data) => {
     pagedishpatch({ type: ADMIN_PAGE, data: data });
   };
@@ -102,6 +131,23 @@ const GlobalState = ({ children }) => {
   const setOrderInfo = (data) => {
     setOrderinfoDishpatch({ type: ADD_ORDERDISH, data: data });
   };
+ 
+  const IncRating = (count) =>{
+    setRatingSDishpatch({type: INC_RATING, count: count})
+  }
+  
+  const changeTheId = (id) =>{
+   setChangeIdDishpatch({type: CHANGE_ID, id:id})
+  }
+
+
+ const setRatingDish = (RatingObj) =>{
+   setRatingDishDishpatch({type: ADD_RATING, RatingObj:RatingObj})
+ }
+
+ const setRatingId = (id) =>{
+  setRatingIdDishpatch({type: CHRATING_ID, id:id})
+ }
 
   return (
     <AppContext.Provider
@@ -129,6 +175,15 @@ const GlobalState = ({ children }) => {
         Inctotal: Inctotal,
         Dectotal: Dectotal,
         DeletTotal: DeletTotal,
+        DeleteFirstDish: DeleteFirstDish,
+        RatingCount: ratingState.RatingCount,
+        IncRating: IncRating,
+        changeId: changeidState.changeId,
+        changeTheId: changeTheId,
+        RatingDish: RatingDishState.RatingDish,
+        setRatingDish: setRatingDish,
+        RatingId: RatingIdState.RatingId,
+        setRatingId: setRatingId
       }}
     >
       {children}

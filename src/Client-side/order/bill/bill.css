@@ -117,18 +117,23 @@
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
 }
-.orderModeFalse{
-    display: none;
-    position: fixed; 
-    z-index: 3; 
-    padding-top: 200px; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+
+.smiley-Rating{
+    width: 60px;
+    height: 70px;
+    margin-top: 2%;
+    margin-bottom: 2%
+}
+.orderModel-contect-Rating button{
+    border: 2px solid #FFCA42;
+    background: none;
+    border-radius: 6px;
+    width: 109.34px;
+    height: 36.65px;
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFCA42
 }
 
 .orderModel-contect{
@@ -146,7 +151,59 @@
     border-radius: 16px
   
 }
+.orderModel-contect-Rating{
+    background-color: #EF673D;
+    margin: auto;
+    width: 290px;
+    height: 500px;
+    font-family: "Tahoma";
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 16px
+}
+.dishContRating{
+    width: 100%;
+    background-color: rgb(196, 72, 34);
+    margin-bottom: 2%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+.dishInfoRating{
+    display: flex;
+     margin-left: 5%;
+     margin-bottom: 0;
+     margin-top: 2%
+}
+.dishInfoRating p{
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+  
+}
+.dishInfoRating .dish {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   border: none
+}
+.dishContRating .rating-icons{
+    width: 35px;
+    padding-left: 25%;
+  
+}
 
+.rating-cont{
+    margin-left: 15%
+}
 .ontheWay{
     font-family: "TimeBurner";
     font-size: 40px;

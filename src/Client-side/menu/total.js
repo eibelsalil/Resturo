@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import darkArrow from "../../Asset/arrows-01.png";
 import AppContext from "../../context/AppContext";
-import { Link } from "react-router-dom";
 import { add } from "../order/orderHelper";
 
-const Total = ({table,hotelid}) => {
+const Total = ({table,hotelid,history}) => {
   const context = useContext(AppContext);
 
   return (
@@ -15,15 +14,19 @@ const Total = ({table,hotelid}) => {
       </div>
       <div className="cart">
         <p className="cart-text">view cart</p>
-        <Link to={`/menu/${hotelid}/${table}/order`}>
           <img
             src={darkArrow}
             alt="view cart"
             width="36.23px"
             height="20px"
             style={{ marginRight: "5px", marginTop: "4px" }}
+            onClick={()=>{
+              context.changeTheId('12')
+              setTimeout(()=>{
+                history.push(`/menu/${hotelid}/${table}/order`)
+              },1500)
+            }}
           />
-        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect,useRef } from "react";
 import "./dishes.css";
 import Veg from "../../../Asset/veg.jpg";
 import Non_veg from "../../../Asset/non-veg.png";
@@ -8,51 +8,62 @@ import { add } from "../../order/orderHelper";
 
 const Dishcont = ({ categoryId }) => {
   const [id, setId] = useState();
-  const [count, incCount] = useState(0);
   const [name, setName] = useState();
   const [price, setPrice] = useState();
-  const [chosenDish, setChosen] = useState([]);
+  const [img,setImg] = useState()
+  const [chosenDish, setChosen] = useState({});
   const [dishTotal, setDishTotal] = useState([]);
+  const [dishes,setDishes] = useState()
   const context = useContext(AppContext);
-  let total = context.total;
-  const setchosenDishes = () => {
-    if (total !== 0 && count !== 0) {
-      setChosen((chosenDish) => [
-        ...chosenDish,
-        {
-          name: name,
-          count: count,
-          price: price,
-          total: add(dishTotal),
-          id: id
-        }
-      ]);
-    }
-  };
+ const idRef = useRef(context.changeId)
+
+ useEffect(()=>{
+   idRef.current= context.changeId
+ },[context.changeId])
+  
   const setOrderDishes = () => {
-    if (chosenDish) {
-      context.addDish(chosenDish);
+    if (chosenDish.id !== undefined) {
+      context.addDish(chosenDish);    
     }
   };
+  useEffect(()=>{
+    setChosen((chosenDish) => ({
+      ...chosenDish,
+      ...({
+      name: name,
+      count: context.RatingCount,
+      price: price,
+      total: (parseInt(price) * context.RatingCount),
+      id:id,
+      img: img
+    })
+ }))
+  },[context.RatingCount])
   useEffect(() => {
-    if (id) {
-      incCount(0);
-      setchosenDishes();
+    if(context.changeId)
       setDishTotal([]);
-    }
-  }, [id]);
+  }, [context.changeId,context.RatingCount]);
 
-  useEffect(() => {
-      setOrderDishes();
-  }, [chosenDish]);
+ useEffect(()=>{
+     setOrderDishes()
+ },[context.changeId])
 
-  const Inc = () => {
-    incCount((count) => count + 1);
-  };
-  const Dec = () => {
-    incCount((count) => count - 1);
-  };
-
+ useEffect(()=>{
+   return()=>{
+     context.IncRating(0)
+   }
+ },[])
+useEffect(()=>{
+  if(context.dish){
+    context.dish.map((cat)=>(
+      cat.map((two)=>(
+        Object.values(two).map((three)=>(
+          setDishes(three)
+        ))
+      ))
+    ))
+  }
+},[context.dish])
   const setTotal = (x) => {
     return context.addPrice(x);
   };
@@ -60,9 +71,9 @@ const Dishcont = ({ categoryId }) => {
   const deleteItem = (x) => {
     return context.deletPrice(x);
   };
-
-  console.log(context.orderDish);
+ console.log(context.orderDish)
   const renderDishes = () => {
+
     if (context.dish !== []) {
       return context.dish.map((category) =>
         category.map((dish, i) => (
@@ -72,43 +83,40 @@ const Dishcont = ({ categoryId }) => {
             {Object.values(dish).map((array) =>
               array.map((d) => (
                 <Dish
-                  key={d.dishId}
-                  veg={d.veg === "veg" ? Veg : Non_veg}
-                  img={d.img}
-                  name={d.dishName}
-                  price={d.price}
-                  dishId={d.dishId}
-                  id={id}
-                  hover={() => {
-                    setId(d.dishId);
-                  }}
-                  Dec={() => {
-                    deleteItem(-1);
-                    Dec();
-                    setDishTotal(dishTotal.splice(dishTotal.length - 1, 1));
-                  }}
-                  Inc={() => {
+                key={d.dishId}
+                veg={d.veg === "veg" ? Veg : Non_veg}
+                img={d.img}
+                name={d.dishName}
+                price={d.price}
+                dishId={d.dishId}
+                setTheId={()=>{
+                  context.changeTheId(d.dishId)               
+                }}
+                hover={() => {
+                  setId(d.dishId)
                     setTotal(parseInt(d.price));
-                    Inc();
                     setDishTotal((dishTotal) => [
                       ...dishTotal,
                       parseInt(d.price)
                     ]);
-                  }}
-                  AddClick={() => {
-                    if (id === d.dishId) {
-                      setTotal(parseInt(d.price));
-                      Inc();
-                      setName(d.dishName);
-                      setPrice(d.price);
-                      setDishTotal((dishTotal) => [
-                        ...dishTotal,
-                        parseInt(d.price)
-                      ]);
-                    }
-                  }}
-                  count={count}
-                />
+                    setName(d.dishName);
+                    setPrice(d.price);
+                    setImg(d.img)
+               
+                }}
+                Dec={() => {
+                  deleteItem(-1);
+                  setDishTotal(dishTotal.splice(0,1));
+                }}
+                Inc={() => {
+                  setTotal(parseInt(d.price));
+                  setDishTotal((dishTotal) => [
+                    ...dishTotal,
+                    parseInt(d.price)
+                  ]);
+         
+                }}
+              />
               ))
             )}
           </div>

@@ -15,6 +15,14 @@ export const INC_COUNT = "INC_COUNT";
 export const INC_TOTAL = "INC_TOTAL";
 export const DEC_TOTAL = "DEC_TOTAL";
 export const DELETE_TOTAL = "DELETE_TOTAL";
+export const INC_RATING = "INC_RATING";
+export const DEC_RATING = "DEC_RATING"
+export const CHANGE_ID = "CHANGE_ID"
+export const DELETE_SHIFT = "DELETE_SHIFT"
+export const ADD_RATING = "ADD_RATING"
+export const CHRATING_ID= "CHRATING_ID"
+
+
 
 export const priceReducer = (state, action) => {
   switch (action.type) {
@@ -41,9 +49,10 @@ export const priceReducer = (state, action) => {
 export const dishReducer = (state, action) => {
   switch (action.type) {
     case ADD_DISH:
+      let dish = action.dish
       return {
         ...state,
-        orderDish: [...action.dish]
+        orderDish: [...state.orderDish,dish]
       };
     case DELETE_DISH:
       _.remove(state.orderDish, function(el) {
@@ -80,6 +89,11 @@ export const dishReducer = (state, action) => {
       return {
         ...state
       };
+      case DELETE_SHIFT: 
+      state.orderDish.shift()
+      return{
+        ...state
+      }
     default:
       return state;
   }
@@ -157,3 +171,51 @@ export const OrderInfoReducer = (state, action) => {
       return state;
   }
 };
+
+export const RatingReducer = (state,action) =>{
+   switch (action.type) {
+     case INC_RATING:
+       return {
+        ...state,
+        RatingCount: action.count,
+       }
+       default:
+         return state
+   }
+}
+
+export const chageIdReducer = (action,state) =>{
+  switch(action.type){
+    case CHANGE_ID:
+      return{
+        ...state,
+        changeId: action.id
+      }
+      default:
+        return state
+  }
+}
+
+export const RatingArrayReducer = (action,state) =>{
+   switch(action.type){
+     case ADD_RATING:
+       return{
+         ...state,
+         RatingDish: action.RatingObj
+       }
+     default:
+       return state
+   }
+}
+
+export const RatingIdReducer = (action,state) =>{
+  switch(action.type){
+    case CHRATING_ID:
+      return{
+        ...state,
+        RatingId: action.id
+      }
+      default: 
+      return state
+  }
+}
