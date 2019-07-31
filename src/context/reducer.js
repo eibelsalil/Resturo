@@ -1,4 +1,6 @@
 import _ from "lodash";
+import { stat } from "fs";
+
 
 export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
@@ -15,13 +17,18 @@ export const INC_COUNT = "INC_COUNT";
 export const INC_TOTAL = "INC_TOTAL";
 export const DEC_TOTAL = "DEC_TOTAL";
 export const DELETE_TOTAL = "DELETE_TOTAL";
+export const DELETE_AllORDER= "DELETE_AllORDER"
+export const DELETE_ALLDISH="DELETE_ALLDISH"
+export const DELETE_ALLID = "DELETE_ALLID"
 export const INC_RATING = "INC_RATING";
 export const DEC_RATING = "DEC_RATING"
 export const CHANGE_ID = "CHANGE_ID"
 export const DELETE_SHIFT = "DELETE_SHIFT"
 export const ADD_RATING = "ADD_RATING"
 export const CHRATING_ID= "CHRATING_ID"
-
+export const SET_COLLAPSE= "SET_COLLAPSE"
+export const GET_CATEGORYMOD= "GET_CATEGORYMOD"
+export const GET_LIVEORDER = "GET_LIVEORDER"
 
 
 export const priceReducer = (state, action) => {
@@ -61,6 +68,11 @@ export const dishReducer = (state, action) => {
       return {
         ...state
       };
+      case DELETE_AllORDER:
+        state.orderDish.length =0
+        return{
+            ...state
+        }
     case DEC_COUNT:
       state.orderDish.map((o) =>
         o.id === action.id ? (o.count = o.count - 1) : o
@@ -119,6 +131,11 @@ export const DishIdReducer = (state, action) => {
         ...state,
         dishId: [...state.dishId, action.id]
       };
+      case DELETE_ALLID:
+        state.dishId.length = 0
+        return{
+          ...state
+        }
     default:
       return state;
   }
@@ -131,6 +148,11 @@ export const getDishReducer = (state, action) => {
         ...state,
         dish: [...state.dish, action.data]
       };
+      case DELETE_ALLDISH: 
+      state.dish.length = 0
+      return{
+      ...state
+      }
     default:
       return state;
   }
@@ -163,9 +185,10 @@ export const TablesReducer = (state, action) => {
 export const OrderInfoReducer = (state, action) => {
   switch (action.type) {
     case ADD_ORDERDISH:
+   
       return {
         ...state,
-        orderInfo: [...state.orderInfo, action.data]
+        orderInfo: action.data
       };
     default:
       return state;
@@ -217,5 +240,41 @@ export const RatingIdReducer = (action,state) =>{
       }
       default: 
       return state
+  }
+}
+
+export const CollapseReducer = (action,state) =>{
+    switch(action.type){
+      case SET_COLLAPSE:
+        return{
+          ...state,
+          Collapse: action.bool
+        }
+        default:
+          return state
+    }
+}
+
+export const CategoryModReducer = (action,state) =>{
+   switch(action.type){
+     case GET_CATEGORYMOD:
+       state.CategoryModel.push(action.data)
+       return{
+         ...state,
+       }
+       default:
+         return state
+   }
+}
+
+export const LiveOrderReducer =(action,state) =>{
+  switch(action.type){
+    case GET_LIVEORDER:
+      return{
+        ...state,
+        LiveOrder: [...state.LiveOrder,action.order]
+      }
+      default:
+        return state
   }
 }

@@ -10,8 +10,8 @@ const CurrentOrder = ({ orderDish }) => {
     <div className="currentOrder">
       <p className="current-title">Current Order</p>
       <div className="currentOrders-cont">
-        {orderDish
-          ? orderDish.map(({ name, price, count, total, id }) => (
+        {orderDish.length > 1
+          ? orderDish[1].map(({ name, price, count, total, id }) => (
               <OrderContent
                 dishName={name}
                 dishPrice={price}

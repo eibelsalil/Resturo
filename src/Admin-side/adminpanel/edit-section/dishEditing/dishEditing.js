@@ -15,58 +15,73 @@ const DishEditing = () => {
 
   const context = useContext(AppContext);
   useEffect(() => {
-    setLoading(true);
-    Axios.get(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/gategory`
-    )
-      .then((doc) => {
-        setGategory(doc.data.gategory);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [user]);
+    if(context.dish.length === 0){
+      setLoading(true);
+      Axios.get(
+        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/gategory`
+      )
+        .then((doc) => {
+          setGategory(doc.data.gategory);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    
+  }, [user,context.dish]);
   useEffect(() => {
     if (category !== []) {
-      category.map((cat) =>
         Axios.get(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/${cat}`
+          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/all`
         )
           .then((doc) => {
-            setDishes((dishes) => [...dishes, { [cat]: doc.data }]);
+           let filtred = category.map((cat)=>{
+             let f = doc.data.filter(({gategory})=> gategory === cat)
+             return {[cat]: f}
+           })
+            setDishes((dishes) => [...filtred]);
+         
           })
           .then(() => {
-            setGategory([]);
             setLoading(false);
           })
           .catch((err) => {
             console.log(err);
           })
-      );
     }
   }, [user, category]);
+
+ useEffect(()=>{
+   if(dishes.length > 0){
+    context.getDish(dishes)
+   }
+ },[dishes])
 
 
 
   const renderDishes = () => {
-    return dishes.map((dish) => (
+    return context.dish.map((dish) => (
       <div className="itemName" key={uuid()}>
-        <div className="Gatogery">
-          <p>{Object.keys(dish)}</p>
-        </div>
         {Object.values(dish).map((item) =>
-          item.map((d) => (
-            <DishItem
-              name={d.dishName}
-              key={d.dishId}
-              click={() => {
-                context.setDishId(d.dishId)
-              }}
-              dishId={d.dishId}
-              user={user}
-              LiveDish={d.Live}
-            />
-          ))
+          <React.Fragment key={uuid()}>
+          <div className="Gatogery" key={uuid()}>
+          <p>{Object.keys(item)}</p>
+        </div>
+          {Object.values(item).map((t)=>(
+            t.map((d) => (
+              <DishItem
+                name={d.dishName}
+                key={d.dishId}
+                click={() => {
+                  context.setDishId(d.dishId)
+                }}
+                dishId={d.dishId}
+                user={user}
+                LiveDish={d.Live}
+              />
+            ))
+          ))}
+          </React.Fragment>
         )}
       </div>
     ));
@@ -79,7 +94,7 @@ const DishEditing = () => {
         spinner
         text="Loading your content..."
       >
-        {renderDishes()}
+     {renderDishes()}
       </LoadingOverlay>
     </div>
   );

@@ -20,8 +20,19 @@
   margin-left: 5px;
   margin-top: 1%;
 }
+.full-dish{
+  width: 90%
+}
+
+.collapse p{
+  margin-top: 0%;
+  font-family: "Tahoma";
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 2%
+}
 .dish {
-  width: 90%;
+  width: 100%;
   border-top: 1px solid #dcdbdb;
   display: flex;
   justify-content: flex-start;
@@ -29,7 +40,32 @@
   margin-left: 2%;
   
 }
+.first-part{
+  display: flex;
+  flex-direction: column;
+}
+.first-part .dishImg:hover{
+  cursor: pointer
+}
+.rating-timing{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin-top: 0;
 
+}
+
+
+.rating-timing li {
+  font-family: "Tahoma";
+  font-size: 9px;
+  font-weight: bold;
+}
+.rating-timing li span{
+  position: absolute;
+  left: 104px
+}
 .dishName {
   margin: 2%;
   font-family: "Tahoma";

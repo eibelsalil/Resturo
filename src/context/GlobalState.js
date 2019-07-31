@@ -32,7 +32,16 @@ import {
   RatingArrayReducer,
   ADD_RATING,
   CHRATING_ID,
-  RatingIdReducer
+  RatingIdReducer,
+  SET_COLLAPSE,
+  CollapseReducer,
+  GET_CATEGORYMOD,
+  CategoryModReducer,
+  GET_LIVEORDER,
+  LiveOrderReducer,
+  DELETE_ALLDISH,
+  DELETE_AllORDER,
+  DELETE_ALLID
 } from "./reducer";
 
 const GlobalState = ({ children }) => {
@@ -56,7 +65,7 @@ const GlobalState = ({ children }) => {
     table: null
   });
   const [orderInfoState, setOrderinfoDishpatch] = useReducer(OrderInfoReducer, {
-    orderInfo: []
+    orderInfo: null
   });
   const [ratingState,setRatingSDishpatch] = useReducer(RatingReducer,{
     RatingCount: 0
@@ -72,7 +81,16 @@ const GlobalState = ({ children }) => {
   RatingId: ''
  })
 
+ const [CollapseState,setCollapseDispatch] = useReducer(CollapseReducer,{
+  Collapse: false
+ })
  
+const [CategoryModelState,categoryModelDishpatch] = useReducer(CategoryModReducer,{
+  CategoryModel: []
+})
+const [LiveOrderState,setLiveOrderishpatch] = useReducer(LiveOrderReducer,{
+  LiveOrder: []
+})
 
 
   const addPrice = (price) => {
@@ -149,6 +167,30 @@ const DeleteFirstDish = () =>{
   setRatingIdDishpatch({type: CHRATING_ID, id:id})
  }
 
+ const setCollapse = (bool) =>{
+   setCollapseDispatch({type: SET_COLLAPSE, bool:bool})
+ }
+
+  const setCategoryModel = (data) =>{
+    categoryModelDishpatch({type: GET_CATEGORYMOD, data:data})
+  }
+
+
+  const setLiveOrder = (order) =>{
+    setLiveOrderishpatch({type: GET_LIVEORDER,order:order})
+  }
+ 
+ const deletAlldishId = () =>{
+      getdishIdDihpatch({type: DELETE_ALLID})
+ }
+
+ const deleteAllOrder = () =>{
+  dishdispatch({type: DELETE_AllORDER})
+ }
+const deleteAllDish = () =>{
+  getDishdishpatch({type: DELETE_ALLDISH})
+}
+
   return (
     <AppContext.Provider
       value={{
@@ -183,7 +225,16 @@ const DeleteFirstDish = () =>{
         RatingDish: RatingDishState.RatingDish,
         setRatingDish: setRatingDish,
         RatingId: RatingIdState.RatingId,
-        setRatingId: setRatingId
+        setRatingId: setRatingId,
+        Collapse: CollapseState.Collapse,
+        setCollapse: setCollapse,
+        CategoryModel: CategoryModelState.CategoryModel,
+        setCategoryModel: setCategoryModel,
+        LiveOrder: LiveOrderState.LiveOrder,
+        setLiveOrder: setLiveOrder,
+        deletAlldishId: deletAlldishId,
+        deleteAllOrder: deleteAllOrder,
+        deleteAllDish:deleteAllDish
       }}
     >
       {children}

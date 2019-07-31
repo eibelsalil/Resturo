@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,useContext } from "react";
 import "./panel.css";
 import "./cards/card.css";
 import Footer from "./fotter/footer";
@@ -15,12 +15,21 @@ import { Switch, Route } from "react-router-dom";
 import EditDish from "./edit-section/edit dish/editDish";
 import RenderMainAdmin from "../adminCC";
 import Table from "./tables/table";
+import AppContext from "../../context/AppContext";
 
 
 const Panel = ({ user }) => {
   const [section, setSection] = useState("list");
   const [model, setModel] = useState(false);
-//const context = useContext(AppContext)
+const context = useContext(AppContext)
+
+ useEffect(()=>{
+   return()=>{
+     context.deletAlldishId()
+     context.deleteAllOrder()
+     context.deleteAllDish()
+   }
+ },[])
   function useOutsideAlerter(ref) {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {

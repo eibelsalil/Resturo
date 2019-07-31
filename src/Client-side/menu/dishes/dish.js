@@ -1,16 +1,15 @@
 import React,{useState,useContext,useEffect} from "react";
 import { dishes } from "../disharraytest";
 import AppContext from "../../../context/AppContext";
+import Rating from "@material-ui/lab/Rating";
+import Collapse from "@material-ui/core/Collapse"
 
 
-
-
-const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,dishId}) => {
+const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,DishRating,DishTime,discription}) => {
 
   const context = useContext(AppContext)
   const [count, incCount] = useState(0);
-
-
+  const [expand,setExpand] = useState(false)
 
     useEffect(()=>{
       count > 0 ?
@@ -18,11 +17,25 @@ const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,dishId}) => {
       : context.IncRating()
     },[count])
 
-
+ useEffect(()=>{
+  context.setCollapse(expand)
+ },[expand])
   return (
+    <div className="full-dish">
     <div className="dish">
-      <img src={img} alt="fried" width="109px" height="79px"  />
+    <div className="first-part">
+      <img src={img} alt="fried" width="109px" height="79px" className="dishImg" 
+      onClick={()=>{
+        setExpand(!expand)
+ 
+      }}
+      />
       <img src={veg} alt="veg"  className="veg-sym" />
+      <div className="rating-timing">
+      <Rating readOnly value={DishRating}  className="RRating" size="small"/>
+      <li><span>{DishTime}</span></li>
+      </div>
+      </div>
       <div style={{ width: "30%" , flexShrink:"0" }}>
         <p className="dishName">{name}</p>
         <p className="inrice">{dishes[0].rice}</p>
@@ -69,6 +82,10 @@ const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,dishId}) => {
         </button>
       )}
 
+  </div>
+  <Collapse in={expand} timeout="auto" className="collapse" >
+  <p>{discription}</p>
+  </Collapse>
   </div>
   );
 };

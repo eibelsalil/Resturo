@@ -11,7 +11,6 @@ const OrderOne = ({ click, order, amount, total, instruction, setEvent }) => {
   const add = (arr) => {
     return arr.reduce((a, b) => a + b, 0);
   };
-
   return (
     <div>
       <div className="orders-cont">

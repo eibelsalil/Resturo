@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import LiveCard from "./adminpanel/cards/liveCard";
 import CompletedCard from "./adminpanel/cards/liveCard";
 import AdminHeader from "./adminpanel/header.js/head";
@@ -13,9 +13,14 @@ import "./adminpanel/cards/card.css";
 import Confirm from "../Asset/confirmWhite.png";
 import Cancel from "../Asset/cancel.png";
 import PlateTableCC from "./adminpanel/cards/plateTableCompleted";
+import AppContext from "../context/AppContext";
+
 
 const RenderMainAdmin = () => {
   let user = fire.auth().currentUser.uid;
+
+ const context = useContext(AppContext)
+
   const [page, setPage] = useState(false);
   const [model, setModel] = useState(false);
   const [Liveorders, setLive] = useState(null);
@@ -34,30 +39,35 @@ const RenderMainAdmin = () => {
       </div>
     )
   }
- console.log(Liveorders,Completedorders)
+
   const logout = () => {
     fire.auth().signOut();
   };
 
   useEffect(() => {
-    setLoad(true);
-    Axios.get(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
-    )
-      .then((doc) => {
-        setLive(doc.data);
-      })
-      .then(() => {
-        Axios.get(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
-        ).then((doc) => {
-          setComplete(doc.data);
-          setLoad(false);
+    if(context.orderDish.length === 0 && context.dishId.length === 0){
+      setLoad(true);
+      Axios.get(
+        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
+      )
+        .then((doc) => {
+          setLive(doc.data);
+          context.addDish(doc.data)
+        })
+        .then(() => {
+          Axios.get(
+            `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+          ).then((doc) => {
+            setComplete(doc.data);
+            context.setDishId(doc.data)
+            setLoad(false);
+          });
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }
+   
   }, [user]);
 
   function useOutsideAlerter(ref) {
@@ -98,6 +108,7 @@ const RenderMainAdmin = () => {
               `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
             ).then((doc) => {
               setComplete(doc.data);
+            
               setLoad(false);
             });
           });
@@ -109,10 +120,10 @@ const RenderMainAdmin = () => {
         console.log(err);
       });
   };
-
+console.log(context.orderDish)
   const renderLiveOrder = () => {
-    if (Liveorders && Liveorders !== "you don't have any live orders") {
-      return Liveorders.map((order) => (
+    if (context.orderDish.length > 0  && context.orderDish[0] !== "you don't have any live orders") {
+      return context.orderDish[0].map((order) => (
         <React.Fragment    key={order.orderId}>
           <LiveCard
             tableNumber={order.table}
@@ -171,8 +182,8 @@ const RenderMainAdmin = () => {
     }
   };
   const renderCompletedorder = () => {
-    if (Completedorders && Completedorders !== "you don't have any completed orders") {
-      return Completedorders.map((order) => (
+    if (context.dishId.length >0 && context.dishId[0] !== "you don't have any completed orders") {
+      return context.dishId[0].map((order) => (
         <CompletedCard
           key={order.orderId}
           tableNumber={order.table}

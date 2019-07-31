@@ -18,7 +18,7 @@ const Menu = ({match,history}) => {
   const [category,setCategory] = useState(null)
   const [loading,setLoading] = useState(false)
 
-  
+
 
    useEffect(()=>{
   if(!context.table){
@@ -47,7 +47,8 @@ useEffect(()=>{
     })
   }
 },[match.params.hotelid])
- 
+
+
 useEffect(()=>{
   if(dishes && category){
    let filtered =  category.map((cat)=>{
@@ -90,7 +91,11 @@ useEffect(()=>{
 
   return (
     <div>
-      <Header />
+      <Header makempty={()=>{
+        context.deletAlldishId()
+        context.deleteAllDish()
+        context.deleteAllOrder()
+      }} />
       <LoadingOverlay
       active={loading ? true : false}
       spinner
@@ -109,6 +114,7 @@ useEffect(()=>{
         cat={category}
         dishes={dishes}
       />
+     { context.Collapse ? 
       <button
         className="menu-Button"
         onClick={() => {
@@ -117,7 +123,9 @@ useEffect(()=>{
       >
         menu
       </button>
-
+    :
+    null
+    }
       {context.total.length === 0 ? null : <Total table={match.params.table} hotelid={match.params.hotelid} history={history} />}
     </div>
   );

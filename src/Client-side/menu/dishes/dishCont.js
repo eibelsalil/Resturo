@@ -1,44 +1,27 @@
-import React, { useContext, useState, useEffect,useRef } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import "./dishes.css";
 import Veg from "../../../Asset/veg.jpg";
 import Non_veg from "../../../Asset/non-veg.png";
 import Dish from "./dish";
 import AppContext from "../../../context/AppContext";
-import { add } from "../../order/orderHelper";
+import _ from "lodash"
+
 
 const Dishcont = ({ categoryId }) => {
   const [id, setId] = useState();
-  const [name, setName] = useState();
-  const [price, setPrice] = useState();
-  const [img,setImg] = useState()
-  const [chosenDish, setChosen] = useState({});
   const [dishTotal, setDishTotal] = useState([]);
-  const [dishes,setDishes] = useState()
+  const [Obj,setObj] = useState([])
+  const [dishes,setDishes] = useState([])
   const context = useContext(AppContext);
- const idRef = useRef(context.changeId)
 
- useEffect(()=>{
-   idRef.current= context.changeId
- },[context.changeId])
-  
+
   const setOrderDishes = () => {
-    if (chosenDish.id !== undefined) {
-      context.addDish(chosenDish);    
-    }
+  let filtred = Obj.filter(({count})=>{
+     return count !== undefined
+  })
+      context.addDish(filtred);    
   };
-  useEffect(()=>{
-    setChosen((chosenDish) => ({
-      ...chosenDish,
-      ...({
-      name: name,
-      count: context.RatingCount,
-      price: price,
-      total: (parseInt(price) * context.RatingCount),
-      id:id,
-      img: img
-    })
- }))
-  },[context.RatingCount])
+
   useEffect(() => {
     if(context.changeId)
       setDishTotal([]);
@@ -53,17 +36,42 @@ const Dishcont = ({ categoryId }) => {
      context.IncRating(0)
    }
  },[])
+
 useEffect(()=>{
   if(context.dish){
     context.dish.map((cat)=>(
-      cat.map((two)=>(
-        Object.values(two).map((three)=>(
-          setDishes(three)
-        ))
-      ))
+       Object.values(cat).map((two)=>(
+         Object.values(two).map((three)=>(
+          setDishes(dishes=>(_.flatten([...dishes,three])))
+         ))
+
+       ))
     ))
   }
 },[context.dish])
+
+useEffect(()=>{
+  if(dishes.length > 0){
+    dishes.map(({dishName,price,dishId,img})=>(
+      setObj(Obj=>[...Obj,({
+          name: dishName,
+          count: context.RatingCount,
+          price: price,
+          total: (parseInt(price) * context.RatingCount),
+          id:dishId,
+          img: img
+      })])
+    ))
+  }
+},[dishes])
+ useEffect(()=>{
+   if(Obj.length > 0){
+   let indx = Obj.findIndex(dish=> dish.id === id)
+  Obj[indx].count = context.RatingCount
+  Obj[indx].total = parseInt(Obj[indx].price * context.RatingCount)
+   }
+ },[context.RatingCount])
+  
   const setTotal = (x) => {
     return context.addPrice(x);
   };
@@ -71,7 +79,7 @@ useEffect(()=>{
   const deleteItem = (x) => {
     return context.deletPrice(x);
   };
- console.log(context.orderDish)
+
   const renderDishes = () => {
 
     if (context.dish !== []) {
@@ -89,26 +97,26 @@ useEffect(()=>{
                 name={d.dishName}
                 price={d.price}
                 dishId={d.dishId}
-                setTheId={()=>{
-                  context.changeTheId(d.dishId)               
+                DishTime={d.dishTime}
+                DishRating={d.MainRating}
+                discription={d.description}
+                setTheId={()=>{ 
+                  setId(d.dishId)            
                 }}
                 hover={() => {
-                  setId(d.dishId)
                     setTotal(parseInt(d.price));
                     setDishTotal((dishTotal) => [
                       ...dishTotal,
                       parseInt(d.price)
                     ]);
-                    setName(d.dishName);
-                    setPrice(d.price);
-                    setImg(d.img)
-               
                 }}
                 Dec={() => {
+                  setId(d.dishId)
                   deleteItem(-1);
                   setDishTotal(dishTotal.splice(0,1));
                 }}
                 Inc={() => {
+                  setId(d.dishId)
                   setTotal(parseInt(d.price));
                   setDishTotal((dishTotal) => [
                     ...dishTotal,

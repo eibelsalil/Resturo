@@ -6,7 +6,6 @@ import OrderTwo from "./requestBill/orderTwo";
 import OrderOne from "./order-plate/orderPlate";
 import backArrow from "../../Asset/back-arrow.png";
 import instruction from "../../Asset/instruction.png";
-import uuid from "uuid"
 import Axios from "axios";
 
 const Order = ({ match }) => {
@@ -15,6 +14,7 @@ const Order = ({ match }) => {
   const [model, setModel] = useState(false);
   const [order, setOrder] = useState(false);
   const [event, setEvent] = useState(null);
+  const [info,setInfo] = useState(null)
   const [counter,setCounter] = useState(0)
   const [Rating,setRating] = useState(null)
 
@@ -42,12 +42,11 @@ const Order = ({ match }) => {
     setAmount(3.2 + add(context.total));
   }, [context.total]);
 
-  const addInstruction = () => {
-    context.setOrderInfo({ instruction: event, table: match.params.table });
-  };
 
-  console.log(Rating,context.RatingId)
-
+ useEffect(()=>{
+   setInfo({instruction: event,table: match.params.table})
+ },[order])
+ console.log(Rating)
   useEffect(()=>{
     if(context.RatingDish){
       let filter = context.RatingDish.filter(({count})=>{
@@ -56,11 +55,10 @@ const Order = ({ match }) => {
       setRating(filter)
     }
   },[context.RatingDish])
-/*
+
  useEffect(()=>{
-   if(context.changeId === "12"){
+   if(Rating){
      console.log("start")
-     setTimeout(()=>{
       Rating.map((rat)=>(
         Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishesRating/${rat.id}`, {"rating": rat.count})
         .then((doc)=>{
@@ -70,15 +68,14 @@ const Order = ({ match }) => {
           console.log(err)
         })
        ))
-     },1000)
    }
- },[context.changeId])
-*/
+ },[Rating])
 
-/*
+
+
    useEffect(()=>{
      if(model){
-       context.orderDish.map((dish)=>(
+       context.orderDish[1].map((dish)=>(
         Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishes/dishTime/${dish.id}`)
         .then((doc)=>{
           console.log(doc.data)
@@ -90,11 +87,12 @@ const Order = ({ match }) => {
      }
    },[model])
 
+
   const addBillTwo = () => {
-    if (context.orderInfo[2]) {
+    if (context.orderInfo) {
       Axios.post(
         `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/order`,
-        { ...context.orderInfo[0], ...{ dishes: context.orderInfo[2] } }
+        { ...info, ...{ dishes: [context.orderInfo] } }
       )
         .then((doc) => {
           console.log(doc.data);
@@ -104,7 +102,7 @@ const Order = ({ match }) => {
         });
     }
   };
-  */
+
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
@@ -125,7 +123,6 @@ const Order = ({ match }) => {
         <OrderOne
           click={() => {
             setOrder(true);
-            addInstruction();
           }}
           order={order}
           total={add(context.total)}
@@ -141,11 +138,9 @@ const Order = ({ match }) => {
           amount={amount}
           click={() => {
             setModel(true);
-            /*
             setTimeout(() => {
               addBillTwo();
             }, 1500);
-            */
             context.DeletTotal();
           }}
           wrapperRef={wrapperRef}

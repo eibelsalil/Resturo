@@ -10,8 +10,8 @@ const OrderState = ({ click, Orders ,hotelid,table}) => {
   let finalsetpOrder = Orders;
 
   useEffect(() => {
-    if (finalsetpOrder) {
-      finalsetpOrder.map((o) =>
+    if (finalsetpOrder.length > 1) {
+      finalsetpOrder[1].map((o) =>
         setRequestBill((requestBill) => ({
           ...requestBill,
           ...{ [o.name]: o.count }
@@ -22,7 +22,7 @@ const OrderState = ({ click, Orders ,hotelid,table}) => {
 
   useEffect(() => {
     if (requestBill !== []) {
-      context.setOrderInfo([requestBill]);
+      context.setOrderInfo(requestBill);
     }
   }, [context, requestBill]);
   return (
