@@ -92,7 +92,7 @@ const Order = ({ match }) => {
     if (context.orderInfo) {
       Axios.post(
         `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/order`,
-        { ...info, ...{ dishes: [context.orderInfo] } }
+        { ...info, ...{ dishes: [context.orderInfo] },...{total: add(context.total)} }
       )
         .then((doc) => {
           console.log(doc.data);
@@ -102,7 +102,7 @@ const Order = ({ match }) => {
         });
     }
   };
-
+console.log(context.orderInfo)
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
@@ -126,7 +126,6 @@ const Order = ({ match }) => {
           }}
           order={order}
           total={add(context.total)}
-          amount={amount}
           instruction={instruction}
           setEvent={(e) => {
             setEvent(e.target.value);
@@ -141,7 +140,10 @@ const Order = ({ match }) => {
             setTimeout(() => {
               addBillTwo();
             }, 1500);
-            context.DeletTotal();
+            setTimeout(()=>{
+              context.DeletTotal();
+            },2000)
+    
           }}
           wrapperRef={wrapperRef}
           model={model}

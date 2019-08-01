@@ -5,7 +5,7 @@ import CurrentOrder from "./current-order";
 import Bill from "../bill/bill";
 import AppContext from "../../../context/AppContext";
 
-const OrderOne = ({ click, order, amount, total, instruction, setEvent }) => {
+const OrderOne = ({ click, order,  total, instruction, setEvent }) => {
   const context = useContext(AppContext);
 
   const add = (arr) => {
@@ -36,7 +36,6 @@ const OrderOne = ({ click, order, amount, total, instruction, setEvent }) => {
         <Bill
           click={click}
           order={order}
-          amount={amount}
           total={total}
           tax={3.2}
         />

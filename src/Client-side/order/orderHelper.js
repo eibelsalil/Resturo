@@ -14,5 +14,5 @@ export function currentOrderConfirm(name,price,itemnum,total){
 
 
 export   const add = (arr) => {
-    return arr.reduce((a, b) => a + b, 0);
+    return arr.reduce((a, b) =>a + b, 0)
   };

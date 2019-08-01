@@ -14,7 +14,7 @@ const OrderState = ({ click, Orders ,hotelid,table}) => {
       finalsetpOrder[1].map((o) =>
         setRequestBill((requestBill) => ({
           ...requestBill,
-          ...{ [o.name]: o.count }
+          ...{[o.name]: [o.count,o.price,o.total]}
         }))
       );
     }

@@ -1,12 +1,16 @@
 import React from "react";
 
-const PlateTableCC = ({ plateName, palteNumber,borderDepend }) => {
+const PlateTableCC = ({ plateName, palteNumber,borderDepend,total,price }) => {
   return (
-    <div className="Plate-Table">
-      <p className="plateName">{plateName}</p>
-      <button className={borderDepend}>
-        <p className="palteNumber-para"> {palteNumber}</p>
-      </button>
+    <div className="Plate-Tablecc">
+    <div className="firstItemOfOrder">
+    <button className={borderDepend}>
+    <p className="palteNumber-para"> {palteNumber}</p>
+  </button>
+      <p className="plateNameCC">{plateName.toUpperCase()}</p>
+      </div>
+      <p>${price}</p>
+      <p>{total}</p>
     </div>
   );
 };

@@ -127,6 +127,7 @@ const Billing = () => {
           orderId={bill.orderId}
           tabletextDepend={"plate-commentsDis"}
           pageDepend={"done-button"}
+          OrderNumber={"orderNumber"}
           click={() => {
             ToBilling(bill.orderId);
           }}
@@ -136,7 +137,7 @@ const Billing = () => {
               <PlateTable
                 key={uuid()}
                 plateName={key}
-                palteNumber={bill.dishes[0][key]}
+                palteNumber={bill.dishes[0][key][0]}
                 borderDepend={"palteNumber"}
                 plateTableDepend={"table-paltes"}
                 instruction={bill.instruction}
@@ -181,6 +182,7 @@ const Billing = () => {
           tabletextDepend={"plate-commentsDis"}
           orderId={bill.orderId}
           orderidd={bill.orderId}
+          OrderNumber={"orderNumber"}
           clickRef={()=>{
             setSelectid(bill.orderId)
           }}
@@ -189,7 +191,7 @@ const Billing = () => {
             <PlateTable
               key={uuid()}
               plateName={key}
-              palteNumber={bill.dishes[0][key]}
+              palteNumber={bill.dishes[0][key][0]}
               borderDepend={"palteNumber"}
               plateTableDepend={"table-paltes"}
             />

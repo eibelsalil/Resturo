@@ -17,7 +17,8 @@ const LiveCard = ({
   orderId,
   tabletextDepend,
   textOrderDepend,
-  pageDepend
+  pageDepend,
+  OrderNumber
 }) => {
   return (
     <div className={classDpends}>
@@ -34,7 +35,7 @@ const LiveCard = ({
       {children}
       <div className={textOrderDepend}>
       <textarea className={tabletextDepend}  disabled value={instruction}/>
-      <p className="orderNumber">Order No: {orderId}</p>
+      <p className={OrderNumber}>Order No: {orderId}</p>
       </div>
       </div>
     </div>

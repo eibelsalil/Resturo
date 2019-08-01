@@ -133,7 +133,9 @@
     font-family: "Tahoma";
     font-size: 18px;
     font-weight: bold;
-    color: #FFCA42
+    color: #FFCA42;
+    margin-top: 5%;
+    margin-bottom: 5%
 }
 
 .orderModel-contect{

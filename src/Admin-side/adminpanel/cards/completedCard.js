@@ -16,7 +16,7 @@ const CompletedCard = ({
   Live,
   orderId,
   tabletextDepend,
-
+   OrderNumber,
   clickRef
 }) => {
 
@@ -38,7 +38,7 @@ const CompletedCard = ({
         {children}
         <div className="text-order">
         <textarea className={tabletextDepend} disabled value={instruction}/>
-        <p className="orderNumber">Order No: {orderId}</p>
+        <p className={OrderNumber}>Order No: {orderId}</p>
         </div>
       </div>
      

@@ -52,14 +52,15 @@ useEffect(()=>{
 
 useEffect(()=>{
   if(dishes.length > 0){
-    dishes.map(({dishName,price,dishId,img})=>(
+    dishes.map(({dishName,price,dishId,img,tax})=>(
       setObj(Obj=>[...Obj,({
           name: dishName,
           count: context.RatingCount,
           price: price,
-          total: (parseInt(price) * context.RatingCount),
+          total: ((parseInt(price) + (parseInt(price) / parseInt(tax))) * context.RatingCount),
           id:dishId,
-          img: img
+          img: img,
+          tax: tax
       })])
     ))
   }
@@ -68,10 +69,10 @@ useEffect(()=>{
    if(Obj.length > 0){
    let indx = Obj.findIndex(dish=> dish.id === id)
   Obj[indx].count = context.RatingCount
-  Obj[indx].total = parseInt(Obj[indx].price * context.RatingCount)
+  Obj[indx].total = Math.round((parseInt(Obj[indx].price) + parseInt(Obj[indx].price) * parseInt(Obj[indx].tax) / 100) * context.RatingCount)
    }
  },[context.RatingCount])
-  
+   console.log(Obj)
   const setTotal = (x) => {
     return context.addPrice(x);
   };
@@ -104,7 +105,7 @@ useEffect(()=>{
                   setId(d.dishId)            
                 }}
                 hover={() => {
-                    setTotal(parseInt(d.price));
+                    setTotal(Math.round(parseInt(d.price) * (parseInt(d.price) * parseInt(d.tax) / 100)));
                     setDishTotal((dishTotal) => [
                       ...dishTotal,
                       parseInt(d.price)
@@ -117,7 +118,7 @@ useEffect(()=>{
                 }}
                 Inc={() => {
                   setId(d.dishId)
-                  setTotal(parseInt(d.price));
+                  setTotal(Math.round(parseInt(d.price) * (parseInt(d.price) * parseInt(d.tax) / 100)));
                   setDishTotal((dishTotal) => [
                     ...dishTotal,
                     parseInt(d.price)

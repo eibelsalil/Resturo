@@ -2,7 +2,7 @@ import React from "react";
 import "./bill.css"
 
 
-const Bill = ({ total, amount ,tax,click,order}) => {
+const Bill = ({ total,tax,click,order}) => {
    
   return (
     <div className={order ?"bills" : "bills-current" }>
@@ -16,7 +16,7 @@ const Bill = ({ total, amount ,tax,click,order}) => {
       </div>
       <div className="amount"> 
         <p className="grand">Grand Total</p>
-        <p className="result">${amount}</p>
+        <p className="result">${total + tax}</p>
       </div>
    { !order ? <button className="orderPlate" onClick={click}>place order</button> : null}
     </div>

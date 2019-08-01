@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { stat } from "fs";
+
 
 
 export const ADD_PRICE = "ADD_PRICE";
@@ -62,9 +62,9 @@ export const dishReducer = (state, action) => {
         orderDish: [...state.orderDish,dish]
       };
     case DELETE_DISH:
-      _.remove(state.orderDish, function(el) {
-        return el.count === 0;
-      });
+        _.remove(state.orderDish[1], function(el) {
+          return el.count === 0;
+        });
       return {
         ...state
       };
@@ -74,28 +74,28 @@ export const dishReducer = (state, action) => {
             ...state
         }
     case DEC_COUNT:
-      state.orderDish.map((o) =>
+      state.orderDish[1].map((o) =>
         o.id === action.id ? (o.count = o.count - 1) : o
       );
       return {
         ...state
       };
     case INC_COUNT:
-      state.orderDish.map((o) =>
+      state.orderDish[1].map((o) =>
         o.id === action.id ? (o.count = o.count + 1) : o
       );
       return {
         ...state
       };
     case INC_TOTAL:
-      state.orderDish.map((o) =>
+      state.orderDish[1].map((o) =>
         o.id === action.id ? (o.total = o.total + parseInt(o.price)) : o
       );
       return {
         ...state
       };
     case DEC_TOTAL:
-      state.orderDish.map((o) =>
+      state.orderDish[1].map((o) =>
         o.id === action.id ? (o.total = o.total - parseInt(o.price)) : o
       );
       return {

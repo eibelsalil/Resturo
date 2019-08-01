@@ -5,13 +5,21 @@ import AppContext from "../../../context/AppContext";
 const CurrentOrder = ({ orderDish }) => {
  
   const context = useContext(AppContext)
-  
+  const setTotal = (price,tax) => {
+    return context.addPrice(parseInt(price) + (parseInt(price) * parseInt(tax) / 100 ));
+  };
+
+  const deleteItem = (x) => {
+    return context.deletPrice(x);
+  };
+
+  console.log(orderDish[1])
   return (
     <div className="currentOrder">
       <p className="current-title">Current Order</p>
       <div className="currentOrders-cont">
         {orderDish.length > 1
-          ? orderDish[1].map(({ name, price, count, total, id }) => (
+          ? orderDish[1].map(({ name, price, count, total, id,tax }) => (
               <OrderContent
                 dishName={name}
                 dishPrice={price}
@@ -22,11 +30,13 @@ const CurrentOrder = ({ orderDish }) => {
                 clickMinus={() => {
                   context.DecCount(id, count);
                   context.Dectotal(id, total);
-                  context.deleteDish();
+                   context.deleteDish()
+                  deleteItem(-1)
                 }}
                 clickPlus={() => {
                   context.IncCount(id, count);
                   context.Inctotal(id, count);
+                  setTotal(price,tax)
                 }}
               />
             ))

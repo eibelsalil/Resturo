@@ -12,7 +12,6 @@ import uuid from "uuid";
 import "./adminpanel/cards/card.css";
 import Confirm from "../Asset/confirmWhite.png";
 import Cancel from "../Asset/cancel.png";
-import PlateTableCC from "./adminpanel/cards/plateTableCompleted";
 import AppContext from "../context/AppContext";
 
 
@@ -120,7 +119,7 @@ const RenderMainAdmin = () => {
         console.log(err);
       });
   };
-console.log(context.orderDish)
+
   const renderLiveOrder = () => {
     if (context.orderDish.length > 0  && context.orderDish[0] !== "you don't have any live orders") {
       return context.orderDish[0].map((order) => (
@@ -141,6 +140,7 @@ console.log(context.orderDish)
             tabletextDepend={"plate-comments"}
             textOrderDepend={"text-order"}
            pageDepend={"done-button"}
+           OrderNumber={"orderNumber"}
           >
             {finish ? (
               <div className="contbtnbtn">
@@ -169,7 +169,7 @@ console.log(context.orderDish)
               <PlateTable
                 key={uuid()}
                 plateName={key}
-                palteNumber={order.dishes[0][key]}
+                palteNumber={order.dishes[0][key][0]}
                 borderDepend={"palteNumber"}
               />
             ))}
@@ -196,12 +196,13 @@ console.log(context.orderDish)
           tabletextDepend={"plate-comments"}
           textOrderDepend={"text-order"}
           pageDepend={"completedCardbtn"}
+          OrderNumber={"orderNumber"}
         >
           {Object.keys(order.dishes[0]).map((key) => (
-            <PlateTableCC
+            <PlateTable
               key={uuid()}
               plateName={key}
-              palteNumber={order.dishes[0][key]}
+              palteNumber={order.dishes[0][key][0]}
               borderDepend={"palteNumber"}
             />
           ))}

@@ -61,10 +61,9 @@ const DishEditing = () => {
 
   const renderDishes = () => {
     return context.dish.map((dish) => (
-      <div className="itemName" key={uuid()}>
-        {Object.values(dish).map((item) =>
-          <React.Fragment key={uuid()}>
-          <div className="Gatogery" key={uuid()}>
+        Object.values(dish).map((item) =>
+          <div className="itemName" key={uuid()}>
+          <div className="Gatogery" >
           <p>{Object.keys(item)}</p>
         </div>
           {Object.values(item).map((t)=>(
@@ -81,14 +80,14 @@ const DishEditing = () => {
               />
             ))
           ))}
-          </React.Fragment>
-        )}
-      </div>
+          </div>
+        )
+
     ));
   };
 
   return (
-    <div>
+
       <LoadingOverlay
         active={loading ? true : false}
         spinner
@@ -96,7 +95,7 @@ const DishEditing = () => {
       >
      {renderDishes()}
       </LoadingOverlay>
-    </div>
+
   );
 };
 
