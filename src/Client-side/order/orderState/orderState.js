@@ -3,15 +3,16 @@ import "./state.css";
 import DishState from "./dishState";
 import { Link } from "react-router-dom";
 import AppContext from "../../../context/AppContext";
+import Loader from "../../../Admin-side/adminpanel/adminsettings/Loader";
 
-const OrderState = ({ click, Orders ,hotelid,table}) => {
+const OrderState = ({ click, Orders ,hotelid,table,disable,loading}) => {
   const [requestBill, setRequestBill] = useState([]);
   const context = useContext(AppContext);
   let finalsetpOrder = Orders;
 
   useEffect(() => {
-    if (finalsetpOrder.length > 1) {
-      finalsetpOrder[1].map((o) =>
+    if (finalsetpOrder) {
+      finalsetpOrder.map((o) =>
         setRequestBill((requestBill) => ({
           ...requestBill,
           ...{[o.name]: [o.count,o.price,o.total]}
@@ -31,14 +32,17 @@ const OrderState = ({ click, Orders ,hotelid,table}) => {
         <p style={{ marginLeft: "15px" }}>In Kitchen</p>
       </div>
       <DishState />
-      <div className="option-button">
-        <button className="request" onClick={click}>
+    {!loading ?  <div className="option-button">
+        <button className="request" onClick={click} disabled={!disable ? false : true}>
           request bill
         </button>
         <Link to={`/menu/${hotelid}/${table}`} style={{ textDecoration: "none" }}>
-          <button className="more">order more+</button>
+          <button className="more">order more+</button> 
         </Link>
       </div>
+      :
+      <Loader />
+    }
     </div>
   );
 };

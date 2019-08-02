@@ -30,6 +30,7 @@ const Ratingcont = ({ id, img, name, setId }) => {
           onClick={(value) => {
             setRating(value);
             setId()
+  
           }}
         />
       </div>
@@ -91,6 +92,7 @@ const OrderRatingModel = ({
         <button
           onClick={() => {
             context.setRatingId("123");
+            context.deleteAllOrder()
           }}
         >
           DONE

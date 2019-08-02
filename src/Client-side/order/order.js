@@ -17,6 +17,8 @@ const Order = ({ match ,history}) => {
   const [info,setInfo] = useState(null)
   const [counter,setCounter] = useState(0)
   const [Rating,setRating] = useState(null)
+  const [Loading,setLoading] = useState(false)
+  const [disabled,setDisabled] = useState(false)
 
   function useOutsideAlerter(ref) {
 
@@ -63,11 +65,12 @@ const Order = ({ match ,history}) => {
 
  useEffect(()=>{
    if(Rating){
-     console.log("start")
+     setLoading(true)
       Rating.map((rat)=>(
         Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishesRating/${rat.id}`, {"rating": rat.count})
         .then((doc)=>{
           console.log(doc.data)
+          setLoading(false)
         })
         .catch((err)=>{
           console.log(err)
@@ -80,7 +83,8 @@ const Order = ({ match ,history}) => {
 
    useEffect(()=>{
      if(model){
-       context.orderDish[1].map((dish)=>(
+      setLoading(true)
+       context.orderDish.map((dish)=>(
         Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishes/dishTime/${dish.id}`)
         .then((doc)=>{
           console.log(doc.data)
@@ -95,12 +99,18 @@ const Order = ({ match ,history}) => {
 
   const addBillTwo = () => {
     if (context.orderInfo) {
+   
       Axios.post(
         `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/order`,
         { ...info, ...{ dishes: [context.orderInfo] },...{total: add(context.total)} }
       )
         .then((doc) => {
           console.log(doc.data);
+          setLoading(false)
+          setTimeout(()=>{
+            setModel(false)
+            setCounter(counter + 1)
+          },[1000])  
         })
         .catch((err) => {
           console.log(err);
@@ -149,8 +159,9 @@ const Order = ({ match ,history}) => {
             setTimeout(()=>{
               context.DeletTotal();
             },2000)
-    
+          
           }}
+          Loading={Loading}
           wrapperRef={wrapperRef}
           model={model}
           order={order}
@@ -158,8 +169,10 @@ const Order = ({ match ,history}) => {
           table={match.params.table}
           counter={counter}
           orderdishes={context.orderDish}
+          disable={disabled}
           ClickRating={()=>{
             setCounter(0)
+            setDisabled(true)
           }}
         />
       )}
