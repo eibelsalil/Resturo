@@ -63,11 +63,13 @@ export const dishReducer = (state, action) => {
         ...state,
         orderDish: [...state.orderDish,...dish]
       };
+      /*
       case DUPLICATE_DISH:
-        _.difference(state.orderDish,_.uniqBy(state.orderDish,'id')).length
+       let diff = _.difference(state.orderDish,_.uniqBy(state.orderDish,'id')).length
         return{
-          ...state
+          ...state,
         }
+        */
     case DELETE_DISH:
         _.remove(state.orderDish, function(el) {
           return el.count === 0;
