@@ -54,6 +54,7 @@ const Settings = ({ wraaperRef, model, click, logout }) => {
         <div className="model-content-admin" ref={wraaperRef}>
       
           <LoadingOverlay active={spinner ? true : false} spinner>
+          <div className="infoContainer">
             {info ? (
               <div className="model-text">
                 <div className="hotelName">
@@ -260,6 +261,7 @@ const Settings = ({ wraaperRef, model, click, logout }) => {
               </div>
             ) : null}
             <Link to="/adminPanel/table">Add table Qrcode</Link>
+            </div>
           </LoadingOverlay>
           <button className="logout" onClick={logout}>logout</button>
         </div>

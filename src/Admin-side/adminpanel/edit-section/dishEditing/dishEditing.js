@@ -3,9 +3,9 @@ import "../edit.css";
 import DishItem from "./dishItem";
 import Axios from "axios";
 import firebase from "firebase";
-import LoadingOverlay from "react-loading-overlay";
 import uuid from "uuid";
 import AppContext from "../../../../context/AppContext";
+import Loader from "../../adminsettings/Loader";
 
 const DishEditing = () => {
   let user = firebase.auth().currentUser.uid;
@@ -62,7 +62,7 @@ const DishEditing = () => {
   const renderDishes = () => {
     return context.dish.map((dish) => (
         Object.values(dish).map((item) =>
-          <div className="itemName" key={uuid()}>
+          <div className="itemName2" key={uuid()}>
           <div className="Gatogery" >
           <p>{Object.keys(item)}</p>
         </div>
@@ -88,13 +88,15 @@ const DishEditing = () => {
 
   return (
 
-      <LoadingOverlay
-        active={loading ? true : false}
-        spinner
-        text="Loading your content..."
-      >
-     {renderDishes()}
-      </LoadingOverlay>
+ <div className="EDITDDISH">
+   {
+     !loading ?
+     renderDishes()
+     :
+     <Loader  />
+   }
+
+     </div>
 
   );
 };

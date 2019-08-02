@@ -38,10 +38,11 @@ const SigninCont = () => {
 
 
   return (
-    <div>
-      <Link to="/">back to menu</Link>
+    <div className="singInfull">
+    <div className="singInSubFull">
+    <p className="welecome">Welcome To Resturo Admin Panel</p>
+    <div className="singInCONT">
       <h1 className="title">Sign in</h1>
-      <div className="bg" />
       <div className="cont" />
       <form onSubmit={handelSubmit}>
       {err ? <ErrorSingin email={values.email} password={values.password} /> : null}  
@@ -61,6 +62,9 @@ const SigninCont = () => {
           Login
         </button>
       </form>
+    </div>
+    </div>
+    <div className="bg" />
     </div>
   );
 };

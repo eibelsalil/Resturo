@@ -353,10 +353,25 @@
     .menu-Button{
         left: 36%
     }
-    .model{
-        padding-top: 1000px;
-    }
+   .model{
+       padding-top: 300px;
+   }
+
+   .model-content-admin{
+       width: 50%;
+       height: fit-content;
+     
+   }
+
+   
     .model-content{
-        margin-right: 430px
+        margin-right: 570px
+    }
+
+    .model-text{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-right: 20px
     }
   }

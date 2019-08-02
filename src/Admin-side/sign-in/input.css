@@ -10,6 +10,7 @@
       z-index: -1;
   }
 
+
 .cont {
     background-color: white;
     background-position: 100%;
@@ -133,5 +134,51 @@ input[type^="password"] {
 @media only screen and (min-width: 536px) {
     .remember{
         margin-right: 6%;
+        color: #E7E2E2
+    }
+    .singInfull{
+        width: 50%;
+        display: flex;
+        flex-direction: column
+      
+    }
+    .singInSubFull{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center
+    }
+   .singInCONT{
+       width: 40%;
+       height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10%;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+      background-color: #222338;
+      border-radius: 22px
+   }
+   .title{
+       color: #E7E2E2
+   }
+   .cont{
+      display: none
+   }
+    .bg{
+        clip-path: polygon(51% 0, 100% 0%, 100% 100%, 50% 100%);
+        background-position: 0 100;
+        background-size:50%;
+    }
+    .login-button{
+        margin-bottom: 20px;
+        background:  #E7E2E2
+    }
+    .welecome{
+        font-family: "Tahoma";
+        font-size: 35px;
+        font-weight: bold;
+        color: #767E91
     }
   }

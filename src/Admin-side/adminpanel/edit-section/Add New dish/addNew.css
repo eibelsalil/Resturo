@@ -466,3 +466,17 @@
   margin-top: 0%
 }
 
+@media only screen and (min-width: 1000px){
+  .New-cont{
+       overflow: hidden;
+       margin-bottom: 10%;
+       margin-top: 50%;
+       width: 50%
+  }
+
+ .forrrm{
+   display: grid;
+   justify-content: center;
+   align-items: center
+ }
+}

@@ -220,12 +220,17 @@ const Billing = () => {
         text="Loading your orders..."
       >
         <div className="card-cont">
+        <div className="first-cameBill">
           {  renderLiveBill()}
-          {!selectedBill ? renderCompletedBil() : <RenderSelectedBill selectedBill={selectedBill} CompletedTimer={CompletedTimer} Back={()=>{
+          </div>
+          
+          {!selectedBill ?<div className="forPrint"> {renderCompletedBil()}</div>: <div className="for-print2"> <RenderSelectedBill selectedBill={selectedBill} CompletedTimer={CompletedTimer} Back={()=>{
             setTimeout(()=>{
               setSelectedbill(null)
             },2500)
-          }} />}
+          }} />
+        </div>}
+  
           <div className="oldBills">
             <p className="date-deco">YESTERDAY</p>
             <OldBills

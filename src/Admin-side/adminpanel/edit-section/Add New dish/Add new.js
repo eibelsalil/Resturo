@@ -69,12 +69,8 @@ const Addnew = ({ Nav }) => {
 
   return (
     <div className="New-cont">
-      <form onSubmit={handelSubmit}>
-        <LoadingOverlay
-          active={spiner ? true : false}
-          spinner
-          text="Creating the dish..."
-        >
+      <form onSubmit={handelSubmit} className="forrrm">
+
           <p className="ItemName-title">Item name</p>
           <input
             type="text"
@@ -112,7 +108,6 @@ const Addnew = ({ Nav }) => {
               Next
             </button>
           </div>
-        </LoadingOverlay>
       </form>
     </div>
   );

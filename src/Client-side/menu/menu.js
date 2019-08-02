@@ -18,8 +18,18 @@ const Menu = ({match,history}) => {
   const [category,setCategory] = useState(null)
   const [loading,setLoading] = useState(false)
 
-
-
+  
+  useEffect(()=>{
+    Axios
+    .get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}`)
+    .then((doc)=>{
+      context.setAdminPage(doc.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[match.params.hotelid])
+  console.log(context.AdminPage)
    useEffect(()=>{
   if(!context.table){
     setLoading(true)
@@ -95,7 +105,9 @@ useEffect(()=>{
         context.deletAlldishId()
         context.deleteAllDish()
         context.deleteAllOrder()
-      }} />
+      }}
+      resturantName={context.AdminPage.user ? context.AdminPage.user.resturant : null  }
+      />
       <LoadingOverlay
       active={loading ? true : false}
       spinner

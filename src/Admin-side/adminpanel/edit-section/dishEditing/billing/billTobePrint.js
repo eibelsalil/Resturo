@@ -22,7 +22,7 @@ const RenderSelectedBill = ({ selectedBill, CompletedTimer, Back }) => {
      setTax(add(total) * (7 / 100))
   },[total])
 
-  console.log(total);
+
   const selectElement = (orderId) => {
     let item = document.getElementById("bill");
     html2canvas(item, { scale: "1" }).then((canvas) => {
@@ -45,7 +45,7 @@ const RenderSelectedBill = ({ selectedBill, CompletedTimer, Back }) => {
         tableNumber={selectedBill.table}
         timer={CompletedTimer(selectedBill.time)}
         borderDepend={"plateNumberBill"}
-        classDpends={"bill-Cont"}
+        classDpends={"bill-cont-print"}
         pageDepend={"bill-Button2"}
         buttonText={"PRINT"}
         Statedpend={"tableBillCont"}

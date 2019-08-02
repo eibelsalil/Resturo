@@ -23,9 +23,31 @@
     border: 10px solid #B5B5B5;
     border-radius: 6px;
 }
+.bill-cont-print{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: white;
+    border: 10px solid #B5B5B5;
+    border-radius: 6px;
+}
 
 .html2canvas-container {
-     height: 280px; 
+     height: 200px; 
+    }
+
+    .first-cameBil{
+         width: 100%;
+        display: grid;
+          grid-template-rows: 50%;
+          grid-row-gap: 10px;
+    }
+
+    .forPrint{
+        width: 100%;
+        display: grid;
+        grid-template-rows: 50%;
+        grid-row-gap: 10px;
+        
     }
 .table-paltes-Billing1{
     display: flex;
@@ -271,4 +293,53 @@
     margin-right: 75%;
     margin-bottom: 2%;
     margin-top: 0%
+}
+
+@media only screen and (min-width: 1000px){
+    .card-cont{
+        overflow: hidden;
+    }
+    .bill-Cont{
+        width: 35%;
+ 
+    }
+    .bill-cont-print{
+        width: 95%
+    }
+
+    .first-cameBill{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center
+    }
+    #bill{
+        width: 30%
+    }
+    .forPrint{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center
+    }
+    .for-print2{
+        width: 100%;
+        display: flex;
+        justify-content: center
+    }
+    .oldBills{
+      display: none
+    }
+    .date-deco{
+        margin-right: 0
+    }
+ .SUB-GST{
+     margin-right: 70x;
+ }
+ .totalTax{
+     margin-right: 25px
+ }
+ .amount-number{
+     margin-right: 15px
+ }
 }

@@ -9,7 +9,7 @@
     margin-bottom: 15%
 }
 
-.itemName{
+.itemName2{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,4 +77,32 @@
 .toggleButton{
     margin-top: 0%;
     margin-left: 0%
+}
+
+@media only screen and (min-width: 1000px){
+    .edit-full{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center
+     
+    }
+
+    .EDITDDISH{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center
+    }
+    .edit-cont{
+        margin-top: 0%;
+        margin-bottom: 5%;
+        margin-left: 0;
+        width: 100%
+    
+    }
+    .itemName2{
+        width: 30%;
+        overflow: hidden;
+ 
+    }
 }

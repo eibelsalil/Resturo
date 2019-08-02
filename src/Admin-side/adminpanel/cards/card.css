@@ -286,3 +286,23 @@
     padding-bottom: 20px
 }
 
+@media only screen and (min-width: 1000px){
+    .live-cardsCont {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow: hidden;
+        margin-top: 10%;
+        height: 100%;
+        width: 100%
+    }
+    .liveCard{
+       width: 30% ;
+    }
+    .completedCard{
+        width: 30%;
+        overflow: hidden;
+    }
+
+
+}
