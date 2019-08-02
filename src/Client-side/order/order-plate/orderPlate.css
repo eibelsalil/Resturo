@@ -36,14 +36,15 @@
     background-color: white;
     border-radius: 22px;
     margin-top: 0;
-    margin-left: 5%
+    margin-left: 5%;
+    overflow: scroll
 }
 
 .currentOrders-cont{
     display: grid;
  grid-gap: 0px;
-    overflow: scroll;
-   height: 100px
+
+   height: fit-content
 }
 .current{
     display: grid;
@@ -137,7 +138,8 @@
     flex-direction: column;
     justify-content: center;
     border-top: 3px solid #DCDBDB;
-    border-bottom: 3px solid #DCDBDB
+    border-bottom: 3px solid #DCDBDB;
+    
 }
 
 .current-dish{

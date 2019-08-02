@@ -8,7 +8,7 @@ import backArrow from "../../Asset/back-arrow.png";
 import instruction from "../../Asset/instruction.png";
 import Axios from "axios";
 
-const Order = ({ match }) => {
+const Order = ({ match ,history}) => {
   const context = useContext(AppContext);
   const [amount, setAmount] = useState(0);
   const [model, setModel] = useState(false);
@@ -19,6 +19,11 @@ const Order = ({ match }) => {
   const [Rating,setRating] = useState(null)
 
   function useOutsideAlerter(ref) {
+
+   useEffect(()=>{
+     context.duplicateDish()
+   },[context.orderDish])
+
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         setModel(false);
@@ -46,7 +51,7 @@ const Order = ({ match }) => {
  useEffect(()=>{
    setInfo({instruction: event,table: match.params.table})
  },[order])
- console.log(Rating)
+ console.log(context.orderDish)
   useEffect(()=>{
     if(context.RatingDish){
       let filter = context.RatingDish.filter(({count})=>{
@@ -102,7 +107,7 @@ const Order = ({ match }) => {
         });
     }
   };
-console.log(context.orderInfo)
+
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
@@ -116,6 +121,7 @@ console.log(context.orderInfo)
         }}
         hotelid={match.params.hotelid}
         table={match.params.table}
+        history={history}
       />
 
       <div className="full-bg" />

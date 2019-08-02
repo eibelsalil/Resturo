@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./orderPlate.css";
-import PreviousOrder from "./prevouisOrder";
+//import PreviousOrder from "./prevouisOrder";
 import CurrentOrder from "./current-order";
 import Bill from "../bill/bill";
 import AppContext from "../../../context/AppContext";
@@ -14,7 +14,6 @@ const OrderOne = ({ click, order,  total, instruction, setEvent }) => {
   return (
     <div>
       <div className="orders-cont">
-        <PreviousOrder />
         <CurrentOrder
           orderDish={context.orderDish}
           total={add(context.total)}

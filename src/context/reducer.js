@@ -2,6 +2,7 @@ import _ from "lodash";
 
 
 
+
 export const ADD_PRICE = "ADD_PRICE";
 export const DELETE_PRICE = "DELETE_PRICE";
 export const ADD_DISH = "ADD_DISH";
@@ -29,6 +30,7 @@ export const CHRATING_ID= "CHRATING_ID"
 export const SET_COLLAPSE= "SET_COLLAPSE"
 export const GET_CATEGORYMOD= "GET_CATEGORYMOD"
 export const GET_LIVEORDER = "GET_LIVEORDER"
+export const DUPLICATE_DISH= "DUPLICATE_DISH"
 
 
 export const priceReducer = (state, action) => {
@@ -59,10 +61,15 @@ export const dishReducer = (state, action) => {
       let dish = action.dish
       return {
         ...state,
-        orderDish: [...state.orderDish,dish]
+        orderDish: [...state.orderDish,...dish]
       };
+      case DUPLICATE_DISH:
+        _.difference(state.orderDish,_.uniqBy(state.orderDish,'id')).length
+        return{
+          ...state
+        }
     case DELETE_DISH:
-        _.remove(state.orderDish[1], function(el) {
+        _.remove(state.orderDish, function(el) {
           return el.count === 0;
         });
       return {
@@ -74,28 +81,28 @@ export const dishReducer = (state, action) => {
             ...state
         }
     case DEC_COUNT:
-      state.orderDish[1].map((o) =>
+      state.orderDish.map((o) =>
         o.id === action.id ? (o.count = o.count - 1) : o
       );
       return {
         ...state
       };
     case INC_COUNT:
-      state.orderDish[1].map((o) =>
+      state.orderDish.map((o) =>
         o.id === action.id ? (o.count = o.count + 1) : o
       );
       return {
         ...state
       };
     case INC_TOTAL:
-      state.orderDish[1].map((o) =>
+      state.orderDish.map((o) =>
         o.id === action.id ? (o.total = o.total + parseInt(o.price)) : o
       );
       return {
         ...state
       };
     case DEC_TOTAL:
-      state.orderDish[1].map((o) =>
+      state.orderDish.map((o) =>
         o.id === action.id ? (o.total = o.total - parseInt(o.price)) : o
       );
       return {

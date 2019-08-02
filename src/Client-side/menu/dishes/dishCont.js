@@ -18,8 +18,11 @@ const Dishcont = ({ categoryId }) => {
   const setOrderDishes = () => {
   let filtred = Obj.filter(({count})=>{
      return count !== undefined
-  })
-      context.addDish(filtred);    
+  }) 
+  if(filtred.length > 0){
+    context.addDish(filtred);    
+  }
+   
   };
 
   useEffect(() => {
@@ -72,7 +75,7 @@ useEffect(()=>{
   Obj[indx].total = Math.round((parseInt(Obj[indx].price) + parseInt(Obj[indx].price) * parseInt(Obj[indx].tax) / 100) * context.RatingCount)
    }
  },[context.RatingCount])
-   console.log(Obj)
+   console.log(context.orderDish,context.changeId)
   const setTotal = (x) => {
     return context.addPrice(x);
   };

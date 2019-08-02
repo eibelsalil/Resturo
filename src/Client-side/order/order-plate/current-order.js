@@ -12,14 +12,14 @@ const CurrentOrder = ({ orderDish }) => {
   const deleteItem = (x) => {
     return context.deletPrice(x);
   };
+ console.log(orderDish)
 
-  console.log(orderDish[1])
   return (
     <div className="currentOrder">
       <p className="current-title">Current Order</p>
       <div className="currentOrders-cont">
-        {orderDish.length > 1
-          ? orderDish[1].map(({ name, price, count, total, id,tax }) => (
+        {orderDish
+          ? orderDish.map(({ name, price, count, total, id,tax }) => (
               <OrderContent
                 dishName={name}
                 dishPrice={price}

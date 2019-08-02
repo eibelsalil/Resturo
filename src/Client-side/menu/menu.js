@@ -29,7 +29,6 @@ const Menu = ({match,history}) => {
       console.log(err)
     })
   },[match.params.hotelid])
-  console.log(context.AdminPage)
    useEffect(()=>{
   if(!context.table){
     setLoading(true)
