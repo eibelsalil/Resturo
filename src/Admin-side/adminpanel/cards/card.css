@@ -291,10 +291,12 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        align-content: space-between;
         overflow: hidden;
         margin-top: 10%;
-        height: 100%;
-        width: 100%
+        width: 100%;
+        flex-wrap: wrap
+     
     }
     .liveCard{
        width: 30% ;

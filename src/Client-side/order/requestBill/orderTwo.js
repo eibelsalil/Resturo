@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useContext} from "react";
+import React,{useContext} from "react";
 import Bill from "../bill/bill";
 import OrderState from "../orderState/orderState";
 import OrderModel from "../orderState/order_.model";
