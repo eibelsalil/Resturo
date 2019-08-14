@@ -24,28 +24,18 @@
      top: 50%
 }
 
-.finishConfirmation{
-    background-color: #302B2B;
-    position: absolute;
-    z-index: 2;
-    left: 0%;
-    top: 0%;
-    height: 100%;
-    width: 100%;
-    opacity: 0.2;
+.contbtnbtn{
+    position: fixed
 }
 
-.finishButton{
- position: absolute;
+.finishButton{  
  z-index:10;
- left: 0%;
- top: 0%;
- height: 50%;
+ height: 100%;
  width: 100%;
  display: flex;
  justify-content: space-evenly;
  align-items: center;
- overflow: auto;
+ background-color: #302B2B;
 }
 
 
@@ -80,6 +70,7 @@
     border: 10px solid #B04E3B;
     border-radius: 6px;
     overflow: scroll;
+    height: fit-content;
 }
  
 .text-order{
@@ -294,12 +285,14 @@
         align-content: space-between;
         overflow: hidden;
         margin-top: 10%;
+        margin-bottom: 10%;
         width: 100%;
         flex-wrap: wrap
      
     }
     .liveCard{
        width: 30% ;
+       margin-bottom: 10px
     }
     .completedCard{
         width: 30%;

@@ -7,12 +7,13 @@ import fire from "../config/config";
 import "./adminpanel/panel.css";
 import Axios from "axios";
 import PlateTable from "./adminpanel/cards/plateTable";
-import LoadingOverlay from "react-loading-overlay";
 import uuid from "uuid";
 import "./adminpanel/cards/card.css";
 import Confirm from "../Asset/confirmWhite.png";
 import Cancel from "../Asset/cancel.png";
 import AppContext from "../context/AppContext";
+import Loader from "./adminpanel/adminsettings/Loader";
+import CardConfrimation from "./adminpanel/cards/CardConfirmation";
 
 
 const RenderMainAdmin = () => {
@@ -26,6 +27,7 @@ const RenderMainAdmin = () => {
   const [Completedorders, setComplete] = useState(null);
   const [Loading, setLoad] = useState(false);
   const [finish, setFinish] = useState(false);
+  const [id,setId] = useState()
   const Timer = (timer) => {
     return <p className="time-spend">{timer}</p>;
   };
@@ -119,12 +121,24 @@ const RenderMainAdmin = () => {
         console.log(err);
       });
   };
-console.log(context.orderDish)
+
   const renderLiveOrder = () => {
     if (context.orderDish.length > 0  && context.orderDish[0] !== "you don't have any live orders") {
       return context.orderDish.map((order) => (
         <React.Fragment    key={order.orderId}>
-          <LiveCard
+
+          { finish && id === order.orderId ?
+           <CardConfrimation
+           finish={()=>{
+            setFinish(false);
+           }}
+           finishTo={()=>{
+            setTofinish(order.orderId);
+           }}
+           Cancel={Cancel}
+           Confirm={Confirm}
+           >
+            <LiveCard
             tableNumber={order.table}
             buttonText={"DONE"}
             classDpends={"liveCard"}
@@ -133,6 +147,7 @@ console.log(context.orderDish)
             timer={Timer(order.time)}
             click={() => {
               setFinish(true);
+              setId(order.orderId)
             }}
             Live={order.status}
             borderTableDepend={"table-paltes"}
@@ -141,30 +156,7 @@ console.log(context.orderDish)
             textOrderDepend={"text-order"}
            pageDepend={"done-button"}
            OrderNumber={"orderNumber"}
-          >
-            {finish ? (
-              <div className="contbtnbtn">
-                <div className="finishButton">
-                  <button
-                    className="cancel"
-                    onClick={() => {
-                      setFinish(false);
-                    }}
-                  >
-                    <img src={Cancel} alt="cancel" />
-                  </button>
-                  <button
-                    className="confirm"
-                    onClick={() => {
-                      setTofinish(order.orderId);
-                    }}
-                  >
-                    <img src={Confirm} alt="confirm" />
-                  </button>
-                </div>
-                <div className="finishConfirmation" />
-              </div>
-            ) : null}
+          > 
             {Object.keys(order.dishes[0]).map((key) => (
               <PlateTable
                 key={uuid()}
@@ -174,6 +166,37 @@ console.log(context.orderDish)
               />
             ))}
           </LiveCard>
+          </CardConfrimation>
+          :
+          <LiveCard
+          tableNumber={order.table}
+          buttonText={"DONE"}
+          classDpends={"liveCard"}
+          Statedpend={"table-cont"}
+          instruction={order.instruction}
+          timer={Timer(order.time)}
+          click={() => {
+            setFinish(true);
+            setId(order.orderId)
+          }}
+          Live={order.status}
+          borderTableDepend={"table-paltes"}
+          orderId={order.orderId}
+          tabletextDepend={"plate-comments"}
+          textOrderDepend={"text-order"}
+         pageDepend={"done-button"}
+         OrderNumber={"orderNumber"}
+        > 
+          {Object.keys(order.dishes[0]).map((key) => (
+            <PlateTable
+              key={uuid()}
+              plateName={key}
+              palteNumber={order.dishes[0][key][0]}
+              borderDepend={"palteNumber"}
+            />
+          ))}
+        </LiveCard>
+        }
         </React.Fragment>
       ));
     } 
@@ -218,16 +241,17 @@ console.log(context.orderDish)
         click={() => setPage(true)}
         clickBack={() => setPage(false)}
       />
-      <LoadingOverlay
-        active={Loading ? true : false}
-        spinner
-        text="Loading your orders..."
-      >
-        {!page ? (
+    
+       {
+        Loading ?
+        <div className="load">
+        <Loader />
+         </div>
+         :
+        <div>
+          {!page ? (
           <div className="live-cardsCont">
-            {!Loading
-              ?  renderLiveOrder() 
-              : Array.from({ length: 5 }).map(() => <LiveCard key={uuid()} />)}
+             {renderLiveOrder() }
           </div>
         ) : (
           <div className="live-cardsCont">
@@ -252,7 +276,8 @@ console.log(context.orderDish)
             logout();
           }}
         />
-      </LoadingOverlay>
+        </div>
+        }
     </div>
   );
 };

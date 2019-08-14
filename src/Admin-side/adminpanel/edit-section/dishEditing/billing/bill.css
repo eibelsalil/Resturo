@@ -15,13 +15,16 @@
     margin-top: 25%;
     margin-bottom: 15%
 }
-
+.loadBill{
+    margin-top: 50%
+}
 .bill-Cont{
     display: grid;
     grid-template-columns: 40% 60%;
     background-color: white;
     border: 10px solid #B5B5B5;
     border-radius: 6px;
+    height: fit-content
 }
 .bill-cont-print{
     display: grid;
@@ -45,7 +48,7 @@
     .forPrint{
         width: 100%;
         display: grid;
-        grid-template-rows: 50%;
+        grid-template-rows: 35%;
         grid-row-gap: 10px;
         
     }
@@ -157,6 +160,13 @@
    align-items: center;
     width: 100%
 }
+.GST-Bill{
+    display: grid;
+    grid-template-columns: 50% 60%;
+    justify-content: center;
+    align-items: center;
+     width: 100%  
+}
 .SUB-GST{
     display: flex;
      justify-content: center;
@@ -182,7 +192,13 @@
     text-align: right;
     margin-right: 20px
 }
-
+.totalTax-bill{
+    font-family: "Microsoft YaHei UI";
+    font-size: 10px;
+    font-weight: bold; 
+    text-align: right;
+    margin-right: 20px
+}
 .Amout-withTaxes{
     display: flex;
     justify-content: space-between;
@@ -298,10 +314,15 @@
 @media only screen and (min-width: 1000px){
     .card-cont{
         overflow: hidden;
+        margin-top: 7%;
+
+    }
+    .loadBill{
+        margin-top: 20%
     }
     .bill-Cont{
         width: 35%;
- 
+       margin-bottom: 10px
     }
     .bill-cont-print{
         width: 95%
@@ -320,7 +341,8 @@
         width: 100%;
         display: flex;
         justify-content: space-evenly;
-        align-items: center
+        align-items: center;
+        flex-wrap: wrap
     }
     .for-print2{
         width: 100%;
@@ -333,11 +355,17 @@
     .date-deco{
         margin-right: 0
     }
+    .GST-Bill{
+        justify-content: flex-end;
+    }
  .SUB-GST{
      margin-right: 70x;
  }
  .totalTax{
      margin-right: 25px
+ }
+ .totalTax-bill{
+    margin-right: 15px
  }
  .amount-number{
      margin-right: 15px

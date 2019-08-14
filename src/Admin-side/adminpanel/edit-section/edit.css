@@ -84,7 +84,8 @@
         position: fixed;
         display: flex;
         justify-content: center;
-        align-items: center
+        align-items: center;
+        flex-wrap: wrap
      
     }
 
@@ -103,6 +104,7 @@
     .itemName2{
         width: 30%;
         overflow: hidden;
- 
+        margin-top: 0%;
+        margin-bottom: 10px
     }
 }

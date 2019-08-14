@@ -6,11 +6,12 @@ import CompletedCard from "../../../cards/completedCard";
 import OldBills from "./oldbill";
 import Firebase from "firebase";
 import Axios from "axios";
-import PlateTable from "../../../cards/plateTable";
 import uuid from "uuid";
-import LoadingOverlay from "react-loading-overlay";
-
+import {add} from "../../../../../Client-side/order/orderHelper"
 import RenderSelectedBill from "./billTobePrint";
+import PlateTableCC from "../../../cards/plateTableCompleted";
+import Loader from "../../../adminsettings/Loader";
+
 
 const Billing = () => {
   let user = Firebase.auth().currentUser.uid;
@@ -31,7 +32,17 @@ const Billing = () => {
       </div>
     );
   };
-
+  function Total(bill){
+    let total = []
+    Object.keys(bill[0]).map((key)=>{
+      total.push(bill[0][key][2])
+    })
+    return add(total)
+  }
+  function Tax(total){
+    let tax = (total * (7 / 100))
+    return tax
+  }
   const getBills = useCallback(() => {
     setLoading(true);
     Axios.get(
@@ -134,10 +145,12 @@ const Billing = () => {
         >
           {bill.dishes ? (
             Object.keys(bill.dishes[0]).map((key) => (
-              <PlateTable
+              <PlateTableCC
                 key={uuid()}
                 plateName={key}
                 palteNumber={bill.dishes[0][key][0]}
+                price={bill.dishes[0][key][1]}
+                total={bill.dishes[0][key][2]}
                 borderDepend={"palteNumber"}
                 plateTableDepend={"table-paltes"}
                 instruction={bill.instruction}
@@ -146,6 +159,25 @@ const Billing = () => {
           ) : (
             <p>don't have any dish</p>
           )}
+          <div className="billTotal">
+          <div className="billTotalCont">
+            <div className="sub-total">
+              <p className="SUB_TO">SUB TOTAL</p>
+              <p className="TOT">{Total(bill.dishes)}</p>
+            </div>
+            <div className="GST-Bill">
+              <div className="SUB-GST">
+                <p className="gst">GST</p>
+                <p className="perscentage">(7.00%)</p>
+              </div>
+              <p className="totalTax-bill">{parseFloat(Tax(Total(bill.dishes))).toFixed(3) }</p>
+            </div>
+          </div>
+          <div className="Amout-withTaxes">
+          <p className="amount-Title">Amount Incl of all Taxes</p>
+          <p className="amount-number">{Total(bill.dishes) + Tax(Total(bill.dishes)) }</p>
+          </div>
+          </div>
         </LiveCard>
       ));
     }
@@ -166,7 +198,9 @@ const Billing = () => {
 
   
   const renderCompletedBil = () => {
+ 
     if (billIt) {
+
       return billIt.map((bill,i) => (
         <CompletedCard
         id={i}
@@ -188,14 +222,35 @@ const Billing = () => {
           }}
         >
           {Object.keys(bill.dishes[0]).map((key) => (
-            <PlateTable
+            <PlateTableCC
               key={uuid()}
               plateName={key}
               palteNumber={bill.dishes[0][key][0]}
+              price={bill.dishes[0][key][1]}
+              total={bill.dishes[0][key][2]}
               borderDepend={"palteNumber"}
               plateTableDepend={"table-paltes"}
             />
           ))}
+          <div className="billTotal">
+          <div className="billTotalCont">
+            <div className="sub-total">
+              <p className="SUB_TO">SUB TOTAL</p>
+              <p className="TOT">{Total(bill.dishes)}</p>
+            </div>
+            <div className="GST-Bill">
+              <div className="SUB-GST">
+                <p className="gst">GST</p>
+                <p className="perscentage">(7.00%)</p>
+              </div>
+              <p className="totalTax-bill">{parseFloat(Tax(Total(bill.dishes))).toFixed(3) }</p>
+            </div>
+          </div>
+          <div className="Amout-withTaxes">
+          <p className="amount-Title">Amount Incl of all Taxes</p>
+          <p className="amount-number">{Total(bill.dishes) + Tax(Total(bill.dishes)) }</p>
+          </div>
+          </div>
         </CompletedCard>
       ));
     }
@@ -214,12 +269,14 @@ const Billing = () => {
   return (
     <div className="Billing-full" >
       <BillingHeadr name={"billing"} />
-      <LoadingOverlay
-        active={Loading ? true : false}
-        spinner
-        text="Loading your orders..."
-      >
-        <div className="card-cont">
+      
+        { Loading ?
+
+          <div className="loadBill">
+          <Loader />
+          </div>
+          :
+          <div className="card-cont">
         <div className="first-cameBill">
           {  renderLiveBill()}
           </div>
@@ -244,8 +301,8 @@ const Billing = () => {
               tabletextDepend={"plate-commentsDis"}
             />
           </div>
-        </div>
-      </LoadingOverlay>
+        </div>}
+  
     </div>
   );
 };
