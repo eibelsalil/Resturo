@@ -18,7 +18,6 @@ const CardConfrimation = ({finish,finishTo,Cancel,Confirm,children}) =>{
             <img src={Confirm} alt="confirm" />
           </button>
         </div>
-        {children}
         <div className="finishConfirmation" />
       </div>
     )

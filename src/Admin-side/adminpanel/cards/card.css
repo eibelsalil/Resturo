@@ -15,8 +15,22 @@
     border: 10px solid #3CE082;
     border-radius: 6px;
     height: fit-content;
-
     
+}
+
+.liveCardFlip{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: white;
+    border: 10px solid #3CE082;
+    border-radius: 6px;
+    height: fit-content;
+    width: 100%
+}
+.inner-Conf{
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .dont-have{
     color: #CF2D31;
@@ -25,7 +39,14 @@
 }
 
 .contbtnbtn{
-    position: fixed
+    height: 100%;
+    width: 120%;
+    position: absolute;
+
+}
+.full-conf{
+    border: 1px solid #f1f1f1;
+    width: 95%;
 }
 
 .finishButton{  
@@ -35,7 +56,7 @@
  display: flex;
  justify-content: space-evenly;
  align-items: center;
- background-color: #302B2B;
+ background-color: rgba(48, 43, 43, 0.8);
 }
 
 
@@ -69,7 +90,6 @@
     background-color: white;
     border: 10px solid #B04E3B;
     border-radius: 6px;
-    overflow: scroll;
     height: fit-content;
 }
  
@@ -212,7 +232,9 @@
     align-items: center;
     justify-content: center
 }
-
+.done-button:hover{
+    cursor: pointer;
+}
 .done-buttonHidden{
     display: none
 }
@@ -290,6 +312,18 @@
         flex-wrap: wrap
      
     }
+    .full-conf{
+        width: 30%;
+    }
+
+    .liveCardFlip{
+        width: 87%;
+        margin: 0
+    }
+  
+    .contbtnbtn{
+      width: 92%
+    }
     .liveCard{
        width: 30% ;
        margin-bottom: 10px
@@ -297,7 +331,12 @@
     .completedCard{
         width: 30%;
         overflow: hidden;
+        margin-bottom: 10px
     }
 
+  .table-paltesCompleted{
+      overflow: hidden;
+  }
 
+  
 }

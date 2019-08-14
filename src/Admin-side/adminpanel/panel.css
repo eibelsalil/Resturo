@@ -16,9 +16,17 @@
 .live-off {
   color: #707070;
 }
-
+.live-off:hover{
+  cursor: pointer;
+}
+.live:hover{
+  cursor: pointer;
+}
 .Completed {
   color: #707070;
+}
+.Completed:hover{
+  cursor: pointer;
 }
 .Completed-On {
   color: #5ecfe1;

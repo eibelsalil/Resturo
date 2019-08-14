@@ -128,6 +128,8 @@ const RenderMainAdmin = () => {
         <React.Fragment    key={order.orderId}>
 
           { finish && id === order.orderId ?
+            <div className="full-conf">
+            <div className="inner-Conf">
            <CardConfrimation
            finish={()=>{
             setFinish(false);
@@ -137,11 +139,11 @@ const RenderMainAdmin = () => {
            }}
            Cancel={Cancel}
            Confirm={Confirm}
-           >
+         />
             <LiveCard
             tableNumber={order.table}
             buttonText={"DONE"}
-            classDpends={"liveCard"}
+            classDpends={"liveCardFlip"}
             Statedpend={"table-cont"}
             instruction={order.instruction}
             timer={Timer(order.time)}
@@ -166,7 +168,8 @@ const RenderMainAdmin = () => {
               />
             ))}
           </LiveCard>
-          </CardConfrimation>
+          </div>
+          </div>
           :
           <LiveCard
           tableNumber={order.table}
