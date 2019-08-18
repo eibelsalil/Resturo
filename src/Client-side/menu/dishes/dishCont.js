@@ -137,7 +137,7 @@ useEffect(()=>{
     }
   };
 
-  return <div>{renderDishes()}</div>;
+  return <div className="dishList">{renderDishes()}</div>;
 };
 
 export default Dishcont;

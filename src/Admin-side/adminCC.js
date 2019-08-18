@@ -45,11 +45,19 @@ const RenderMainAdmin = () => {
     fire.auth().signOut();
   };
 
+  useEffect(()=>{
+    const RefUpdate = fire.database().ref(`/Hotel/${user}/Order`)
+      RefUpdate.on("value",(snapshot,prev)=>{
+        let newOrder = snapshot.key
+        console.log(newOrder)
+      })
+  },[user])
+
   useEffect(() => {
     if(context.orderDish.length === 0 && context.dishId.length === 0){
       setLoad(true);
       Axios.get(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/liveOrder`
       )
         .then((doc) => {
           setLive(doc.data);
@@ -57,7 +65,7 @@ const RenderMainAdmin = () => {
         })
         .then(() => {
           Axios.get(
-            `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+            `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/completeOrder`
           ).then((doc) => {
             setComplete(doc.data);
             context.setDishId(doc.data)
@@ -94,19 +102,20 @@ const RenderMainAdmin = () => {
     };
     setLoad(true);
     Axios.put(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/order/${orderId}`,
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/order/${orderId}`,
       update
     )
       .then(() => {
         Axios.get(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/liveOrder`
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/liveOrder`
         )
           .then((doc) => {
             setLive(doc.data);
+            context.updateDish(doc.data)
           })
           .then(() => {
             Axios.get(
-              `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+              `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/completeOrder`
             ).then((doc) => {
               setComplete(doc.data);
             

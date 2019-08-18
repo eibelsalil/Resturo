@@ -15,7 +15,7 @@ const DishItem = ({ click, name, dishId,user,LiveDish }) => {
     const updateLive = () =>{
       setLoading(true)
       Axios.put(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/dish/${
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
           dishId
         }`,{"Live": toggle}
       )

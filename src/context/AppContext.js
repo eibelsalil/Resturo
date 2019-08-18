@@ -22,7 +22,7 @@ export default React.createContext({
     addPrice: price =>{},
     deletPrice: index =>{},
     addDish: dish =>{},
-    duplicateDish: dish=>{},
+    updateDish: dish=>{},
     deleteDish: index =>{},
     deleteAllOrder: d =>{},
     IncCount: (id,count) =>{},

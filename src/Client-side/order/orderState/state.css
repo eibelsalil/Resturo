@@ -1,8 +1,8 @@
 .order-state{
-    margin-top: 180px;
+    margin-top: 150px;
     background-color: #FFFFFF;
     height: 287px;
-    border-radius: 22px;
+    border-radius: 0px 0px 25px 25px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -86,7 +86,9 @@
     font-weight: bold;
     color: #2687DC;
 }
-
+.request:hover{
+    cursor: pointer;
+}
 .more{
     width: 153.32px;
     height: 39px;
@@ -97,4 +99,18 @@
     font-size: 18px;
     font-weight: bold;
     color: #31D82B;
+}
+
+.more{
+    cursor: pointer;
+}
+@media only screen and (min-width: 1024px){
+.kitchen{
+    text-align: center;
+    width: 100%
+}
+.order-state{
+    margin-top: 230px;
+    height: 80px;
+}
 }

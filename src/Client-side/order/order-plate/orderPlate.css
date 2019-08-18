@@ -43,7 +43,6 @@
 .currentOrders-cont{
     display: grid;
  grid-gap: 0px;
-
    height: fit-content
 }
 .current{
@@ -138,8 +137,7 @@
     flex-direction: column;
     justify-content: center;
     border-top: 3px solid #DCDBDB;
-    border-bottom: 3px solid #DCDBDB;
-    
+    border-bottom: 3px solid #DCDBDB;   
 }
 
 .current-dish{
@@ -399,6 +397,18 @@
 @media only screen and (min-width: 1000px){
 
 
+    .orders-cont{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 90%;
+        background-color: white;
+        border-radius: 22px;
+        margin-top: 0;
+        margin-left: 5%;
+        overflow: hidden
+    }
+
       
     .title-order{
         margin-right: 70%;
@@ -478,5 +488,43 @@
         width: 70px
     }
 
- 
+.currentOrder{
+    overflow: auto
+}
+.current{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    height: 60px;
+    justify-content: center;
+    align-items: center
+}
+.button-col-current{
+    display: flex;
+    justify-content: center;
+}
+.button-current{
+    margin-top: 7%;
+    margin-left: 0%
+}
+#plus-current{
+    font-size: 25px;
+    margin-top: 8%;
+    margin-right: 5%;
+    margin-left: 1% 
+}
+#plus-current:hover{
+    cursor: pointer;
+}
+#minus-current{
+    font-size: 30px;
+    margin-top: 6%;
+    margin-left: 20%;
+   margin-right: 1%
+}
+#minus-current{
+    cursor: pointer;
+}
+.instruction-input{
+    overflow: hidden;
+}
 }

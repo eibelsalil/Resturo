@@ -9,6 +9,7 @@ import useForm from "./Form";
 import axios from "axios";
 import firebase from "firebase";
 import LoadingOverlay from "react-loading-overlay";
+import Loader from "../../adminsettings/Loader";
 
 const Addnew = ({ Nav }) => {
   let user = firebase.auth().currentUser.uid;
@@ -28,13 +29,13 @@ const Addnew = ({ Nav }) => {
       setSpinner(true);
       axios
         .post(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes`,
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes`,
           formValue
         )
         .then(() => {
           axios
             .get(
-              `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes`
+              `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes`
             )
             .then((doc) => {
               setLast(doc.data);
@@ -52,7 +53,7 @@ const Addnew = ({ Nav }) => {
     if (LastCreated) {
       axios
         .put(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/${
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/${
             LastCreated[0].dishId
           }`,
           linker
@@ -69,46 +70,55 @@ const Addnew = ({ Nav }) => {
 
   return (
     <div className="New-cont">
+    {
+      spiner ?
+      <Loader />
+      : 
+      null
+    }
       <form onSubmit={handelSubmit} className="forrrm">
 
-          <p className="ItemName-title">Item name</p>
-          <input
-            type="text"
-            className="intemName-input"
-            name="dishName"
-            onChange={handelChange}
-          />
-          <UploadImg
-            upload={img ? img : UploadIcon}
-            update={(e) => {
-              setimg(URL.createObjectURL(e.target.files[0]));
-              let image = e.target.files[0];
-              const data = new FormData();
-              data.append("image", image, image.name);
-              setLinker(data);
-            }}
-            img={img}
-          />
-          <VegOption vegChange={handelChange} NonVegChange={handelChange} />
-          <PriceEdit pricevalue={handelChange} taxvalue={handelChange} />
-          <GategorySelection
-            setDiscription={handelChange}
-            setGategory={handelChange}
-          />
-          <div className="twoButtons">
-            <button
-              className="delete-btn"
-              onClick={() => {
-                Nav()
-              }}
-            >
-              Cancel
-            </button>
-            <button className="saveEdit-btn" type="submit">
-              Next
-            </button>
-          </div>
-      </form>
+      <p className="ItemName-title">Item name</p>
+      <input
+        type="text"
+        className="intemName-input"
+        name="dishName"
+        onChange={handelChange}
+      />
+      <UploadImg
+        upload={img ? img : UploadIcon}
+        update={(e) => {
+          setimg(URL.createObjectURL(e.target.files[0]));
+          let image = e.target.files[0];
+          const data = new FormData();
+          data.append("image", image, image.name);
+          setLinker(data);
+        }}
+        img={img}
+      />
+      <VegOption vegChange={handelChange} NonVegChange={handelChange} />
+      <PriceEdit pricevalue={handelChange} taxvalue={handelChange} />
+      <GategorySelection
+        setDiscription={handelChange}
+        setGategory={handelChange}
+      />
+      <div className="twoButtons">
+        <button
+          className="delete-btn"
+          onClick={() => {
+            Nav()
+          }}
+        >
+          Cancel
+        </button>
+        <button className="saveEdit-btn" type="submit">
+          Next
+        </button>
+      </div>
+  </form>
+  
+    
+    
     </div>
   );
 };

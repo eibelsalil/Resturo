@@ -227,6 +227,10 @@
     color: #2C2B2B
 }
 
+.orderPlate:hover{
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 350px) {
     .order-mode{
         padding-top: 150px

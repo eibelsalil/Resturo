@@ -18,7 +18,7 @@ const DishEditing = () => {
     if(context.dish.length === 0){
       setLoading(true);
       Axios.get(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/gategory`
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/gategory`
       )
         .then((doc) => {
           setGategory(doc.data.gategory);
@@ -28,11 +28,11 @@ const DishEditing = () => {
         });
     }
     
-  }, [user,context.dish]);
+  }, [user]);
   useEffect(() => {
     if (category !== []) {
         Axios.get(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/all`
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/all`
         )
           .then((doc) => {
            let filtred = category.map((cat)=>{

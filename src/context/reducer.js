@@ -30,7 +30,7 @@ export const CHRATING_ID= "CHRATING_ID"
 export const SET_COLLAPSE= "SET_COLLAPSE"
 export const GET_CATEGORYMOD= "GET_CATEGORYMOD"
 export const GET_LIVEORDER = "GET_LIVEORDER"
-export const DUPLICATE_DISH= "DUPLICATE_DISH"
+export const UPDATE_DISH= "UPDATE_DISH"
 
 
 export const priceReducer = (state, action) => {
@@ -63,13 +63,13 @@ export const dishReducer = (state, action) => {
         ...state,
         orderDish: [...state.orderDish,...dish]
       };
-      /*
-      case DUPLICATE_DISH:
-       let diff = _.difference(state.orderDish,_.uniqBy(state.orderDish,'id')).length
-        return{
-          ...state,
-        }
-        */
+  
+      case UPDATE_DISH:
+       return{
+         ...state,
+         orderDish: action.dish
+       }
+     
     case DELETE_DISH:
         _.remove(state.orderDish, function(el) {
           return el.count === 0;

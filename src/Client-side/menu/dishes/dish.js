@@ -24,7 +24,7 @@ const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,DishRating,DishTime,
     <div className="full-dish">
     <div className="dish">
     <div className="first-part">
-      <img src={img} alt="fried" width="109px" height="79px" className="dishImg" 
+      <img src={img} alt="fried"  className="dishImg" 
       onClick={()=>{
         setExpand(!expand)
  
@@ -36,7 +36,7 @@ const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,DishRating,DishTime,
       <li><span>{DishTime}</span></li>
       </div>
       </div>
-      <div style={{ width: "30%" , flexShrink:"0" }}>
+      <div  className="typeAndName">
         <p className="dishName">{name}</p>
         <p className="inrice">{dishes[0].rice}</p>
         <p className="price">${price}</p>

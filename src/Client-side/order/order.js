@@ -22,9 +22,7 @@ const Order = ({ match ,history}) => {
 
   function useOutsideAlerter(ref) {
 
-   useEffect(()=>{
-     context.duplicateDish()
-   },[context.orderDish])
+
 
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -67,7 +65,7 @@ const Order = ({ match ,history}) => {
    if(Rating){
      setLoading(true)
       Rating.map((rat)=>(
-        Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishesRating/${rat.id}`, {"rating": rat.count})
+        Axios.put(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/dishesRating/${rat.id}`, {"rating": rat.count})
         .then((doc)=>{
           console.log(doc.data)
           setLoading(false)
@@ -85,7 +83,7 @@ const Order = ({ match ,history}) => {
      if(model){
       setLoading(true)
        context.orderDish.map((dish)=>(
-        Axios.put(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/dishes/dishTime/${dish.id}`)
+        Axios.put(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/dishes/dishTime/${dish.id}`)
         .then((doc)=>{
           console.log(doc.data)
         })
@@ -101,7 +99,7 @@ const Order = ({ match ,history}) => {
     if (context.orderInfo) {
    
       Axios.post(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/order`,
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/order`,
         { ...info, ...{ dishes: [context.orderInfo] },...{total: add(context.total)} }
       )
         .then((doc) => {

@@ -46,7 +46,7 @@ const Billing = () => {
   const getBills = useCallback(() => {
     setLoading(true);
     Axios.get(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/completeOrder`
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/completeOrder`
     )
       .then((doc) => {
         setBill(doc.data);
@@ -63,7 +63,7 @@ const Billing = () => {
     };
     setLoading(true);
     Axios.put(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/order/${BillId}`,
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/order/${BillId}`,
       updated
     )
       .then(() => {

@@ -28,10 +28,11 @@ const OrderState = ({ click, Orders ,hotelid,table,disable,loading}) => {
   }, [context, requestBill]);
   return (
     <div className="order-state">
+    {/*
       <div className="kitchen">
         <p style={{ marginLeft: "15px" }}>In Kitchen</p>
       </div>
-      <DishState />
+      <DishState />*/}
     {!loading ?  <div className="option-button">
         <button className="request" onClick={click} disabled={!disable ? false : true}>
           request bill

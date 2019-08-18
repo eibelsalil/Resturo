@@ -17,7 +17,7 @@ const Table = () => {
     setLoading(true);
     if (values) {
       Axios.post(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/tables`,
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/tables`,
         {"tableNumber": values}
       )
         .then(() => {

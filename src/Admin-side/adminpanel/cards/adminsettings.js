@@ -6,7 +6,7 @@ import LoadingOverlay from "react-loading-overlay";
 import Pen from "../../../Asset/edit-pen.png";
 import Confirm from "../../../Asset/confirm.png";
 import {Link} from "react-router-dom"
-const Settings = ({ wraaperRef, model, click, logout }) => {
+const Settings = ({ wraaperRef, model,  logout }) => {
   let user = firebase.auth().currentUser.uid;
   const [info, setInfo] = useState(null);
   const [update, setUpdate] = useState("");
@@ -15,7 +15,7 @@ const Settings = ({ wraaperRef, model, click, logout }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}`)
+      .get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}`)
       .then((doc) => {
         setInfo(doc.data);
       });
@@ -28,12 +28,12 @@ const Settings = ({ wraaperRef, model, click, logout }) => {
     setSpinner(true);
     axios
       .put(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}`,
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}`,
         event
       )
       .then((doc) => {
         axios
-        .get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}`)
+        .get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}`)
         .then((doc) => {
           setInfo(doc.data);
         });

@@ -42,7 +42,7 @@ import {
   DELETE_ALLDISH,
   DELETE_AllORDER,
   DELETE_ALLID,
-  DUPLICATE_DISH
+  UPDATE_DISH
 } from "./reducer";
 
 const GlobalState = ({ children }) => {
@@ -106,9 +106,9 @@ const [LiveOrderState,setLiveOrderishpatch] = useReducer(LiveOrderReducer,{
   const addDish = (dish) => {
     dishdispatch({ type: ADD_DISH, dish: dish });
   };
-  const duplicateDish = () =>{
-     dishdispatch({type: DUPLICATE_DISH})
-  }
+   const updateDish = (dish) =>{
+     dishdispatch({type: UPDATE_DISH,dish:dish})
+   }
   const deleteDish = (index) => {
     dishdispatch({ type: DELETE_DISH, index: index });
   };
@@ -202,7 +202,7 @@ const deleteAllDish = () =>{
         deletPrice: deletPrice,
         orderDish: orderDishState.orderDish,
         addDish: addDish,
-        duplicateDish: duplicateDish,
+        updateDish: updateDish,
         deleteDish: deleteDish,
         AdminPage: adminPageState.AdminPage,
         setAdminPage: setAdminPage,

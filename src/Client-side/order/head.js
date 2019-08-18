@@ -20,7 +20,7 @@ const OrderHead = ({ back, order, click,hotelid,table,history }) => {
         )}
 
         <div className="head-order-text">
-          <p className="rest-order">resturant name</p>
+          <p className="rest-order">{context.AdminPage.user.resturant}</p>
           <p className="plate-order">my plate</p>
         </div>
       </div>

@@ -44,6 +44,10 @@
   display: flex;
   flex-direction: column;
 }
+.first-part .dishImg{
+  width: 109px;
+  height: 79px;
+}
 .first-part .dishImg:hover{
   cursor: pointer
 }
@@ -163,6 +167,13 @@
 .dish-img{
   position: static;
 }
+.typeAndName{
+  flex-shrink: 0;
+  width: 30%
+}
+.main-dishes{
+  width: 100%
+}
 @media only screen and (min-width: 458px) and (max-width: 963px) {
   .inc{
     margin-top: 0%;
@@ -190,6 +201,73 @@
 
 @media only screen and (min-width: 1000px){
   .veg-sym{
-    left: 110px;
+    display: none
   }
+  .main-dishes{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+  .dishCont {
+    align-items: center;
+    width: 100%
+  }
+.dishList{
+  width: 100%;
+}
+  .dish{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .first-part .dishImg{
+    width: 500px;
+    height: 250px;
+  }
+  .rating-timing li span{
+    display: none
+  }
+  .typeAndName{
+    display: flex;
+    justify-content: center
+  }
+  .inrice{
+    margin: 3%
+  }
+  .price{
+    margin-top: 3.5%
+  }
+  .add{
+      height: 31px;
+      width: 100.2px;
+      margin-top: 0%;
+      margin-left: 0%;
+      margin-bottom: 1%
+  }
+  .add:hover{
+    cursor: pointer;
+  }
+  .inc{
+    width: 7.5%;
+    margin-left: 0%;
+    margin-top: 0%;
+  }
+  .sing-minus{
+    margin-top: 3%
+  }
+  .sing-minus:hover{
+    cursor: pointer;
+  }
+  .sing-plus:hover{
+    cursor: pointer;
+  }
+  .sing-plus{
+    margin-top: 9%
+  }
+ .category{
+   font-size: 35px
+ }
 }

@@ -21,7 +21,7 @@ const Menu = ({match,history}) => {
   
   useEffect(()=>{
     Axios
-    .get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}`)
+    .get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}`)
     .then((doc)=>{
       context.setAdminPage(doc.data)
     })
@@ -32,7 +32,7 @@ const Menu = ({match,history}) => {
    useEffect(()=>{
   if(!context.table){
     setLoading(true)
-    Axios.get( `http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/gategory`)
+    Axios.get( `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/gategory`)
 
   .then((doc)=>{
     setCategory(doc.data.gategory)
@@ -46,7 +46,7 @@ const Menu = ({match,history}) => {
 
 useEffect(()=>{
   if(!context.table){
-    Axios.get(`http://localhost:5000/resturo-07/europe-west1/api/hotel/${match.params.hotelid}/LiveDishes`)
+    Axios.get(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${match.params.hotelid}/LiveDishes`)
     .then((data)=>{
      setDishs(data.data)
     })
@@ -105,7 +105,7 @@ useEffect(()=>{
         context.deleteAllDish()
         context.deleteAllOrder()
       }}
-      resturantName={context.AdminPage.user ? context.AdminPage.user.resturant : null  }
+      resturantName={context.AdminPage.user ? context.AdminPage.user.resturant : "Resturant Name"  }
       />
       <LoadingOverlay
       active={loading ? true : false}
@@ -113,7 +113,7 @@ useEffect(()=>{
       text="Loading your dishes..."
       >
       <div className="main-dishes">
-      {context.dish !== [] ? <Dishcont   /> : <h1>Don't have any dish</h1> }
+      {context.dish !== [] ? <Dishcont   />  : <h1>Don't have any dish</h1> }
       </div>
       </LoadingOverlay>
       <Model

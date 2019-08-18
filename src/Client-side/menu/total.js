@@ -9,7 +9,7 @@ const Total = ({table,hotelid,history}) => {
   return (
     <div className="total">
       <div className="price-item">
-        <p className="item">1 item</p>
+        <p className="item">{context.total.length} item</p>
         <p className="total-amount">${add(context.total)}</p>
       </div>
       <div className="cart">

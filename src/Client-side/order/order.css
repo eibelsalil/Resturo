@@ -53,7 +53,9 @@
     align-items: center;
     height: 150px;
 }
-
+.order-headContent img:hover{
+   cursor: pointer;
+}
 .head-order-text{
     margin-left: 10%;
     display: grid;
@@ -105,9 +107,31 @@
     .plate-order{
         margin-top: 0
     }
+    .header-order{
+        height:  10%;
+        border-radius: 0px
+    }
+    .order-headContent{
+        display: grid;
+        grid-template-columns: 3% 95%;
+        justify-content: flex-start;
+        align-items: center;
+        height: 10%;
+    }
+    .head-order-text{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100%;
+        margin-left: 0
+    }
+    .rest-order{
+        margin-top: 1.5%
+    }
 }
 @media only screen and (max-width: 360px){
     .full-bg-1{
         height: 122%;
     }
+
 }
