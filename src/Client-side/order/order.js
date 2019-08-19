@@ -51,7 +51,6 @@ const Order = ({ match ,history}) => {
  useEffect(()=>{
    setInfo({instruction: event,table: match.params.table})
  },[order])
- console.log(context.orderDish)
   useEffect(()=>{
     if(context.RatingDish){
       let filter = context.RatingDish.filter(({count})=>{
@@ -103,7 +102,6 @@ const Order = ({ match ,history}) => {
         { ...info, ...{ dishes: [context.orderInfo] },...{total: add(context.total)} }
       )
         .then((doc) => {
-          console.log(doc.data);
           setLoading(false)
           setTimeout(()=>{
             setModel(false)

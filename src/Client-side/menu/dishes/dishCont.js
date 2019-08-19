@@ -75,7 +75,6 @@ useEffect(()=>{
   Obj[indx].total = Math.round((parseInt(Obj[indx].price) + parseInt(Obj[indx].price) * parseInt(Obj[indx].tax) / 100) * context.RatingCount)
    }
  },[context.RatingCount])
-   console.log(context.orderDish,context.changeId)
   const setTotal = (x) => {
     return context.addPrice(x);
   };

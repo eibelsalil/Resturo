@@ -12,7 +12,7 @@ const CurrentOrder = ({ orderDish }) => {
   const deleteItem = (x) => {
     return context.deletPrice(x);
   };
- console.log(orderDish)
+
 
   return (
     <div className="currentOrder">

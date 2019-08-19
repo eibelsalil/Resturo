@@ -137,7 +137,9 @@
     margin-top: 5%;
     margin-bottom: 5%
 }
-
+.orderModel-contect-Rating button:hover{
+  cursor: pointer;
+}
 .orderModel-contect{
     background-color: #FFCA42;
     margin: auto;
@@ -284,6 +286,9 @@
         display: flex;
         justify-content: space-around;
         
+    }
+    .order-mode{
+        padding-top: 70px
     }
     .item-total{
         font-size: 30px
