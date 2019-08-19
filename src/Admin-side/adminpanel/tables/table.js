@@ -47,7 +47,7 @@ const Table = () => {
       <BillingHeadr name={"Table"} />
       <div className="qrCode-Container">
         <div id="qrcode">
-          {values ? <Qrcode value={`http://localhost:3000/menu/${user}/${values}`} size={300} /> : null}
+          {values ? <Qrcode value={`https://resturo-07.firebaseapp.com/menu/${user}/${values}`} size={300} /> : null}
         </div>
         <input
           type="text"
