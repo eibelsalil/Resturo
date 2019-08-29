@@ -20,6 +20,7 @@ const Billing = () => {
   const [bill, setBill] = useState(null);
   const [billIt, setTobillit] = useState(null);
   const [billwait, setbillwait] = useState(null);
+  const [printedBill,setPrintedBill] = useState(null);
   const [Loading, setLoading] = useState(false);
   //const [todayBills, setTodayBills] = useState(null);
   const [selecId,setSelectid] = useState(null)
@@ -81,15 +82,19 @@ const Billing = () => {
   }, [getBills]);
   useEffect(() => {
     if (bill && bill !== "you don't have any completed orders") {
-      let item = bill.filter(({ billing }) => {
-        return billing === true;
+      let item = bill.filter(({ billing,print }) => {
+        return billing  === true 
       });
       setTobillit(item);
       let item2 = bill.filter(({ billing }) => {
         return billing === false;
       });
       setbillwait(item2);
-
+      let item3 = bill.filter(({print,billing})=>{
+         return print & billing === true
+      })
+      setPrintedBill(item3)
+     
       //let today = new Date().getDate();
       /*let yesterday = bill.filter(({ day }) => {
         return day < today;
@@ -121,7 +126,7 @@ const Billing = () => {
     }
 
 */
-
+console.log(selecId)
   const renderLiveBill = () => {
     if (billwait && bill !== "you don't have any completed orders") {
       return billwait.map((bill) => (
@@ -190,9 +195,28 @@ const Billing = () => {
          orderId === selecId
     ))
     setSelectedbill(item[0])
+
+   
  }
  },[billIt,selecId])
+     
+ const SetToPrint = (billId) =>{
+   let updated = {
+     print: true,
+     Billing: false
+   }
+  Axios.put(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/order/${billId}`,
+  updated
+  )
+  .then(()=>{
+    console.log("updated")
+  })
+  .catch((err)=>{
+  console.log(err)
+  })
+ }
 
+  
 
 
 
@@ -219,6 +243,10 @@ const Billing = () => {
           OrderNumber={"orderNumber"}
           clickRef={()=>{
             setSelectid(bill.orderId)
+          setTimeout(()=>{
+            SetToPrint(bill.orderId)
+          },[1200])
+          
           }}
         >
           {Object.keys(bill.dishes[0]).map((key) => (

@@ -130,9 +130,9 @@ const RenderMainAdmin = () => {
         console.log(err);
       });
   };
-
+console.log(context.orderDish)
   const renderLiveOrder = () => {
-    if (context.orderDish.length > 0  && context.orderDish[0] !== "you don't have any live orders") {
+    if (context.orderDish.length > 0  && context.orderDish.join("") !== "you don't have any live orders") {
       return context.orderDish.map((order) => (
         <React.Fragment    key={order.orderId}>
 

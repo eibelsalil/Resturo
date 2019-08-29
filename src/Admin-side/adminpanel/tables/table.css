@@ -1,13 +1,16 @@
 .qrCode-Container{
     width: 100%;
-    margin-top: 25%
+    margin-top: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
 }
 
 .qrCode-Container input{
     height: 25px;
     background: white;
     border-radius: 0%;
-    margin-left: 24%;
     margin-bottom: 2%;
     text-align: center
 }
@@ -21,4 +24,13 @@
     font-size: 23px;
     font-weight: bold;
 }
+.setValue:hover{
+    cursor: pointer;
+}
 
+@media only screen and (min-width: 1000px){
+    .qrCode-Container{
+        margin-top: 10%
+    } 
+
+}

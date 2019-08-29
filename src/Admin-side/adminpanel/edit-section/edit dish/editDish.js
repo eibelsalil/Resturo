@@ -28,8 +28,8 @@ const EditDish = ({ history }) => {
      if(formValue){
       setLoading(true);
       Axios.put(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/dish/${
-          context.dishId[0]
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
+          context.dishId[1]
         }`,
         formValue
       )
@@ -42,13 +42,13 @@ const EditDish = ({ history }) => {
      if (img) {
       setLoading(true);
       Axios.delete(
-        `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/img/${
-          context.dishId[0]
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/img/${
+          context.dishId[1]
         }`
       ).then(() => {
         Axios.put(
-          `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/${
-            context.dishId[0]
+          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/${
+            context.dishId[1]
           }`,
           linked
         ).then(()=>{
@@ -58,11 +58,12 @@ const EditDish = ({ history }) => {
       });
     }
   }
+  console.log(context.dishId)
   useEffect(() => {
     setLoading(true);
     Axios.get(
-      `http://localhost:5000/resturo-07/europe-west1/api/hotel/${user}/dishes/dish/${
-        context.dishId[0]
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
+        context.dishId[1]
       }`
     )
       .then((doc) => {

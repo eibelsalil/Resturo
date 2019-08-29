@@ -12,7 +12,14 @@ const Total = ({table,hotelid,history}) => {
         <p className="item">{context.total.length} item</p>
         <p className="total-amount">${add(context.total)}</p>
       </div>
-      <div className="cart">
+      <div className="cart"
+      onClick={()=>{
+        context.changeTheId('12')
+        setTimeout(()=>{
+          history.push(`/menu/${hotelid}/${table}/order`)
+        },1500)
+      }}
+      >
         <p className="cart-text">view cart</p>
           <img
             src={darkArrow}
@@ -20,12 +27,6 @@ const Total = ({table,hotelid,history}) => {
             width="36.23px"
             height="20px"
             style={{ marginRight: "5px", marginTop: "4px" }}
-            onClick={()=>{
-              context.changeTheId('12')
-              setTimeout(()=>{
-                history.push(`/menu/${hotelid}/${table}/order`)
-              },1500)
-            }}
           />
       </div>
     </div>
