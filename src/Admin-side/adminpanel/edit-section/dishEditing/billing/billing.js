@@ -82,16 +82,16 @@ const Billing = () => {
   }, [getBills]);
   useEffect(() => {
     if (bill && bill !== "you don't have any completed orders") {
-      let item = bill.filter(({ billing,print }) => {
+      let item = bill.filter(({ billing }) => {
         return billing  === true 
       });
       setTobillit(item);
-      let item2 = bill.filter(({ billing }) => {
-        return billing === false;
+      let item2 = bill.filter(({ billing,print }) => {
+        return billing === false && print === false
       });
       setbillwait(item2);
       let item3 = bill.filter(({print,billing})=>{
-         return print & billing === true
+         return print === true
       })
       setPrintedBill(item3)
      
@@ -126,7 +126,7 @@ const Billing = () => {
     }
 
 */
-console.log(selecId)
+console.log(printedBill)
   const renderLiveBill = () => {
     if (billwait && bill !== "you don't have any completed orders") {
       return billwait.map((bill) => (
@@ -203,13 +203,13 @@ console.log(selecId)
  const SetToPrint = (billId) =>{
    let updated = {
      print: true,
-     Billing: false
+     billing: false
    }
   Axios.put(`https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/order/${billId}`,
   updated
   )
   .then(()=>{
-    console.log("updated")
+   getBills()
   })
   .catch((err)=>{
   console.log(err)
@@ -283,6 +283,18 @@ console.log(selecId)
       ));
     }
   };
+
+  const renderPrintedBill = () =>{
+    if(printedBill) {
+      return printedBill.map((print)=>(
+           <RenderSelectedBill
+           selectedBill={print}
+           CompletedTimer={CompletedTimer}
+           />
+      ))
+    }
+  }
+
   const Timer = (time, timeSign) => {
     return (
       <div className="timer-cont">
@@ -309,13 +321,10 @@ console.log(selecId)
           {  renderLiveBill()}
           </div>
           
-          {!selectedBill ?<div className="forPrint"> {renderCompletedBil()}</div>: <div className="for-print2"> <RenderSelectedBill selectedBill={selectedBill} CompletedTimer={CompletedTimer} Back={()=>{
-            setTimeout(()=>{
-              setSelectedbill(null)
-            },2500)
-          }} />
-        </div>}
-  
+          <div className="forPrint"> {renderCompletedBil()}</div>
+        <div className="for-print2">
+        {renderPrintedBill()}
+        </div>
           <div className="oldBills">
             <p className="date-deco">YESTERDAY</p>
             <OldBills

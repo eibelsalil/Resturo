@@ -59,7 +59,16 @@
     color: #727272;
     text-decoration-line: underline
 }
-
+.editDishCont{
+    margin-top: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    overflow: scroll;
+    margin-bottom: 20%
+}
 .dish-info{
     display: flex;
     justify-content: flex-start;
@@ -88,7 +97,13 @@
         flex-wrap: wrap
      
     }
-
+    .editDishCont{
+        overflow: hidden;
+        margin-bottom: 10%;
+        margin-top: 10%;
+        width: 50%;
+        margin-left: 30%
+    }
     .EDITDDISH{
         display: flex;
         justify-content: space-evenly;

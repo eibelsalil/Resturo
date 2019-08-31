@@ -434,7 +434,9 @@
   color: black;
   text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
 }
-
+.delete-btn:hover{
+  cursor: pointer;
+}
 .twoButtons{
   width: 100%;
   display: flex;
@@ -456,7 +458,9 @@
   font-weight: bold;
   text-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
 }
-
+.saveEdit-btn:hover{
+  cursor: pointer;
+}
 .itemDesciption{
   font-family: "Microsoft YaHei UI";
   font-size: 17px;

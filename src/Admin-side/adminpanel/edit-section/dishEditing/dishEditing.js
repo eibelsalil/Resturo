@@ -72,6 +72,7 @@ const DishEditing = () => {
                 name={d.dishName}
                 key={d.dishId}
                 click={() => {
+                  context.setAdminPage(d.dishId)
                   context.setDishId(d.dishId)
                 }}
                 dishId={d.dishId}

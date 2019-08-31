@@ -42,7 +42,9 @@ import {
   DELETE_ALLDISH,
   DELETE_AllORDER,
   DELETE_ALLID,
-  UPDATE_DISH
+  UPDATE_DISH,
+  EditDishReducer,
+  EDIT_DISH
 } from "./reducer";
 
 const GlobalState = ({ children }) => {
@@ -88,6 +90,10 @@ const GlobalState = ({ children }) => {
  
 const [CategoryModelState,categoryModelDishpatch] = useReducer(CategoryModReducer,{
   CategoryModel: []
+})
+
+const [EditDishState,EditDishDishpatch] = useReducer(EditDishReducer,{
+  EditDish: null
 })
 const [LiveOrderState,setLiveOrderishpatch] = useReducer(LiveOrderReducer,{
   LiveOrder: []
@@ -193,7 +199,9 @@ const DeleteFirstDish = () =>{
 const deleteAllDish = () =>{
   getDishdishpatch({type: DELETE_ALLDISH})
 }
-
+const setEditDish = (EditId) =>{
+  EditDishDishpatch({type: EDIT_DISH, EditId})
+}
   return (
     <AppContext.Provider
       value={{
@@ -234,11 +242,14 @@ const deleteAllDish = () =>{
         setCollapse: setCollapse,
         CategoryModel: CategoryModelState.CategoryModel,
         setCategoryModel: setCategoryModel,
+        EditDish: EditDishState.EditDish,
+        setEditDish: setEditDish,
         LiveOrder: LiveOrderState.LiveOrder,
         setLiveOrder: setLiveOrder,
         deletAlldishId: deletAlldishId,
         deleteAllOrder: deleteAllOrder,
-        deleteAllDish:deleteAllDish
+        deleteAllDish:deleteAllDish,
+
       }}
     >
       {children}

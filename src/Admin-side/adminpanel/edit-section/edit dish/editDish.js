@@ -23,47 +23,54 @@ const EditDish = ({ history }) => {
   const [descriptionValue, setDiscriptionValue] = useState(null);
   const { values, handelChange, handelSubmit } = useForm(getValue);
   const context = useContext(AppContext);
-  function getValue() {
-    setValue(values);
-     if(formValue){
-      setLoading(true);
+
+
+function getValue(){
+  setValue(values);
+
+}
+
+useEffect(()=>{
+  if(formValue){
+    setLoading(true);
+    Axios.put(
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
+        context.AdminPage
+      }`,
+      formValue
+    )
+    .then(()=>{
+      setLoading(false);
+      history.push("/adminPanel/edit");
+    })
+   }
+
+   if (img) {
+    setLoading(true);
+    Axios.delete(
+      `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/img/${
+        context.AdminPage
+      }`
+    ).then(() => {
       Axios.put(
-        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
-          context.dishId[1]
+        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/${
+          context.AdminPage
         }`,
-        formValue
-      )
-      .then(()=>{
+        linked
+      ).then(()=>{
         setLoading(false);
         history.push("/adminPanel/edit");
       })
-     }
-
-     if (img) {
-      setLoading(true);
-      Axios.delete(
-        `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/img/${
-          context.dishId[1]
-        }`
-      ).then(() => {
-        Axios.put(
-          `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/${
-            context.dishId[1]
-          }`,
-          linked
-        ).then(()=>{
-          setLoading(false);
-          history.push("/adminPanel/edit");
-        })
-      });
-    }
+    });
   }
-  console.log(context.dishId)
+},[formValue,user])
+
+
   useEffect(() => {
     setLoading(true);
     Axios.get(
       `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/dish/${
-        context.dishId[1]
+        context.AdminPage
       }`
     )
       .then((doc) => {
@@ -73,12 +80,23 @@ const EditDish = ({ history }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [user, context.dishId]);
+  }, [user, context.AdminPage]);
 
-
+ const DeleteDish = () =>{
+ 
+   setLoading(true)
+   Axios.delete(
+     `https://europe-west1-resturo-07.cloudfunctions.net/api/hotel/${user}/dishes/${context.AdminPage}`
+   )
+   .then(()=>{
+    setLoading(false);
+    history.push("/adminPanel/edit");
+   })
+ }
   return (
-    <div className="New-cont">
+    <div >
       <BillingHeadr name={"Edit Dish"} />
+      <div className="editDishCont">
       <LoadingOverlay
         active={loading ? true : false}
         spinner
@@ -145,7 +163,11 @@ const EditDish = ({ history }) => {
                 />
               )}
               <div className="twoButtons">
-                <button className="delete-btn">Delete</button>
+                <button className="delete-btn"
+                  onClick={()=>{
+                    DeleteDish()
+                  }}
+                >Delete</button>
                 <button className="saveEdit-btn" type="submit">
                   save changes
                 </button>
@@ -154,6 +176,7 @@ const EditDish = ({ history }) => {
           </React.Fragment>
         ) : null}
       </LoadingOverlay>
+      </div>
     </div>
   );
 };

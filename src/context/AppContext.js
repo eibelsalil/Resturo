@@ -16,6 +16,7 @@ export default React.createContext({
     RatingDish: null,
     Collapse: false,
     CategoryModel: [],
+    EditDish: null,
     LiveOrder: [],
     setDishId: id => {},
     deletAlldishId: id =>{},
@@ -44,5 +45,6 @@ export default React.createContext({
     setRatingId: id =>{},
     setCollapse: bool =>{},
     setCategoryModel: data =>{},
+    setEditDish: id =>{},
     setLiveOrder: order =>{}
  })

@@ -55,7 +55,6 @@ const RenderSelectedBill = ({ selectedBill, CompletedTimer, Back }) => {
         orderId={id}
         clickRef={() => {
           selectElement(selectedBill.orderId);
-          Back();
         }}
       >
         {Object.keys(selectedBill.dishes[0]).map((key) => (

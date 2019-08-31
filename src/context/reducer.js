@@ -29,6 +29,7 @@ export const ADD_RATING = "ADD_RATING"
 export const CHRATING_ID= "CHRATING_ID"
 export const SET_COLLAPSE= "SET_COLLAPSE"
 export const GET_CATEGORYMOD= "GET_CATEGORYMOD"
+export const EDIT_DISH= "EDIT_DISH"
 export const GET_LIVEORDER = "GET_LIVEORDER"
 export const UPDATE_DISH= "UPDATE_DISH"
 
@@ -275,7 +276,17 @@ export const CategoryModReducer = (action,state) =>{
          return state
    }
 }
-
+export const EditDishReducer = (action,state) =>{
+  switch(action.type){
+    case EDIT_DISH:
+    return{
+      ...state,
+      EditDish: action
+    }
+    default:
+      return state
+  }
+}
 export const LiveOrderReducer =(action,state) =>{
   switch(action.type){
     case GET_LIVEORDER:
