@@ -8,7 +8,7 @@ import jsPDF from "jspdf";
 import Axios from "axios";
 import Loader from "react-loader-spinner";
 
-const Table = () => {
+const Table = ({history}) => {
   const [input, setInput] = useState();
   const [values, setValues] = useState();
   const [loading, setLoading] = useState(false);
@@ -70,7 +70,8 @@ const Table = () => {
             onClick={() => {
               PDFgen();
               setTimeout(() => {
-                setValues(input);
+                setValues();
+                history.push("/adminPanel")
               }, 2500);
             }}
           >

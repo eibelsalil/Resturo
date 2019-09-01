@@ -33,6 +33,7 @@
     background-color: white;
     border: 10px solid #B5B5B5;
     border-radius: 6px;
+    margin-bottom: 10px
 }
 
 .html2canvas-container {
@@ -333,7 +334,8 @@
        margin-bottom: 10px
     }
     .bill-cont-print{
-        width: 95%
+        width: 95%;
+        margin-bottom: 5px
     }
 
     .first-cameBill{
@@ -357,7 +359,9 @@
     .for-print2{
         width: 100%;
         display: flex;
-        justify-content: center
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap
     }
     .oldBills{
       display: none

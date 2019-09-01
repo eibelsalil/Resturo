@@ -130,9 +130,12 @@ const RenderMainAdmin = () => {
         console.log(err);
       });
   };
-console.log(context.orderDish)
+
   const renderLiveOrder = () => {
-    if (context.orderDish.length > 0  && context.orderDish.join("") !== "you don't have any live orders") {
+    if ((context.orderDish.length !== 30)
+       ||
+       ( context.orderDish.length <= 0 && context.orderDish !== "you don't have any live orders")
+    ) {
       return context.orderDish.map((order) => (
         <React.Fragment    key={order.orderId}>
 
@@ -263,7 +266,7 @@ console.log(context.orderDish)
         <div>
           {!page ? (
           <div className="live-cardsCont">
-             {renderLiveOrder() }
+             {context.orderDish.length === 29 ?  <div>{renderLiveOrder()} <h1>Maximum of live orders are 29</h1></div> : renderLiveOrder()  }
           </div>
         ) : (
           <div className="live-cardsCont">

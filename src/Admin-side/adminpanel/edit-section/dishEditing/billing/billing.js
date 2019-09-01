@@ -126,7 +126,6 @@ const Billing = () => {
     }
 
 */
-console.log(printedBill)
   const renderLiveBill = () => {
     if (billwait && bill !== "you don't have any completed orders") {
       return billwait.map((bill) => (

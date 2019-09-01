@@ -93,6 +93,7 @@ useEffect(()=>{
     history.push("/adminPanel/edit");
    })
  }
+console.log(values)
   return (
     <div >
       <BillingHeadr name={"Edit Dish"} />
@@ -119,9 +120,10 @@ useEffect(()=>{
                   value={dish.dishName}
                   className="intemName-input"
                   name="dishName"
-                  onChange={(e) => {
-                    setnameValue(e.target.value);
-                  }}
+    
+                 onClick={()=>{
+                   setnameValue(true)
+                 }}
                 />
               )}
               <UploadImg
