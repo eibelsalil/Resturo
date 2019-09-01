@@ -1,46 +1,51 @@
-import React, { Component } from "react";
-import QrReader from 'react-qr-reader'
-import {Link,withRouter} from "react-router-dom"
-import AppContext from '../context/AppContext'
- 
-class Home extends Component {
-  static contextType = AppContext
-  state = {
-    result: 'No result',
-  }
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Adminpic from "../Asset/Admin.jpg";
+import ClientPic from "../Asset/client.jpg";
+import QRcodePic from "../Asset/qrcode.png";
+import Button from '@material-ui/core/Button';
 
-  handleScan = data => {
-    if (data) {
-      this.setState({
-        result: data.split("/").splice(0,1).join("")
-      }) 
-      this.context.setTable(data.split("/").splice(1,1).join(""))
-      setTimeout(() => {
-         this.props.history.push(`/menu/${this.state.result}`)
-      }, 2000);
-    }
+const Home = () => {
+  const [info, setInfo] = useState(false);
 
-  }
-
-  handleError = err => {
-    console.error(err)
-  }
-
-  render() {
-    return (
-      <div className="home">
-    <Link to="/adminpanel"><button>Sing in</button></Link> 
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ width: '100%' }}
-        />
-        <p>{this.state.result}</p>
+  return (
+    <React.Fragment>
+      <div className="homeBg" />
+      <div className="Home">
+        <div className="HomeCont">
+          <h1>Welcome To Resturo</h1>
+          {!info ? (
+            <div className="Options">
+              <div className="AdminLoginBTN">
+                <h2>Admin Login</h2>
+                <Link to="/adminpanel">
+                  <img src={Adminpic} alt="admin login" />
+                </Link>
+              </div>
+              <div className="ClientBTN">
+                <h2>Client</h2>
+                <img
+                  src={ClientPic}
+                  alt="client from here"
+                  onClick={() => {
+                    setInfo(true);
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="ClientGuide">
+              <h2>Scan the QRCode On Your Table For You Can See The Menu</h2>
+              <img src={QRcodePic} alt="QRcode example" />
+              <Button size="large" className="BTN" onClick={()=>{
+                setInfo(false)
+              }}>Back</Button>
+            </div>
+          )}
+        </div>
       </div>
-    )
-  }
-}
- 
+    </React.Fragment>
+  );
+};
 
-export default withRouter(Home) 
+export default Home;
