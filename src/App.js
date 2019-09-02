@@ -8,17 +8,21 @@ import "./App.css";
 import Home from "./Client-side/Home";
 import "./Client-side/menu/Menu.css";
 
-function App() {
+function App({location}) {
   return (
     <div className="App">
-      <Switch>
-        <GlobalState>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/adminpanel" component={MainAdmin} />
-          <Route exact path="/menu/:hotelid/:table" component={Menu} />
-          <Route exact path="/menu/:hotelid/:table/order" component={Order} />
-        </GlobalState>
-      </Switch>
+          <Switch  >
+            <GlobalState>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/adminpanel" component={MainAdmin} />
+              <Route exact path="/menu/:hotelid/:table" component={Menu} />
+              <Route
+                exact
+                path="/menu/:hotelid/:table/order"
+                component={Order}
+              />
+            </GlobalState>
+          </Switch>
     </div>
   );
 }

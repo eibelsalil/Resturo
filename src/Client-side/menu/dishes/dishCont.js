@@ -5,6 +5,7 @@ import Non_veg from "../../../Asset/non-veg.png";
 import Dish from "./dish";
 import AppContext from "../../../context/AppContext";
 import _ from "lodash"
+import {FadeTransform} from "react-animation-components"
 
 
 const Dishcont = ({ categoryId }) => {
@@ -136,7 +137,15 @@ useEffect(()=>{
     }
   };
 
-  return <div className="dishList">{renderDishes()}</div>;
+  return <div className="dishList">
+  <FadeTransform in
+  transformProps={{
+    exitTransform: "scale(0.5) translateY(-50%)"
+}}
+  >
+  {renderDishes()}
+  </FadeTransform>
+  </div>;
 };
 
 export default Dishcont;
