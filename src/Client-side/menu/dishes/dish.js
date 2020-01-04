@@ -15,11 +15,11 @@ const Dish = ({ img, veg ,name,price,hover,Inc,Dec,setTheId,DishRating,DishTime,
       count > 0 ?
       context.IncRating(count)
       : context.IncRating()
-    },[count])
+    },[context, count])
 
  useEffect(()=>{
   context.setCollapse(expand)
- },[expand])
+ },[context, expand])
   return (
     <div className="full-dish">
     <div className="dish">
